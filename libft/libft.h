@@ -6,7 +6,7 @@
 /*   By: djanssen <djanssen@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 11:12:30 by djanssen          #+#    #+#             */
-/*   Updated: 2022/10/03 19:21:30 by djanssen         ###   ########.fr       */
+/*   Updated: 2022/10/10 13:50:08 by djanssen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,11 +44,10 @@ char	*ft_strchr(const char *s, int c);
 char	*ft_strchr(const char *s, int c);
 char	*ft_strrchr(const char *s, int c);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
-// void	*ft_memchr(const void *s, int c, size_t n);
-// int		ft_memcmp(const void *s1, const void *s2, size_t n);
-// char	*ft_strnstr(const char *big, const char *little, size_t len);
-// int		ft_atoi(const char *nptr);
-// void	*ft_calloc(size_t nmemb, size_t size);
+char	*ft_strdup(const char *src);
+void	*ft_calloc(size_t count, size_t size);
+char	*ft_substr(char const *s, unsigned int start, size_t len);
+char	*ft_strjoin(char const *s1, char const *s2);
 // char	*ft_strdup(const char *s1);
 // // ADDITIONAL
 // char *ft_substr(char const *s, unsigned int start, size_t len);
