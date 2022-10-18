@@ -1,40 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcpy.c                                        :+:      :+:    :+:   */
+/*   ft_lstnew_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: djanssen <djanssen@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/20 17:11:45 by djanssen          #+#    #+#             */
-/*   Updated: 2022/10/18 18:52:58 by djanssen         ###   ########.fr       */
+/*   Created: 2022/09/20 16:18:41 by djanssen          #+#    #+#             */
+/*   Updated: 2022/10/18 18:45:39 by djanssen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memcpy(void *dst, const void *src, size_t n)
+t_list	*ft_lstnew(void *content)
 {
-	size_t	i;
-	char	*pt_dst;
-	char	*pt_src;
+	t_list	*nodo;
 
-	pt_dst = (char *)dst;
-	pt_src = (char *)src;
-	i = 0;
-	if (!pt_dst && !pt_src)
+	nodo = (t_list *) malloc(sizeof(t_list));
+	if (!nodo)
 		return (NULL);
-	while (i < n)
-	{
-		pt_dst[i] = pt_src[i];
-		i++;
-	}
-	return (dst);
+	nodo->content = content;
+	nodo->next = NULL;
+	return (nodo);
 }
-
-// int	main(void)
-// {
-// 	char dst[] = "abcdefg1";
-// 	char src[] = "ABCDEF";
-// 	printf("%s", ft_memcpy(dst, src, sizeof(src)));
-// 	return (0);
-// }
