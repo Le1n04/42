@@ -1,29 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   ft_lstclear_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: djanssen <djanssen@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/23 11:52:53 by djanssen          #+#    #+#             */
-/*   Updated: 2022/10/19 17:21:38 by djanssen         ###   ########.fr       */
+/*   Created: 2022/09/20 16:18:41 by djanssen          #+#    #+#             */
+/*   Updated: 2022/10/19 11:47:48 by djanssen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strchr(const char *s, int c)
+void	ft_lstclear(t_list **lst, void (*del)(void *))
 {
-	unsigned int	i;
+	t_list	*tmp;
 
-	i = 0;
-	while (s[i])
+	if (!del)
+		return ;
+	while (*lst)
 	{
-		if (s[i] == (char)c)
-			return ((char *)&s[i]);
-		i++;
+		del((*lst)->content);
+		tmp = *lst;
+		*lst = tmp->next;
+		free(tmp);
 	}
-	if ((char)c == s[i])
-		return ((char *)&s[i]);
-	return (NULL);
+	*lst = NULL;
 }
