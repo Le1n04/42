@@ -6,7 +6,7 @@
 /*   By: djanssen <djanssen@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 16:18:50 by djanssen          #+#    #+#             */
-/*   Updated: 2022/10/14 13:11:54 by djanssen         ###   ########.fr       */
+/*   Updated: 2022/10/21 14:58:36 by djanssen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,9 @@
 
 static int	unleah(char **str, int size)
 {
-	while (size--)
-		free(str[size]);
+	while (size >= 0)
+		free(str[size--]);
+	free(str);
 	return (-1);
 }
 
@@ -67,7 +68,7 @@ static int	write_split(char **split, const char *str, char charset)
 			while ((str[i + j] == charset || str[i + j] == '\0') == 0)
 				j++;
 			split[word] = (char *) malloc(sizeof(char) * (j + 1));
-			if (split[word] == NULL)
+			if (!split[word])
 				return (unleah(split, word - 1));
 			write_word(split[word], str + i, charset);
 			i += j;
@@ -85,7 +86,7 @@ char	**ft_split(const char *str, char c)
 	words = count_words(str, c);
 	res = (char **)malloc(sizeof(char *) * (words + 1));
 	if (res == NULL)
-		return (NULL);
+		return (free(res), NULL);
 	res[words] = 0;
 	if (write_split(res, str, c) == -1)
 		return (NULL);

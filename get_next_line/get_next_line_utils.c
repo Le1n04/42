@@ -6,62 +6,68 @@
 /*   By: djanssen <djanssen@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 11:12:30 by djanssen          #+#    #+#             */
-/*   Updated: 2022/10/19 18:29:55 by djanssen         ###   ########.fr       */
+/*   Updated: 2022/10/21 17:00:22 by djanssen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-size_t	ft_strlen(const char *str)
+size_t	ft_strlen(char *s)
 {
-	int	i;
+	size_t	i;
 
 	i = 0;
-	while (str[i])
+	if (!s)
+		return (0);
+	while (s[i] != '\0')
 		i++;
 	return (i);
 }
 
-char	*ft_strjoin(char const *s1, char const *s2)
+char	*ft_strjoin(char *left_str, char *buff)
 {
-	char	*new;
-	int		size1;
-	int		size2;
-	int		size;
+	size_t	i;
+	size_t	j;
+	char	*str;
 
-	if (s1 && s2)
+	if (!left_str)
 	{
-		size1 = 0;
-		size2 = 0;
-		while (s1[size1])
-			size1++;
-		while (s2[size2])
-			size2++;
-		size = size1 + size2;
-		new = malloc(sizeof(char) * (size + 1));
-		if (!new)
-			return (NULL);
-		ft_strlcpy(new, s1, ft_strlen(s1) + 1);
-		ft_strlcat(new, s2, size + 1);
-		return (new);
+		left_str = (char *)malloc(1 * sizeof(char));
+		left_str[0] = '\0';
 	}
-	return (NULL);
+	if (!left_str || !buff)
+		return (NULL);
+	str = malloc(sizeof(char) * ((ft_strlen(left_str) + ft_strlen(buff)) + 1));
+	if (str == NULL)
+		return (NULL);
+	i = -1;
+	j = 0;
+	if (left_str)
+		while (left_str[++i] != '\0')
+			str[i] = left_str[i];
+	while (buff[j] != '\0')
+		str[i++] = buff[j++];
+	str[ft_strlen(left_str) + ft_strlen(buff)] = '\0';
+	free(left_str);
+	return (str);
 }
 
-char	*ft_strchr(const char *s, int c)
+char	*ft_strchr(char *s, int c)
 {
-	unsigned int	i;
+	int	i;
 
 	i = 0;
-	while (s[i])
+	if (!s)
+		return (0);
+	if (c == '\0')
+		return ((char *)&s[ft_strlen(s)]);
+	while (s[i] != '\0')
 	{
-		if (s[i] == (char)c)
+		if (s[i] == (char) c)
 			return ((char *)&s[i]);
 		i++;
 	}
-	if ((char)c == s[i])
-		return ((char *)&s[i]);
-	return (NULL);
+	return (0);
 }
 
 char	*ft_strdup(const char *src)
@@ -86,72 +92,27 @@ char	*ft_strdup(const char *src)
 	return (new);
 }
 
-void	*ft_memmove(void *dst, const void *src, size_t len)
+void	ft_bzero(void *s, size_t n)
 {
-	char	*pt_dst;
-	char	*pt_src;
-
-	pt_dst = (char *)dst;
-	pt_src = (char *)src;
-	if (!len || dst == src)
-		return (dst);
-	if (pt_src < pt_dst)
-	{
-		while (len--)
-		{
-			*(pt_dst + len) = *(pt_src + len);
-		}
-	}
-	else
-		while (len--)
-			*pt_dst++ = *pt_src++;
-	return (dst);
-}
-
-size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
-{
+	char	*str;
 	size_t	i;
-	char	*pt_src;
 
-	pt_src = (char *)src;
+	str = (char *)s;
 	i = 0;
-	if (dstsize > 0)
+	while (i < n)
 	{
-		while (pt_src[i] && i < dstsize - 1)
-		{
-			dst[i] = pt_src[i];
-			i++;
-		}
-		dst[i] = 0;
-	}
-	while (src[i])
-		i++;
-	return (i);
-}
-
-size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
-{
-	char	*pt_src;
-	size_t	i;
-	size_t	len_dst;
-	size_t	len_src;
-	size_t	res;
-
-	pt_src = (char *)src;
-	len_dst = ft_strlen(dst);
-	len_src = ft_strlen(pt_src);
-	res = 0;
-	i = 0;
-	if (dstsize > len_dst)
-		res = len_src + len_dst;
-	else
-		res = len_src + dstsize;
-	while (pt_src[i] && (len_dst + 1) < dstsize)
-	{
-		dst[len_dst] = pt_src[i];
-		len_dst++;
+		str[i] = '\0';
 		i++;
 	}
-	dst[len_dst] = '\0';
+}
+
+void	*ft_calloc(size_t elementCount, size_t elementSize)
+{
+	char	*res;
+
+	res = malloc(elementSize * elementCount);
+	if (!res)
+		return (NULL);
+	ft_bzero(res, elementSize * elementCount);
 	return (res);
 }
