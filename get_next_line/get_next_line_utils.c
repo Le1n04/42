@@ -6,12 +6,18 @@
 /*   By: djanssen <djanssen@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 11:12:30 by djanssen          #+#    #+#             */
-/*   Updated: 2022/10/21 17:00:22 by djanssen         ###   ########.fr       */
+/*   Updated: 2022/10/24 14:28:18 by djanssen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
+/**
+ * @brief Get length from string
+ * 
+ * @param s string to measure
+ * @return size_t i (length)
+ */
 size_t	ft_strlen(char *s)
 {
 	size_t	i;
@@ -24,6 +30,14 @@ size_t	ft_strlen(char *s)
 	return (i);
 }
 
+/**
+ * @brief 
+ * 
+ * @param left_str - 
+ * @param buff - 
+ * @param str - strings joined result
+ * @return char* 
+ */
 char	*ft_strjoin(char *left_str, char *buff)
 {
 	size_t	i;
@@ -32,7 +46,7 @@ char	*ft_strjoin(char *left_str, char *buff)
 
 	if (!left_str)
 	{
-		left_str = (char *)malloc(1 * sizeof(char));
+		left_str = malloc(sizeof(char));
 		left_str[0] = '\0';
 	}
 	if (!left_str || !buff)
@@ -90,29 +104,4 @@ char	*ft_strdup(const char *src)
 	}
 	new[i] = '\0';
 	return (new);
-}
-
-void	ft_bzero(void *s, size_t n)
-{
-	char	*str;
-	size_t	i;
-
-	str = (char *)s;
-	i = 0;
-	while (i < n)
-	{
-		str[i] = '\0';
-		i++;
-	}
-}
-
-void	*ft_calloc(size_t elementCount, size_t elementSize)
-{
-	char	*res;
-
-	res = malloc(elementSize * elementCount);
-	if (!res)
-		return (NULL);
-	ft_bzero(res, elementSize * elementCount);
-	return (res);
 }

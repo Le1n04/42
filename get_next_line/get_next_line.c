@@ -6,7 +6,7 @@
 /*   By: djanssen <djanssen@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 16:18:41 by djanssen          #+#    #+#             */
-/*   Updated: 2022/10/21 16:49:10 by djanssen         ###   ########.fr       */
+/*   Updated: 2022/10/24 14:36:00 by djanssen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,29 +78,30 @@ char	*get_next_line(int fd)
 	{
 		read_val = read(fd, buffer, BUFFER_SIZE);
 		if (read_val <= 0)
-			return (NULL);
+			break ;
 		buffer[read_val] = '\0';
 		s = ft_strjoin(s, buffer);
 	}
 	free(buffer);
 	line = get_line(s);
+	s = get_next(s);
 	return (line);
 }
 
-int	main(void)
-{
-	int		fd;
-	int		i;
-	char	*c;
-
-	i = 0;
-	fd = open("poya.txt", O_RDONLY);
-	while (i < 1)
-	{
-		c = get_next_line(fd);
-		printf(">%s<", c);
-		free(c);
-		i++;
-	}
-	close(fd);
-}
+// int	main(void)
+// {
+// 	int		fd;
+// 	int		i;
+// 	char	*c;
+//
+// 	i = 0;
+// 	fd = open("poya.txt", O_RDONLY);
+// 	while (i < 1)
+// 	{
+// 		c = get_next_line(fd);
+// 		printf(">%s<", c);
+// 		free(c);
+// 		i++;
+// 	}
+// 	close(fd);
+// }
