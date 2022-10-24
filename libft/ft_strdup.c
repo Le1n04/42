@@ -6,7 +6,7 @@
 /*   By: djanssen <djanssen@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 16:18:41 by djanssen          #+#    #+#             */
-/*   Updated: 2022/10/10 13:53:04 by djanssen         ###   ########.fr       */
+/*   Updated: 2022/10/24 17:55:29 by djanssen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,11 @@ char	*ft_strdup(const char *src)
 	return (new);
 }
 
-// int	main(void)
-// {
-// 	char	*src;
-// 	char	*new;
+int	main(void)
+{
+	char	*src;
+	char	*new;
 
-// 	src = "hola k ase";
-// 	printf("%s", ft_strdup(src));
-// }
+	src = "hola k ase";
+	printf("%s", ft_strdup(src));
+}
