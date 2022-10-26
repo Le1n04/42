@@ -6,7 +6,7 @@
 /*   By: djanssen <djanssen@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 16:18:41 by djanssen          #+#    #+#             */
-/*   Updated: 2022/10/24 17:36:05 by djanssen         ###   ########.fr       */
+/*   Updated: 2022/10/26 11:36:25 by djanssen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,3 +105,16 @@ char	*get_next_line(int fd)
 // 	}
 // 	close(fd);
 // }
+
+	// if (str[i] == '\n' && str[i + 1] != 0)
+	// {
+	// 	c = str;
+	// 	str = ft_strdup(&str[i + 1]);
+	// 	free(c);
+	// }
+	// else
+	// {
+	// 	free(str);
+	// 	str = NULL;
+	// 	return (str);
+	// }

@@ -6,7 +6,7 @@
 /*   By: djanssen <djanssen@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 11:12:30 by djanssen          #+#    #+#             */
-/*   Updated: 2022/10/24 17:56:10 by djanssen         ###   ########.fr       */
+/*   Updated: 2022/10/26 12:43:44 by djanssen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,22 +86,22 @@ char	*ft_strchr(char *s, int c)
 
 char	*ft_strdup(const char *src)
 {
-	char	*new;
+	char	*str;
 	int		i;
 	int		size;
 
 	size = 0;
 	while (src[size])
 		size++;
-	new = malloc(sizeof(char) * (size + 1));
-	if (!(new))
+	str = malloc(sizeof(char) * (size + 1));
+	if (!(str))
 		return (NULL);
 	i = 0;
 	while (src[i])
 	{
-		new[i] = src[i];
+		str[i] = src[i];
 		i++;
 	}
-	new[i] = '\0';
-	return (new);
+	str[i] = '\0';
+	return (str);
 }
