@@ -6,7 +6,7 @@
 /*   By: djanssen <djanssen@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 16:18:41 by djanssen          #+#    #+#             */
-/*   Updated: 2022/10/26 12:45:42 by djanssen         ###   ########.fr       */
+/*   Updated: 2022/10/27 14:08:36 by djanssen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ char	*get_linex(char *str)
 	i = 0;
 	while (str[i] != '\n' && str[i])
 		i++;
-	if (str[i] == '\n')
+	if (str[i])
 		i++;
 	linea = (char *)malloc((i + 1) * sizeof(char));
 	if (!linea)
@@ -43,9 +43,8 @@ char	*get_next(char *str)
 {
 	char	*c;
 	int		i;
-	int		j;
 
-	if (str == NULL)
+	if (!str)
 		return (NULL);
 	i = 0;
 	while (str[i] && str[i] != '\n')
@@ -54,23 +53,15 @@ char	*get_next(char *str)
 		return (free(str), NULL);
 	if (str[i])
 		i++;
-	c = malloc(sizeof(char) * ft_strlen(str + i) + 1);
-	if (c == NULL)
-		return (NULL);
-	j = 0;
-	while (str[i])
-		c[j++] = str[i++];
-	c[j] = '\0';
+	c = ft_strdup(&str[i]);
 	free(str);
 	return (c);
 }
 
-char	*get_next_line(int fd)
+char	*readjoin(int fd, char *s)
 {
-	char		*buffer;
-	char		*line;
-	static char	*s = NULL;
-	int			read_val;
+	int		read_val;
+	char	*buffer;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
@@ -87,6 +78,15 @@ char	*get_next_line(int fd)
 		s = ft_strjoin(s, buffer);
 	}
 	free(buffer);
+	return (s);
+}
+
+char	*get_next_line(int fd)
+{
+	char		*line;
+	static char	*s = NULL;
+
+	s = readjoin(fd, s);
 	line = get_linex(s);
 	s = get_next(s);
 	return (line);
@@ -100,7 +100,7 @@ char	*get_next_line(int fd)
 
 // 	i = 0;
 // 	fd = open("1char.txt", O_RDONLY);
-// 	while (i < 10)
+// 	while (i < 1000000)
 // 	{
 // 		c = get_next_line(fd);
 // 		printf(">%s<", c);

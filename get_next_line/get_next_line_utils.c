@@ -6,7 +6,7 @@
 /*   By: djanssen <djanssen@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 11:12:30 by djanssen          #+#    #+#             */
-/*   Updated: 2022/10/26 12:43:44 by djanssen         ###   ########.fr       */
+/*   Updated: 2022/10/27 14:18:03 by djanssen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,11 @@ size_t	ft_strlen(char *s)
 }
 
 /**
- * @brief 
+ * @brief joins two strings into one
  * 
- * @param left_str - 
- * @param buff - 
- * @param str - strings joined result
- * @return char* 
+ * @param left_str - first string
+ * @param buff - second string
+ * @return returns the result of the two strings into one
  */
 char	*ft_strjoin(char *left_str, char *buff)
 {
@@ -52,7 +51,7 @@ char	*ft_strjoin(char *left_str, char *buff)
 	if (!left_str || !buff)
 		return (NULL);
 	str = malloc(sizeof(char) * ((ft_strlen(left_str) + ft_strlen(buff)) + 1));
-	if (str == NULL)
+	if (!str)
 		return (NULL);
 	i = -1;
 	j = 0;
@@ -66,6 +65,14 @@ char	*ft_strjoin(char *left_str, char *buff)
 	return (str);
 }
 
+/**
+ * @brief searchs for a char 'c' in a string 's' 
+ * 
+ * @param s string where the char is being searched
+ * @param c character  to be found in the string
+ * @return a pointer to the located character,
+ * 		or NULL if the character does not appear in the string.
+ */
 char	*ft_strchr(char *s, int c)
 {
 	int	i;
@@ -84,6 +91,12 @@ char	*ft_strchr(char *s, int c)
 	return (0);
 }
 
+/**
+ * @brief duplicates a string
+ * 
+ * @param src string to be dupped
+ * @return a different string with 'src' content
+ */
 char	*ft_strdup(const char *src)
 {
 	char	*str;

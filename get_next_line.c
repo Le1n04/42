@@ -6,7 +6,7 @@
 /*   By: djanssen <djanssen@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 16:18:41 by djanssen          #+#    #+#             */
-/*   Updated: 2022/10/26 11:36:25 by djanssen         ###   ########.fr       */
+/*   Updated: 2022/10/27 13:53:53 by djanssen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,3 +118,30 @@ char	*get_next_line(int fd)
 	// 	str = NULL;
 	// 	return (str);
 	// }
+
+char	*get_next_line(int fd)
+{
+	char		*buffer;
+	char		*line;
+	static char	*s = NULL;
+	int			read_val;
+
+	if (fd < 0 || BUFFER_SIZE <= 0)
+		return (NULL);
+	buffer = malloc(sizeof(char) * BUFFER_SIZE + 1);
+	if (!buffer)
+		return (NULL);
+	read_val = 1;
+	while ((ft_strchr(s, '\n') == NULL) && read_val)
+	{
+		read_val = read(fd, buffer, BUFFER_SIZE);
+		if (read_val <= 0)
+			break ;
+		buffer[read_val] = '\0';
+		s = ft_strjoin(s, buffer);
+	}
+	free(buffer);
+	line = get_linex(s);
+	s = get_next(s);
+	return (line);
+}
