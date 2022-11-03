@@ -6,7 +6,7 @@
 /*   By: djanssen <djanssen@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 11:12:30 by djanssen          #+#    #+#             */
-/*   Updated: 2022/11/03 11:35:26 by djanssen         ###   ########.fr       */
+/*   Updated: 2022/11/03 11:45:27 by djanssen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,16 +79,16 @@ char	*ft_strchr(char *s, int c)
 
 	i = 0;
 	if (!s)
-		return (0);
+		return (NULL);
 	if (c == '\0')
-		return ((char *)&s[ft_strlen(s)]);
+		return (&s[ft_strlen(s)]);
 	while (s[i] != '\0')
 	{
 		if (s[i] == (char)c)
-			return ((char *)&s[i]);
+			return (&s[i]);
 		i++;
 	}
-	return (0);
+	return (NULL);
 }
 
 /**

@@ -6,7 +6,7 @@
 /*   By: djanssen <djanssen@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 11:12:30 by djanssen          #+#    #+#             */
-/*   Updated: 2022/10/31 13:04:48 by djanssen         ###   ########.fr       */
+/*   Updated: 2022/11/03 13:52:47 by djanssen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,19 +22,23 @@
 # include <unistd.h>
 # include <stdarg.h>
 
+/**
+ * @brief These infos are given by the flags, and we need to stock these infos
+ * in a struct in order to print the string correctly.
+ * 
+ */
 typedef struct s_print
 {
 	va_list	args;
-	int		width;
-	int		precision;
-	int		zero;
-	int		point;
-	int		dash;
-	int		total_length;
-	int		sign;
-	int		is_zero;
+	int		character;
+	int		string;
+	int		pointer;
+	int		decimal;
+	int		integer;
+	int		unsignd;
+	int		hexl;
+	int		hexu;
 	int		percentage;
-	int		space;
 }			t_print;
 
 #endif

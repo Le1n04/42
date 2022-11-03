@@ -6,20 +6,17 @@
 #    By: djanssen <djanssen@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/26 09:48:59 by djanssen          #+#    #+#              #
-#    Updated: 2022/10/31 12:38:32 by djanssen         ###   ########.fr        #
+#    Updated: 2022/11/03 16:35:20 by djanssen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME=libftprintf.a
 
-SRCS=
+SRCS= ft_printf.c ft_printf_utils.c
 
 
 OBJS=$(SRCS:.c=.o)
 
-BONUS = 
-
-BONUS_OBJS =$(BONUS:.c=.o)
 CC = gcc
 RM = rm -f
 CFLAGS = -Wall -Wextra -Werror -I.

@@ -6,44 +6,59 @@
 /*   By: djanssen <djanssen@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 11:12:30 by djanssen          #+#    #+#             */
-/*   Updated: 2022/10/31 14:05:15 by djanssen         ###   ########.fr       */
+/*   Updated: 2022/11/03 16:47:35 by djanssen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include "libft.h"
 
-t_print	*ft_initialise_tab(t_print *tab)
+int	ft_printchar(char c)
 {
-	tab->width = 0;
-	tab->precision = 0;
-	tab->zero = 0;
-	tab->point = 0;
-	tab->sign = 0;
-	tab->total_length = 0;
-	tab->is_zero = 0;
-	tab->dash = 0;
-	tab->percentage = 0;
-	tab->space = 0;
-	return (tab);
+	write (1, &c, 1);
+	return (1);
 }
 
-int	ft_printf(char const *format)
+int	ft_printpercentage(void)
+{
+	write (1, '%', 1);
+	return (1);
+}
+
+int	ft_format(va_list *args, const char *format)
+{
+	int	length;
+
+	length = 0;
+	if (format == 'c')
+		length += ft_printchar(args);
+	if (format == 's')
+		length += ft_printstr(args);
+	if (format == 'p')
+		length += ft_printpointer(args);
+	if (format == 'd' || format == 'i')
+		length += ft_printnbr(args);
+	if (format == 'u')
+		length += ft_printunsigned(args);
+	if (format == 'x' || format == 'X')
+		length += ft_printhex(args);
+	if (format == '%')
+		length += ft_printpercentage;
+}
+
+int	ft_printf(char const *format, ...)
 {
 	int		i;
-	int		ret;
-	t_print	*tab;
+	int		length;
+	va_list	args;
 
-	tab = (t_print *)malloc(sizeof(t_print));
-	if (!tab)
-		return (NULL);
-	ft_initialise_tab(tab);
-	va_start(tab->args, format);
+	va_start(args, format);
 	i = -1;
-	ret = 0;
+	length = 0;
 	while (format[++i])
 	{
-		if (format [i] == '%')
-			i = ft_eval_format()
+		if (format[i] == '%')
+			length += ft_format(args, format[i + 1]);
+		else
+			length += ft_printchar(format[i]);
 	}
 }
