@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: djanssen <djanssen@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 16:18:41 by djanssen          #+#    #+#             */
-/*   Updated: 2022/10/31 12:17:27 by djanssen         ###   ########.fr       */
+/*   Updated: 2022/10/31 12:17:45 by djanssen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,14 +81,14 @@ char	*readjoin(int fd, char *s)
 
 char	*get_next_line(int fd)
 {
-	char		*line;
-	static char	*s = NULL;
+	char			*line;
+	static char		*s[4096];
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
-	s = readjoin(fd, s);
-	line = get_linex(s);
-	s = get_next(s);
+	s[fd] = readjoin(fd, s[fd]);
+	line = get_linex(s[fd]);
+	s[fd] = get_next(s[fd]);
 	return (line);
 }
 
