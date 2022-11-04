@@ -6,7 +6,7 @@
 /*   By: djanssen <djanssen@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 11:12:30 by djanssen          #+#    #+#             */
-/*   Updated: 2022/11/03 16:50:45 by djanssen         ###   ########.fr       */
+/*   Updated: 2022/11/04 12:05:02 by djanssen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,8 @@ int	ft_printnbr(int n)
 
 	i = 0;
 	str = ft_itoa(n);
-	return (ft_printstr(str));
+	i = ft_printstr(str);
+	return (free(str), i);
 }
 
 int	ft_printunsigned(unsigned int n)
@@ -48,11 +49,26 @@ int	ft_printunsigned(unsigned int n)
 
 	i = 0;
 	str = ft_itoa(n);
-	if (str[i] == '-')
-		i++;
-	while (str[i])
+	if (str == 0)
 	{
-		write(1, str[i], 1);
-		i++;
+		write (1, "0", 1);
+		return (1);
 	}
+	else
+	{
+		if (str[i] == '-')
+			i++;
+		while (str[i])
+		{
+			write(1, str[i], 1);
+			i++;
+		}
+	}
+	return (i);
+}
+
+int	ft_printpercentage(void)
+{
+	write (1, "%", 1);
+	return (1);
 }

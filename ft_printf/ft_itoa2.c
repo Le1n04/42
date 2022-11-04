@@ -1,35 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_itoa.c                                          :+:      :+:    :+:   */
+/*   ft_itoa2.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: djanssen <djanssen@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/20 17:11:45 by djanssen          #+#    #+#             */
-/*   Updated: 2022/11/04 11:03:31 by djanssen         ###   ########.fr       */
+/*   Created: 2022/09/26 11:12:30 by djanssen          #+#    #+#             */
+/*   Updated: 2022/11/04 13:16:29 by djanssen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
 #include "ft_printf.h"
-
-static char	*ft_array(char *x, unsigned int number, long int len)
-{
-	while (number > 0)
-	{
-		x[len--] = 48 + (number % 10);
-		number = number / 10;
-	}
-	return (x);
-}
 
 static long int	ft_len(int n)
 {
-	int					len;
+	int	len;
 
 	len = 0;
-	if (n <= 0)
-		len = 1;
 	while (n != 0)
 	{
 		len++;
@@ -38,29 +25,21 @@ static long int	ft_len(int n)
 	return (len);
 }
 
-char	*ft_itoa(int n)
+char	*ft_itoax(unsigned int n)
 {
-	char				*x;
-	long int			len;
-	unsigned int		number;
-	int					sign;
+	char		*x;
+	long int	len;
 
-	sign = 1;
 	len = ft_len(n);
 	x = (char *)malloc(sizeof(char) * (len + 1));
 	if (!x)
 		return (NULL);
-	x[len--] = '\0';
-	if (n == 0)
-		x[0] = '0';
-	if (n < 0)
+	x[len] = '\0';
+	while (n != 0)
 	{
-		sign *= -1;
-		number = n * -1;
-		x[0] = '-';
+		x[len - 1] = n % 10 + 48;
+		n = n / 10;
+		len--;
 	}
-	else
-		number = n;
-	x = ft_array(x, number, len);
 	return (x);
 }

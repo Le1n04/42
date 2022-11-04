@@ -6,13 +6,14 @@
 #    By: djanssen <djanssen@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/26 09:48:59 by djanssen          #+#    #+#              #
-#    Updated: 2022/11/03 16:35:20 by djanssen         ###   ########.fr        #
+#    Updated: 2022/11/04 11:14:15 by djanssen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME=libftprintf.a
+LIBFT = libft
 
-SRCS= ft_printf.c ft_printf_utils.c
+SRCS= ft_printf.c ft_printf_utils.c ft_itoa2.c
 
 
 OBJS=$(SRCS:.c=.o)

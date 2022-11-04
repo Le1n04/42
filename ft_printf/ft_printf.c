@@ -6,7 +6,7 @@
 /*   By: djanssen <djanssen@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 11:12:30 by djanssen          #+#    #+#             */
-/*   Updated: 2022/11/03 16:47:35 by djanssen         ###   ########.fr       */
+/*   Updated: 2022/11/04 11:36:39 by djanssen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,31 +18,26 @@ int	ft_printchar(char c)
 	return (1);
 }
 
-int	ft_printpercentage(void)
-{
-	write (1, '%', 1);
-	return (1);
-}
-
-int	ft_format(va_list *args, const char *format)
+int	ft_format(va_list args, const char format)
 {
 	int	length;
 
 	length = 0;
 	if (format == 'c')
-		length += ft_printchar(args);
-	if (format == 's')
-		length += ft_printstr(args);
-	if (format == 'p')
-		length += ft_printpointer(args);
-	if (format == 'd' || format == 'i')
-		length += ft_printnbr(args);
-	if (format == 'u')
-		length += ft_printunsigned(args);
-	if (format == 'x' || format == 'X')
-		length += ft_printhex(args);
-	if (format == '%')
-		length += ft_printpercentage;
+		length += ft_printchar(va_arg(args, int));
+	else if (format == 's')
+		length += ft_printstr(va_arg(args, char *));
+	// else if (format == 'p')
+	// 	length += ft_printpointer(va_arg(args, int));
+	else if (format == 'd' || format == 'i')
+		length += ft_printnbr(va_arg(args, int));
+	else if (format == 'u')
+		length += ft_printunsigned(va_arg(args, int));
+	// else if (format == 'x' || format == 'X')
+	// 	length += ft_printhex(va_arg(args, int), format);
+	else if (format == '%')
+		length += ft_printpercentage();
+	return (length);
 }
 
 int	ft_printf(char const *format, ...)
@@ -61,4 +56,6 @@ int	ft_printf(char const *format, ...)
 		else
 			length += ft_printchar(format[i]);
 	}
+	va_end(args);
+	return (length);
 }
