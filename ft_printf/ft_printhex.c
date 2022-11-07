@@ -1,57 +1,56 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_itoa2.c                                         :+:      :+:    :+:   */
+/*   ft_printhex.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: djanssen <djanssen@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 11:12:30 by djanssen          #+#    #+#             */
-/*   Updated: 2022/11/07 14:04:25 by djanssen         ###   ########.fr       */
+/*   Updated: 2022/11/07 17:24:22 by djanssen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+#include "libft.h"
 
 /**
- * @brief Get n length.
+ * @brief Get len of 'n' to return it right after.
  * 
  * @param n number given.
- * @return length of param n.
+ * @return len of 'n'.
  */
-static long int	ft_len(int n)
+int	ft_lenhex(unsigned int n)
 {
 	int	len;
 
 	len = 0;
-	while (n != 0)
+	while (n)
 	{
 		len++;
-		n = n / 10;
+		n = n / 16;
 	}
 	return (len);
 }
 
 /**
- * @brief Convert integer 'n' to alphabet value.
- * 
- * @param n number received.
- * @return 'n' param converted to string 'x'.
+ * @brief This function passes 'int n' from decimal to hexadecimal. 
+ * @param n number given.
+ * @param format param to know if we are on uppercase or lowercase X.
  */
-char	*ft_itoax(unsigned int n)
+void	ft_get_hex(int n, const char format)
 {
-	char		*x;
-	long int	len;
-
-	len = ft_len(n);
-	x = (char *)malloc(sizeof(char) * (len + 1));
-	if (!x)
-		return (NULL);
-	x[len] = '\0';
-	while (n != 0)
+	if (n >= 16)
 	{
-		x[len - 1] = n % 10 + 48;
-		n = n / 10;
-		len--;
+		ft_get_hex(n / 16, format);
+		ft_get_hex(n % 16, format);
 	}
-	return (x);
+	else
+	{
+		
+	}
+}
+
+int	ft_printhex(int h)
+{
+	
 }
