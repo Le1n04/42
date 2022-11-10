@@ -6,12 +6,11 @@
 /*   By: djanssen <djanssen@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 11:12:30 by djanssen          #+#    #+#             */
-/*   Updated: 2022/11/07 17:24:22 by djanssen         ###   ########.fr       */
+/*   Updated: 2022/11/08 13:57:00 by djanssen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include "libft.h"
 
 /**
  * @brief Get len of 'n' to return it right after.
@@ -19,7 +18,7 @@
  * @param n number given.
  * @return len of 'n'.
  */
-int	ft_lenhex(unsigned int n)
+int	ft_hexlen(unsigned int n)
 {
 	int	len;
 
@@ -46,11 +45,33 @@ void	ft_get_hex(int n, const char format)
 	}
 	else
 	{
-		
+		if (n <= 9)
+			ft_printchar((n - 0));
+		else if (format == 'x')
+			ft_printchar((n - 10 + 'a'));
+		else if (format == 'X')
+			ft_printchar((n - 10 + 'A'));
 	}
 }
 
-int	ft_printhex(int h)
+/**
+ * @brief This is the main function. 
+ * It will use the ft_get_hex function if n != 0, if 0 it will print a 0.
+ * @param n number given.
+ * @param format 'X' or 'x'.
+ * @return length according to ft_hexlen.
+ */
+int	ft_printhex(int n, const char format)
 {
-	
+	int	len;
+
+	len = ft_hexlen(n);
+	if (n != 0)
+		ft_get_hex(n, format);
+	else
+	{
+		ft_printchar(0);
+		return (1);
+	}
+	return (len);
 }

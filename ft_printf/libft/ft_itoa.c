@@ -6,12 +6,11 @@
 /*   By: djanssen <djanssen@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 17:11:45 by djanssen          #+#    #+#             */
-/*   Updated: 2022/11/04 11:03:31 by djanssen         ###   ########.fr       */
+/*   Updated: 2022/11/08 13:48:05 by djanssen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include "ft_printf.h"
 
 static char	*ft_array(char *x, unsigned int number, long int len)
 {

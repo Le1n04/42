@@ -6,12 +6,11 @@
 /*   By: djanssen <djanssen@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 11:12:30 by djanssen          #+#    #+#             */
-/*   Updated: 2022/11/07 17:21:01 by djanssen         ###   ########.fr       */
+/*   Updated: 2022/11/08 13:55:41 by djanssen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include "libft.h"
 
 /**
  * @brief Function to print a character when '%c' is called.
@@ -47,8 +46,8 @@ int	ft_format(va_list ap, const char format)
 		length += ft_printunsigned(va_arg(ap, int));
 	else if (format == '%')
 		length += ft_printpercentage();
-	// else if (format == 'x' || format == 'X')
-	// 	length += ft_printhex(va_arg(ap, int), format);
+	else if (format == 'x' || format == 'X')
+		length += ft_printhex(va_arg(ap, int), format);
 	// else if (format == 'p')
 	// 	length += ft_printpointer(va_arg(ap, int));
 	return (length);

@@ -6,12 +6,11 @@
 /*   By: djanssen <djanssen@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 11:12:30 by djanssen          #+#    #+#             */
-/*   Updated: 2022/11/07 14:40:18 by djanssen         ###   ########.fr       */
+/*   Updated: 2022/11/08 14:01:28 by djanssen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include "libft.h"
 
 /**
  * @brief Function to print a string when '%s' is used.
@@ -26,7 +25,7 @@ int	ft_printstr(char *str)
 	len = 0;
 	if (str == NULL)
 	{
-		ft_putstr("(null)");
+		ft_putstr_fd("(null)", 1);
 		return (6);
 	}
 	while (str[len])
@@ -73,7 +72,7 @@ int	ft_printunsigned(unsigned int n)
 		if (str[0] == '-')
 			len++;
 		while (str[++len])
-			write(1, str[len], 1);
+			write(1, &str[len], 1);
 	}
 	else
 	{
