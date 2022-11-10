@@ -6,7 +6,7 @@
 /*   By: djanssen <djanssen@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 11:12:30 by djanssen          #+#    #+#             */
-/*   Updated: 2022/11/08 13:57:00 by djanssen         ###   ########.fr       */
+/*   Updated: 2022/11/10 12:47:16 by djanssen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	ft_hexlen(unsigned int n)
 	int	len;
 
 	len = 0;
-	while (n)
+	while (n != 0)
 	{
 		len++;
 		n = n / 16;
@@ -36,7 +36,7 @@ int	ft_hexlen(unsigned int n)
  * @param n number given.
  * @param format param to know if we are on uppercase or lowercase X.
  */
-void	ft_get_hex(int n, const char format)
+void	ft_get_hex(unsigned int n, const char format)
 {
 	if (n >= 16)
 	{
@@ -46,11 +46,11 @@ void	ft_get_hex(int n, const char format)
 	else
 	{
 		if (n <= 9)
-			ft_printchar((n - 0));
+			ft_putchar_fd((n + '0'), 1);
 		else if (format == 'x')
-			ft_printchar((n - 10 + 'a'));
+			ft_putchar_fd((n - 10 + 'a'), 1);
 		else if (format == 'X')
-			ft_printchar((n - 10 + 'A'));
+			ft_putchar_fd((n - 10 + 'A'), 1);
 	}
 }
 
@@ -61,17 +61,11 @@ void	ft_get_hex(int n, const char format)
  * @param format 'X' or 'x'.
  * @return length according to ft_hexlen.
  */
-int	ft_printhex(int n, const char format)
+int	ft_printhex(unsigned int n, const char format)
 {
-	int	len;
-
-	len = ft_hexlen(n);
-	if (n != 0)
-		ft_get_hex(n, format);
+	if (n == 0)
+		return (write(1, "0", 1));
 	else
-	{
-		ft_printchar(0);
-		return (1);
-	}
-	return (len);
+		ft_get_hex(n, format);
+	return (ft_hexlen(n));
 }

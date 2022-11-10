@@ -6,7 +6,7 @@
 /*   By: djanssen <djanssen@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 11:12:30 by djanssen          #+#    #+#             */
-/*   Updated: 2022/11/08 13:55:41 by djanssen         ###   ########.fr       */
+/*   Updated: 2022/11/10 12:46:48 by djanssen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,9 @@ int	ft_format(va_list ap, const char format)
 	else if (format == '%')
 		length += ft_printpercentage();
 	else if (format == 'x' || format == 'X')
-		length += ft_printhex(va_arg(ap, int), format);
-	// else if (format == 'p')
-	// 	length += ft_printpointer(va_arg(ap, int));
+		length += ft_printhex(va_arg(ap, unsigned int), format);
+	else if (format == 'p')
+		length += ft_printpointer(va_arg(ap, unsigned long long));
 	return (length);
 }
 
@@ -67,14 +67,15 @@ int	ft_printf(char const *format, ...)
 	va_list	args;
 
 	va_start(args, format);
-	i = -1;
+	i = 0;
 	length = 0;
-	while (format[++i])
+	while (format[i])
 	{
 		if (format[i] == '%')
 			length += ft_format(args, format[i + 1]);
 		else
 			length += ft_printchar(format[i]);
+		i++;
 	}
 	va_end(args);
 	return (length);
