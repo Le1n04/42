@@ -6,7 +6,7 @@
 /*   By: djanssen <djanssen@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 12:48:59 by djanssen          #+#    #+#             */
-/*   Updated: 2022/11/10 16:30:50 by djanssen         ###   ########.fr       */
+/*   Updated: 2022/11/14 17:31:30 by djanssen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ int	ft_format(va_list args, const char format)
 		length += ft_printstr(va_arg(args, char *));
 	else if (format == 'd' || format == 'i')
 		length += ft_printnbr(va_arg(args, int));
+	else if (format == 'u')
+		length += ft_printunsignednbr(va_arg(args, unsigned int));
 	return (length);
 }
 
@@ -64,5 +66,9 @@ int	ft_printf(char const *format, ...)
 
 // int	main(void)
 // {
-// 	ft_printf("hola%c", 't');
+// 	int	n;
+
+// 	n = 0;
+// 	ft_printf("hola%u", n);
+// 	printf("hola%u", n);
 // }

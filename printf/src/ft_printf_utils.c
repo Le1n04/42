@@ -6,7 +6,7 @@
 /*   By: djanssen <djanssen@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 12:50:00 by djanssen          #+#    #+#             */
-/*   Updated: 2022/11/10 16:38:26 by djanssen         ###   ########.fr       */
+/*   Updated: 2022/11/14 17:31:25 by djanssen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,10 +51,22 @@ int	ft_printnbr(int n)
 	return (i);
 }
 
-int	ft_printunsignednbr(int n)
+int	ft_printunsignednbr(unsigned int n)
 {
-	int	i;
-	char *unstr;
+	unsigned int	i;
+	char			*str;
 
-	i = ft_printstr(unstr);
+	i = 0;
+	if (n == 0)
+	{
+		write (1, "0", 1);
+		return (1);
+	}
+	else
+	{
+		str = ft_unsigneditoa(n);
+		i += ft_printstr(str);
+		free (str);
+	}
+	return (i);
 }
