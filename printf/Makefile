@@ -6,7 +6,7 @@
 #    By: djanssen <djanssen@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/07 11:03:12 by omontero          #+#    #+#              #
-#    Updated: 2022/11/10 16:39:21 by djanssen         ###   ########.fr        #
+#    Updated: 2022/11/14 19:03:53 by djanssen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ CFLAGS		= -Wall -Werror -Wextra -I
 RM			= rm -f
 AR			= ar rcs
 
-SRC_FILES	=	ft_printf ft_printf_utils ft_unsigneditoa
+SRC_FILES	=	ft_printf ft_printf_utils ft_unsigneditoa ft_printpointer
 
 
 SRC 		= 	$(addprefix $(SRC_DIR), $(addsuffix .c, $(SRC_FILES)))
