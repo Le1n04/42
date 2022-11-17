@@ -6,7 +6,7 @@
 /*   By: djanssen <djanssen@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 11:12:30 by djanssen          #+#    #+#             */
-/*   Updated: 2022/11/14 19:09:34 by djanssen         ###   ########.fr       */
+/*   Updated: 2022/11/17 12:08:03 by djanssen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,4 +31,5 @@ int				ft_printnbr(int n);
 int				ft_printunsignednbr(unsigned int n);
 char			*ft_unsigneditoa(unsigned int n);
 int				ft_printpointer(unsigned long long ptr);
+int				ft_printhexa(unsigned int n, const char format);
 #endif
