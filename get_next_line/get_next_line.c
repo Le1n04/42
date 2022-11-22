@@ -6,7 +6,7 @@
 /*   By: djanssen <djanssen@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 16:18:41 by djanssen          #+#    #+#             */
-/*   Updated: 2022/11/22 13:32:22 by djanssen         ###   ########.fr       */
+/*   Updated: 2022/11/22 14:28:18 by djanssen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,10 @@ char	*get_next(char *str)
 /**
  * @brief It will receive the file descriptor and the static string.
  * It will allocate the buffer size + 1 for the \0 at the end of the string.
- * Then it will use strchr to find a '\n' and read_val > 0
+ * Then it will use strchr to find a '\n' and read_val:
+ * read_val = 0 -> end of file -> leave from the loop.
+ * read_val = -1 -> error reading the file -> clear everything and return null.
+ * 
  * 
  * @param fd file descriptor
  * @param s static char used in main function
@@ -86,7 +89,8 @@ char	*readjoin(int fd, char *s)
 }
 
 /**
- * @brief Error check - s
+ * @brief Error check 
+ * 
  * 
  * @param fd file descriptor
  * @param s static string
@@ -111,13 +115,17 @@ char	*get_next_line(int fd)
 // 	int		fd;
 // 	int		i;
 // 	char	*c;
+// 	ssize_t	read_val;
 
 // 	i = 0;
-// 	fd = open("1char.txt", O_RDONLY);
+// 	read_val = 0;
+// 	fd = open("poya.txt", O_RDONLY);
+// 	read_val = read(fd, c, BUFFER_SIZE);
+// 	printf("%zd", read_val);
 // 	while (i < 1000000)
 // 	{
 // 		c = get_next_line(fd);
-// 		printf(">%s<", c);
+// 		printf(">%s", c);
 // 		free(c);
 // 		i++;
 // 	}
