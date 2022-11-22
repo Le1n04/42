@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*   get_next_line_utils_bonus.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: djanssen <djanssen@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 11:12:30 by djanssen          #+#    #+#             */
-/*   Updated: 2022/10/27 14:18:03 by djanssen         ###   ########.fr       */
+/*   Updated: 2022/11/22 14:12:19 by djanssen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ char	*ft_strjoin(char *left_str, char *buff)
 	if (!left_str)
 	{
 		left_str = malloc(sizeof(char));
-		left_str[0] = '\0';
+		left_str[0] = 0;
 	}
 	if (!left_str || !buff)
 		return (NULL);
@@ -61,8 +61,7 @@ char	*ft_strjoin(char *left_str, char *buff)
 	while (buff[j] != '\0')
 		str[i++] = buff[j++];
 	str[ft_strlen(left_str) + ft_strlen(buff)] = '\0';
-	free(left_str);
-	return (str);
+	return (free(left_str), str);
 }
 
 /**
@@ -77,18 +76,15 @@ char	*ft_strchr(char *s, int c)
 {
 	int	i;
 
-	i = 0;
 	if (!s)
-		return (0);
+		return (NULL);
 	if (c == '\0')
-		return ((char *)&s[ft_strlen(s)]);
-	while (s[i] != '\0')
-	{
-		if (s[i] == (char) c)
-			return ((char *)&s[i]);
-		i++;
-	}
-	return (0);
+		return (&s[ft_strlen(s)]);
+	i = -1;
+	while (s[++i] != '\0')
+		if (s[i] == (char)c)
+			return (&s[i]);
+	return (NULL);
 }
 
 /**
@@ -107,14 +103,11 @@ char	*ft_strdup(const char *src)
 	while (src[size])
 		size++;
 	str = malloc(sizeof(char) * (size + 1));
-	if (!(str))
+	if (!str)
 		return (NULL);
-	i = 0;
-	while (src[i])
-	{
+	i = -1;
+	while (src[++i])
 		str[i] = src[i];
-		i++;
-	}
 	str[i] = '\0';
 	return (str);
 }

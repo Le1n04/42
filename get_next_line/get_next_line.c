@@ -6,7 +6,7 @@
 /*   By: djanssen <djanssen@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 16:18:41 by djanssen          #+#    #+#             */
-/*   Updated: 2022/10/31 12:17:27 by djanssen         ###   ########.fr       */
+/*   Updated: 2022/11/22 13:32:22 by djanssen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 char	*get_linex(char *str)
 {
 	char	*linea;
-	size_t	i;
+	int		i;
 
 	if (!str)
 		return (NULL);
@@ -24,15 +24,12 @@ char	*get_linex(char *str)
 		i++;
 	if (str[i])
 		i++;
-	linea = (char *)malloc((i + 1) * sizeof(char));
+	linea = malloc((i + 1) * sizeof(char));
 	if (!linea)
 		return (NULL);
-	i = 0;
-	while (str[i] != '\n' && str[i])
-	{
+	i = -1;
+	while (str[++i] != '\n' && str[i])
 		linea[i] = str[i];
-		i++;
-	}
 	if (str[i] == '\n')
 		linea[i++] = '\n';
 	linea[i] = '\0';
@@ -54,10 +51,18 @@ char	*get_next(char *str)
 	if (str[i])
 		i++;
 	c = ft_strdup(&str[i]);
-	free(str);
-	return (c);
+	return (free(str), c);
 }
 
+/**
+ * @brief It will receive the file descriptor and the static string.
+ * It will allocate the buffer size + 1 for the \0 at the end of the string.
+ * Then it will use strchr to find a '\n' and read_val > 0
+ * 
+ * @param fd file descriptor
+ * @param s static char used in main function
+ * @return 
+ */
 char	*readjoin(int fd, char *s)
 {
 	int		read_val;
@@ -70,15 +75,24 @@ char	*readjoin(int fd, char *s)
 	while ((ft_strchr(s, '\n') == NULL) && read_val)
 	{
 		read_val = read(fd, buffer, BUFFER_SIZE);
-		if (read_val <= 0)
+		if (read_val == 0)
 			break ;
+		if (read_val == -1)
+			return (free(buffer), free(s), NULL);
 		buffer[read_val] = '\0';
 		s = ft_strjoin(s, buffer);
 	}
-	free(buffer);
-	return (s);
+	return (free(buffer), s);
 }
 
+/**
+ * @brief Error check - s
+ * 
+ * @param fd file descriptor
+ * @param s static string
+ * @param line 
+ * @return char* 
+ */
 char	*get_next_line(int fd)
 {
 	char		*line;
