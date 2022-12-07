@@ -6,7 +6,7 @@
 /*   By: djanssen <djanssen@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 11:12:30 by djanssen          #+#    #+#             */
-/*   Updated: 2022/11/10 12:47:33 by djanssen         ###   ########.fr       */
+/*   Updated: 2022/11/17 12:08:03 by djanssen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,13 @@
 # include <stdarg.h>
 # include "../libft/libft.h"
 
-int		ft_printchar(char c);
-int		ft_printstr(char *str);
-int		ft_printnbr(int n);
-int		ft_printunsigned(unsigned int n);
-int		ft_printpercentage(void);
-int		ft_printhex(unsigned int h, const char format);
-void	ft_get_hex(unsigned int n, const char format);
-char	*ft_itoax(unsigned int n);
-int		ft_printf(char const *format, ...);
-int		ft_printpointer(unsigned long long ptr);
+int				ft_printf(char const *format, ...);
+int				ft_printchar(int c);
+int				ft_printpercentage(void);
+int				ft_printstr(char *str);
+int				ft_printnbr(int n);
+int				ft_printunsignednbr(unsigned int n);
+char			*ft_unsigneditoa(unsigned int n);
+int				ft_printpointer(unsigned long long ptr);
+int				ft_printhexa(unsigned int n, const char format);
 #endif
