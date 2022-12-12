@@ -6,7 +6,7 @@
 /*   By: djanssen <djanssen@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 09:48:59 by djanssen          #+#    #+#             */
-/*   Updated: 2022/12/07 18:16:45 by djanssen         ###   ########.fr       */
+/*   Updated: 2022/12/12 20:07:33 by djanssen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,18 +19,37 @@
 # include <stdio.h>
 # include <unistd.h>
 # include <memory.h>
-# include "ft_printf/src/ft_printf.h"
-
+# include <fcntl.h>
+# include <sys/types.h>
+# include <sys/uio.h>
+# include <unistd.h>
+# include <string.h>
+# include <stdint.h>
+# include "gnl/get_next_line.h"
 # define WIDTH 1680
 # define HEIGHT 1050
 
-/* All functions */
+/* All structs */
+typedef struct s_vars
+{
+	void	*mlx;
+	void	*img;
+	void	*window;
+	char	**map;
+	int		win_w;
+	int		win_h;
+	int		movement;
+}	t_vars;
 
-/**
- * @brief All key hooks are in this function.
- * 
- * @param param mlx
- */
-void	key_hooks(void *param);
+/* All function prototypes */
+void		key_hooks(void *param);
+
+char		**get_map(char *map_file);
+
+char		**ft_split(const char *str, char c);
+
+int32_t		main(int argc, char **argv);
+
+void		img2map(char p, int x1, int y1, t_vars **v);
 
 #endif
