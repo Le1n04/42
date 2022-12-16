@@ -6,7 +6,7 @@
 /*   By: djanssen <djanssen@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 09:48:59 by djanssen          #+#    #+#             */
-/*   Updated: 2022/12/14 18:17:41 by djanssen         ###   ########.fr       */
+/*   Updated: 2022/12/16 12:30:04 by djanssen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@
 # include <string.h>
 # include <stdint.h>
 # include "gnl/get_next_line.h"
-# define WIDTH 720
-# define HEIGHT 480
+# define WIDTH 600
+# define HEIGHT 600
 
 /* All structs */
 typedef struct s_data {
@@ -38,7 +38,21 @@ typedef struct s_data {
 	int		endian;
 }				t_data;
 
+typedef struct s_vars {
+	void			*mlx;
+	void			*img;
+	void			*win;
+	int				win_w;
+	int				win_h;
+	int				x_p;
+	int				y_p;
+	int				movement;
+	char			**map;
+	int				collect;
+}	t_vars;
+
 /* All function prototypes */
-void		key_hooks(void *param);
-int32_t		main(void);
+int32_t		main(int argc, char **argv);
+void		keyhook2(mlx_key_data_t keydata, void *param);
+int			get_height(char **map);
 #endif

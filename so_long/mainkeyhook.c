@@ -6,11 +6,13 @@
 /*   By: djanssen <djanssen@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 09:48:59 by djanssen          #+#    #+#             */
-/*   Updated: 2022/12/14 19:09:59 by djanssen         ###   ########.fr       */
+/*   Updated: 2022/12/16 12:00:06 by djanssen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+mlx_image_t	*g_img;
 
 void	keyhook2(mlx_key_data_t keydata, void *param)
 {
@@ -26,19 +28,17 @@ void	keyhook2(mlx_key_data_t keydata, void *param)
 	if (keydata.key == MLX_KEY_A && keydata.action == MLX_RELEASE
 		&& keydata.modifier == MLX_CONTROL)
 		puts("Mariwanero");
-	if (keydata.key == MLX_KEY_ESCAPE && keydata.action == MLX_PRESS)
-		mlx_close_window(mlx);
 }
 
-int32_t	main(void)
-{
-	mlx_t	*mlx;
+// int32_t	main(void)
+// {
+// 	mlx_t	*mlx;
 
-	mlx = mlx_init(WIDTH, HEIGHT, "HOLA MUNDO", true);
-	if (!mlx)
-		return (EXIT_FAILURE);
-	mlx_key_hook(mlx, &keyhook2, NULL);
-	mlx_loop(mlx);
-	mlx_terminate(mlx);
-	return (EXIT_FAILURE);
-}
+// 	mlx = mlx_init(WIDTH, HEIGHT, "HOLA MUNDO", true);
+// 	if (!mlx)
+// 		return (EXIT_FAILURE);
+// 	mlx_key_hook(mlx, &keyhook2, NULL);
+// 	mlx_loop(mlx);
+// 	mlx_terminate(mlx);
+// 	return (EXIT_FAILURE);
+// }
