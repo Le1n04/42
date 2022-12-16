@@ -6,7 +6,7 @@
 /*   By: djanssen <djanssen@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 09:48:59 by djanssen          #+#    #+#             */
-/*   Updated: 2022/12/12 20:07:33 by djanssen         ###   ########.fr       */
+/*   Updated: 2022/12/14 18:17:41 by djanssen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,30 +26,19 @@
 # include <string.h>
 # include <stdint.h>
 # include "gnl/get_next_line.h"
-# define WIDTH 1680
-# define HEIGHT 1050
+# define WIDTH 720
+# define HEIGHT 480
 
 /* All structs */
-typedef struct s_vars
-{
-	void	*mlx;
+typedef struct s_data {
 	void	*img;
-	void	*window;
-	char	**map;
-	int		win_w;
-	int		win_h;
-	int		movement;
-}	t_vars;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+}				t_data;
 
 /* All function prototypes */
 void		key_hooks(void *param);
-
-char		**get_map(char *map_file);
-
-char		**ft_split(const char *str, char c);
-
-int32_t		main(int argc, char **argv);
-
-void		img2map(char p, int x1, int y1, t_vars **v);
-
+int32_t		main(void);
 #endif
