@@ -6,7 +6,7 @@
 /*   By: djanssen <djanssen@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 09:48:59 by djanssen          #+#    #+#             */
-/*   Updated: 2022/12/20 13:57:47 by djanssen         ###   ########.fr       */
+/*   Updated: 2022/12/21 18:11:15 by djanssen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,17 +18,13 @@
 # include <stdlib.h>
 # include <stdio.h>
 # include <unistd.h>
-# include <memory.h>
-# include <fcntl.h>
-# include <sys/types.h>
-# include <sys/uio.h>
 # include <unistd.h>
 # include <string.h>
 # include <stdint.h>
 # include "gnl/get_next_line.h"
 
 /* All structs */
-typedef struct map_data
+typedef struct s_mapdata
 {
 	char	*path;
 	char	**matrix;
@@ -36,6 +32,14 @@ typedef struct map_data
 	size_t	y_axis;
 	int		error;
 }	t_map;
+
+typedef struct s_elements {
+	int	c;
+	int	p;
+	int	e;
+	int	x;
+	int	y;
+}	t_elements;
 /* All function prototypes */
 int32_t		main(int argc, char **argv);
 #endif
