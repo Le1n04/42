@@ -6,7 +6,7 @@
 #    By: djanssen <djanssen@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/07 11:03:12 by djanssen          #+#    #+#              #
-#    Updated: 2022/12/21 16:38:31 by djanssen         ###   ########.fr        #
+#    Updated: 2022/12/23 11:07:51 by djanssen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ LIBFT = inc/libft.a
 all:            $(NAME)
 				$(CC) $(FLAGS) $(SRC) $(NAME) $(LIBFT) $(GLFW) $(MLX) $(INCLUDE) -o so_long
 $(NAME):        $(OBJ)
-				cd MLX42 && make all
+				cd MLX42_mac && make all
 				$(CC) $(FLAGS) -c $(SRC)
 				ar rcs $(NAME) $(OBJ)
 clean:

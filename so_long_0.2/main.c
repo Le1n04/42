@@ -6,7 +6,7 @@
 /*   By: djanssen <djanssen@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 11:03:12 by djanssen          #+#    #+#             */
-/*   Updated: 2022/12/21 18:42:20 by djanssen         ###   ########.fr       */
+/*   Updated: 2022/12/23 14:03:35 by djanssen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,194 @@ void	init_vars(t_map *fmap, char *input)
 	fmap->y_axis = get_height(fmap->path);
 	if (!fmap->y_axis)
 		fmap->error = 1;
+	fmap->elm.c = 0;
+	fmap->elm.e = 0;
+	fmap->elm.p = 0;
+	fmap->cc = 0;
+}
+
+void	ft_print_map(t_map *fmap)
+{
+	size_t	i;
+	size_t	j;
+
+	i = -1;
+	write(1, "\n", 1);
+	while (++i < fmap->y_axis)
+	{
+		j = -1;
+		while (++j < fmap->x_axis)
+		{
+			write(1, &fmap->matrix[i][j], 1);
+		}
+		write(1, "\n", 1);
+	}
+	write(1, "\n", 1);
+}
+
+void	moveup(t_map *map)
+{
+	map->moves++;
+	printf("Move count: %d\n", map->moves);
+	if (map->matrix[map->player_y - 1][map->player_x] == '0')
+	{
+		map->matrix[map->player_y - 1][map->player_x] = 'P';
+		map->matrix[map->player_y][map->player_x] = '0';
+		map->player_y--;
+	}
+	else if (map->matrix[map->player_y - 1][map->player_x] == 'C')
+	{
+		map->matrix[map->player_y - 1][map->player_x] = '0';
+		map->cc++;
+	}
+	else if (map->matrix[map->player_y - 1][map->player_x] == 'E' &&
+				map->cc == map->elm.c)
+	{
+		map->matrix[map->player_y - 1][map->player_x] = 'P';
+		map->matrix[map->player_y][map->player_x] = '0';
+		map->player_y++;
+		map->game_finished++;
+		puts("\nYou've won.");
+	}
+	else if (map->matrix[map->player_y - 1][map->player_x] == 'E' &&
+				map->cc != map->elm.c)
+		puts("You need to take more coins in order to win.");
+}
+
+void	movedown(t_map *map)
+{
+	map->moves++;
+	printf("Move count: %d\n", map->moves);
+	if (map->matrix[map->player_y + 1][map->player_x] == '0')
+	{
+		map->matrix[map->player_y + 1][map->player_x] = 'P';
+		map->matrix[map->player_y][map->player_x] = '0';
+		map->player_y++;
+	}
+	else if (map->matrix[map->player_y + 1][map->player_x] == 'C')
+	{
+		map->matrix[map->player_y + 1][map->player_x] = '0';
+		map->cc++;
+	}
+	else if (map->matrix[map->player_y + 1][map->player_x] == 'E' &&
+				map->cc == map->elm.c)
+	{
+		map->matrix[map->player_y + 1][map->player_x] = 'P';
+		map->matrix[map->player_y][map->player_x] = '0';
+		map->player_y++;
+		map->game_finished++;
+		puts("\nYou've won.");
+	}
+	else if (map->matrix[map->player_y + 1][map->player_x] == 'E' &&
+				map->cc != map->elm.c)
+		puts("You need to take more coins in order to win.");
+}
+
+void	moveleft(t_map *map)
+{
+	map->moves++;
+	printf("Move count: %d\n", map->moves);
+	if (map->matrix[map->player_y][map->player_x + 1] == '0')
+	{
+		map->matrix[map->player_y][map->player_x + 1] = 'P';
+		map->matrix[map->player_y][map->player_x] = '0';
+		map->player_x++;
+	}
+	else if (map->matrix[map->player_y][map->player_x + 1] == 'C')
+	{
+		map->matrix[map->player_y][map->player_x + 1] = '0';
+		map->cc++;
+	}
+	else if (map->matrix[map->player_y][map->player_x + 1] == 'E' &&
+				map->cc == map->elm.c)
+	{
+		map->matrix[map->player_y][map->player_x + 1] = 'P';
+		map->matrix[map->player_y][map->player_x] = '0';
+		map->player_x++;
+		map->game_finished++;
+		puts("\nYou've won.");
+	}
+	else if (map->matrix[map->player_y][map->player_x + 1] == 'E' &&
+				map->cc != map->elm.c)
+		puts("You need to take more coins in order to win.");
+}
+
+void	moveright(t_map *map)
+{
+	map->moves++;
+	printf("Move count: %d\n", map->moves);
+	if (map->matrix[map->player_y][map->player_x - 1] == '0')
+	{
+		map->matrix[map->player_y][map->player_x - 1] = 'P';
+		map->matrix[map->player_y][map->player_x] = '0';
+		map->player_x--;
+	}
+	else if (map->matrix[map->player_y][map->player_x - 1] == 'C')
+	{
+		map->matrix[map->player_y][map->player_x - 1] = '0';
+		map->cc++;
+	}
+	else if (map->matrix[map->player_y][map->player_x - 1] == 'E' &&
+				map->cc == map->elm.c)
+	{
+		map->matrix[map->player_y][map->player_x - 1] = 'P';
+		map->matrix[map->player_y][map->player_x] = '0';
+		map->player_x--;
+		map->game_finished++;
+		puts("\nYou've won.");
+	}
+	else if (map->matrix[map->player_y][map->player_x - 1] == 'E' &&
+				map->cc != map->elm.c)
+		puts("You need to take more coins in order to win.");
+}
+
+void	ft_move(t_map *map, int k)
+{
+	if (k == 1 && map->matrix[map->player_y - 1][map->player_x] != '1' &&
+		!map->game_finished)
+	{
+		moveup(map);
+		ft_print_map(map);
+	}
+	else if (k == 2 && map->matrix[map->player_y + 1][map->player_x] != '1' &&
+				!map->game_finished)
+	{
+		movedown(map);
+		ft_print_map(map);
+	}
+	else if (k == 3 && map->matrix[map->player_y][map->player_x + 1] != '1' &&
+				!map->game_finished)
+	{
+		moveleft(map);
+		ft_print_map(map);
+	}
+	else if (k == 4 && map->matrix[map->player_y][map->player_x - 1] != '1' &&
+				!map->game_finished)
+	{
+		moveright(map);
+		ft_print_map(map);
+	}
+}
+
+void	keyhook1(mlx_key_data_t keydata, void *param)
+{
+	t_map	*map;
+
+	map = param;
+	if (keydata.key == MLX_KEY_UP && keydata.action == MLX_PRESS
+		&& !map->game_finished)
+		ft_move(map, 1);
+	else if (keydata.key == MLX_KEY_DOWN && keydata.action == MLX_PRESS
+		&& !map->game_finished)
+		ft_move(map, 2);
+	else if (keydata.key == MLX_KEY_RIGHT && keydata.action == MLX_PRESS
+		&& !map->game_finished)
+		ft_move(map, 3);
+	else if (keydata.key == MLX_KEY_LEFT && keydata.action == MLX_PRESS
+		&& !map->game_finished)
+		ft_move(map, 4);
+	else if (keydata.key == MLX_KEY_ESCAPE && keydata.action == MLX_PRESS)
+		mlx_close_window(map->mlx);
 }
 
 int	ft_check_ones(char *tmp)
@@ -47,6 +235,33 @@ int	ft_check_ones(char *tmp)
 	if (*tmp)
 		return (1);
 	return (0);
+}
+
+void	ft_where_is_player(t_map *fmap)
+{
+	int	i;
+	int	j;
+	int	count;
+
+	count = 0;
+	i = -1;
+	while (++i < (int)fmap->y_axis && !fmap->error)
+	{
+		j = -1;
+		while (++j < (int)fmap->x_axis && !fmap->error)
+		{
+			if (fmap->matrix[i][j] == 'P' && !fmap->error)
+			{
+				if (++count == 1)
+				{
+					fmap->player_x = (size_t)j;
+					fmap->player_y = (size_t)i;
+				}
+			}
+		}
+	}
+	if (!count && !fmap->error)
+		fmap->error = 5;
 }
 
 int	ft_print_error(int error)
@@ -85,38 +300,36 @@ void	ft_check_lines(char *tmp, size_t current, t_map *fmap)
 		fmap->error = 3;
 }
 
-void	ft_check_elements(t_map *fmap)
+void	ft_check_elements(t_map *map)
 {
-	t_elements	elm;
-
-	elm.y = get_height(fmap->path);
-	while (elm.y--)
+	map->elm.y = get_height(map->path);
+	while (map->elm.y--)
 	{
-		elm.x = 0;
-		while (fmap->matrix[elm.y][elm.x])
+		map->elm.x = 0;
+		while (map->matrix[map->elm.y][map->elm.x])
 		{
-			if (fmap->matrix[elm.y][elm.x] == 'E')
-				elm.e++;
-			else if (fmap->matrix[elm.y][elm.x] == 'P')
-				elm.p++;
-			else if (fmap->matrix[elm.y][elm.x] == 'C')
-				elm.c++;
-			else if (fmap->matrix[elm.y][elm.x] != '1' &&
-				fmap->matrix[elm.y][elm.x] != '0')
-				fmap->error = 5;
-			elm.x++;
+			if (map->matrix[map->elm.y][map->elm.x] == 'E')
+				map->elm.e++;
+			else if (map->matrix[map->elm.y][map->elm.x] == 'P')
+				map->elm.p++;
+			else if (map->matrix[map->elm.y][map->elm.x] == 'C')
+				map->elm.c++;
+			else if (map->matrix[map->elm.y][map->elm.x] != '1' &&
+						map->matrix[map->elm.y][map->elm.x] != '0')
+				map->error = 5;
+			map->elm.x++;
 		}
 	}
-	if (elm.c == 0 || elm.p == 0 || elm.e == 0 || elm.p > 1)
-		fmap->error = 6;
+	if (map->elm.c == 0 || map->elm.p == 0 || map->elm.e == 0 || map->elm.p > 1)
+		map->error = 6;
 }
 
 t_map	read_map(char *input)
 {
-	t_map		fmap;
-	int			fd;
-	size_t		current;
-	char		*tmp;
+	t_map	fmap;
+	int		fd;
+	size_t	current;
+	char	*tmp;
 
 	current = 0;
 	init_vars(&fmap, input);
@@ -133,6 +346,7 @@ t_map	read_map(char *input)
 		tmp = get_next_line(fd);
 		current++;
 	}
+	ft_check_elements(&fmap);
 	return (close(fd), fmap);
 }
 
@@ -143,8 +357,17 @@ int	main(int argc, char **argv)
 	if (argc != 2)
 		return (write(1, ("Error - you must introduce 2 arguments.\n"), 40), 1);
 	map = read_map(argv[1]);
+	ft_where_is_player(&map);
 	if (map.error)
 		ft_print_error(map.error);
-	printf("Map path: %s\nMap x, y: %ld, %ld\n", map.path, map.x_axis, map.y_axis);
-	return (0);
+	if (!map.error)
+	{
+		ft_print_map(&map);
+		map.mlx = mlx_init(map.x_axis * WIDTH, map.y_axis * HEIGHT, "A", false);
+		if (!map.mlx)
+			return (EXIT_FAILURE);
+		mlx_key_hook(map.mlx, &keyhook1, &map);
+		mlx_loop(map.mlx);
+	}
+	return (EXIT_SUCCESS);
 }
