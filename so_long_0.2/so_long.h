@@ -6,7 +6,7 @@
 /*   By: djanssen <djanssen@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 09:48:59 by djanssen          #+#    #+#             */
-/*   Updated: 2022/12/28 12:20:17 by djanssen         ###   ########.fr       */
+/*   Updated: 2022/12/28 17:07:12 by djanssen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,16 @@ typedef struct s_elements
 	size_t		y;
 }				t_elements;
 
+// typedef enum mlx_images
+// {
+// 	wall,
+// 	tile,
+// 	player,
+// 	ext,
+// 	coin,
+// 	IMG_COUNT,
+// }				t_images;
+
 typedef struct s_mapdata
 {
 	mlx_t		*mlx;
@@ -48,6 +58,8 @@ typedef struct s_mapdata
 	size_t		player_y;
 	int			game_finished;
 	int			moves;
+	// mlx_image_t	*img[IMG_COUNT];
+	// xpm_t		*xpm[IMG_COUNT];
 }				t_map;
 
 /* All function prototypes */
@@ -67,6 +79,7 @@ void			movedown(t_map *map);
 void			moveright(t_map *map);
 void			moveleft(t_map *map);
 void			ft_move(t_map *map, int k);
-size_t			get_height(char *input);
-void			init_vars(t_map *fmap, char *input);
+// int				ft_loadimg(xpm_t **xpm);
+// int				ft_texturetoimg(t_map *m, xpm_t **xpm, mlx_image_t **img);
+// int				ft_init_graphics(t_map *map);
 #endif
