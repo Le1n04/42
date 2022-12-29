@@ -6,12 +6,18 @@
 /*   By: djanssen <djanssen@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 11:03:12 by djanssen          #+#    #+#             */
-/*   Updated: 2022/12/28 12:13:18 by djanssen         ###   ########.fr       */
+/*   Updated: 2022/12/29 18:05:07 by djanssen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "../so_long.h"
 
+/**
+ * @brief This function will check if the line is filled with '1's.
+ * 
+ * @param tmp Inputted line.
+ * @return 0 if full '1's, 0 if not.
+ */
 int	ft_check_ones(char *tmp)
 {
 	while (*tmp && *tmp == '1')
@@ -21,6 +27,11 @@ int	ft_check_ones(char *tmp)
 	return (0);
 }
 
+/**
+ * @brief This function will look for the player coords.
+ * 
+ * @param fmap Main struct.
+ */
 void	ft_where_is_player(t_map *fmap)
 {
 	int	i;
@@ -48,6 +59,12 @@ void	ft_where_is_player(t_map *fmap)
 		fmap->error = 5;
 }
 
+/**
+ * @brief This function will print the error depending of it's code.
+ * 
+ * @param error Inputted code.
+ * @return 0
+ */
 int	ft_print_error(int error)
 {
 	if (error == 1)
@@ -65,6 +82,13 @@ int	ft_print_error(int error)
 	return (0);
 }
 
+/**
+ * @brief It will check a line with some conditions looking for errors.
+ * 
+ * @param tmp Inputted line.
+ * @param current Current line.
+ * @param fmap Main struct.
+ */
 void	ft_check_lines(char *tmp, size_t current, t_map *fmap)
 {
 	if (fmap->x_axis != ft_strlen(tmp))
@@ -77,6 +101,12 @@ void	ft_check_lines(char *tmp, size_t current, t_map *fmap)
 		fmap->error = 3;
 }
 
+/**
+ * @brief It will go through the whole matrix checking
+ * if elements are correct (EPC10).
+ * 
+ * @param map Main struct.
+ */
 void	ft_check_elements(t_map *map)
 {
 	map->elm.y = get_height(map->path);

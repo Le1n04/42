@@ -6,12 +6,17 @@
 /*   By: djanssen <djanssen@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 11:03:12 by djanssen          #+#    #+#             */
-/*   Updated: 2022/12/28 12:14:11 by djanssen         ###   ########.fr       */
+/*   Updated: 2022/12/29 17:46:05 by djanssen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "../so_long.h"
 
+/**
+ * @brief This function will print the map in TERMINAL.
+ * 
+ * @param fmap Main struct.
+ */
 void	ft_print_map(t_map *fmap)
 {
 	size_t	i;
@@ -31,6 +36,13 @@ void	ft_print_map(t_map *fmap)
 	write(1, "\n", 1);
 }
 
+/**
+ * @brief This function will read through the *.ber file and will 
+ * check every line looking for errors.
+ * 
+ * @param input Map path.
+ * @return fmap - It will return the main struct.
+ */
 t_map	read_map(char *input)
 {
 	t_map	fmap;

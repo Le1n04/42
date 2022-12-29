@@ -6,11 +6,11 @@
 #    By: djanssen <djanssen@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/07 11:03:12 by djanssen          #+#    #+#              #
-#    Updated: 2022/12/28 12:25:21 by djanssen         ###   ########.fr        #
+#    Updated: 2022/12/29 17:17:44 by djanssen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRC = gnl/*.c *.c
+SRC = gnl/*.c *.c src/*.c utils/*.c
 OBJ = $(SRC:.c=.o)
 RM = rm -f
 CC = gcc

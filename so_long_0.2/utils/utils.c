@@ -6,12 +6,18 @@
 /*   By: djanssen <djanssen@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 11:03:12 by djanssen          #+#    #+#             */
-/*   Updated: 2022/12/29 15:57:44 by djanssen         ###   ########.fr       */
+/*   Updated: 2022/12/29 17:49:16 by djanssen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "../so_long.h"
 
+/**
+ * @brief This function will get the .ber number of lines.
+ * 
+ * @param input Map path (*.ber).
+ * @return Number of lines.
+ */
 size_t	get_height(char *input)
 {
 	int		i;
@@ -30,6 +36,13 @@ size_t	get_height(char *input)
 	return (free(tmp), close(fd), i);
 }
 
+/**
+ * @brief This function will initiate most of the variables in
+ * all of the structs.
+ * 
+ * @param fmap Main struct.
+ * @param input Map path (*.ber).
+ */
 void	init_vars(t_map *fmap, char *input)
 {
 	fmap->error = 0;

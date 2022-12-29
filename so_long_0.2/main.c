@@ -6,12 +6,20 @@
 /*   By: djanssen <djanssen@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 11:03:12 by djanssen          #+#    #+#             */
-/*   Updated: 2022/12/29 16:33:49 by djanssen         ###   ########.fr       */
+/*   Updated: 2022/12/29 18:05:48 by djanssen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
+/**
+ * @brief This function will detect the key that's pressed 
+ * and the action (press), if any of the 5 keys (WASD-ESC) is pressed
+ * the player will move / game will be closed (ESC).
+ * 
+ * @param keydata mlx keydata struct.
+ * @param param main struct.
+ */
 void	keyhook1(mlx_key_data_t keydata, void *param)
 {
 	t_map	*map;
@@ -33,6 +41,14 @@ void	keyhook1(mlx_key_data_t keydata, void *param)
 		mlx_close_window(map->mlx);
 }
 
+/**
+ * @brief This is the main function, it will receive the *.ber file
+ * and start the program.
+ * 
+ * @param t_map Main struct. 
+ * @param argv Map path.
+ * @return 0 - if success.
+ */
 int	main(int argc, char **argv)
 {
 	t_map	map;
@@ -51,6 +67,22 @@ int	main(int argc, char **argv)
 	}
 	return (EXIT_SUCCESS);
 }
+
+/**
+ * Hacer los sprites como tienen que ser para que tengan fondo de agua
+ * y para cada tipo de borde en cada direccion.
+ * 
+ * Hacer que el player se printee un tile de agua
+ * , que sea una g_img como al principio y
+ * que la imagen printeada solo se vuelva a printear
+ * cuando pillas un objeto. (replantear movimiento supongo).
+ * 
+ * ?? Hacer que se saquen mas errores si falla algo de texturas ??
+ * ?? Error management para CADA tipo ??
+ * 
+ * Programar enemigo.
+ * 
+ */
 
 // void	showleaks(void)
 // {

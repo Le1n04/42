@@ -6,12 +6,20 @@
 /*   By: djanssen <djanssen@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 11:03:12 by djanssen          #+#    #+#             */
-/*   Updated: 2022/12/29 16:27:44 by djanssen         ###   ########.fr       */
+/*   Updated: 2022/12/29 18:00:15 by djanssen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "../so_long.h"
 
+/**
+ * @brief This function will load every '*.xpm42' into their correspondent 
+ * 'xpm[IMG_COUNT]' as textures. 
+ * 
+ * @param map Main struct.
+ * @param xpm Struct containing data regarding an XPM image.
+ * @return 0 if failure, 1 if success.
+ */
 int	ft_loadimg(t_map *map, xpm_t **xpm)
 {
 	map->mlx = mlx_init(map->x_axis * W, map->y_axis * H, "A", false);
@@ -35,6 +43,15 @@ int	ft_loadimg(t_map *map, xpm_t **xpm)
 	return (1);
 }
 
+/**
+ * @brief This function will convert textures from 'ft_loadimg' to images
+ * into their correspondent 'img[IMG_COUNT]'.
+ * 
+ * @param m Main struct.
+ * @param xpm Struct containing data regarding an XPM image.
+ * @param img An image that can be rendered.
+ * @return 1 if success, 0 if failure.
+ */
 int	ft_texturetoimg(t_map *m, xpm_t **xpm, mlx_image_t **img)
 {
 	img[tile] = mlx_texture_to_image(m->mlx, &xpm[tile]->texture);
@@ -55,6 +72,34 @@ int	ft_texturetoimg(t_map *m, xpm_t **xpm, mlx_image_t **img)
 	return (1);
 }
 
+/**
+ * @brief This function is a complement of 'ft_print_images'.
+ * It will draw an instance of the images.
+ * 
+ * @param m Main struct.
+ * @param i counter from 'ft_print_images'.
+ * @param j counter from 'ft_print_images'.
+ */
+void	imageconditioner(t_map *m, int i, int j)
+{
+	if (m->matrix[i][j] == '1')
+		mlx_image_to_window(m->mlx, m->img[wall], j * W, i * H);
+	if (m->matrix[i][j] == '0')
+		mlx_image_to_window(m->mlx, m->img[tile], j * W, i * H);
+	if (m->matrix[i][j] == 'P')
+		mlx_image_to_window(m->mlx, m->img[player], j * W, i * H);
+	if (m->matrix[i][j] == 'E')
+		mlx_image_to_window(m->mlx, m->img[ext], j * W, i * H);
+	if (m->matrix[i][j] == 'C')
+		mlx_image_to_window(m->mlx, m->img[coin], j * W, i * H);
+}
+
+/**
+ * @brief This function will print every image and the move counter
+ *  into the MLX instance.
+ * 
+ * @param m Main struct.
+ */
 void	ft_print_images(t_map *m)
 {
 	int		i;
@@ -67,28 +112,25 @@ void	ft_print_images(t_map *m)
 	{
 		j = -1;
 		while (++j >= 0 && j < (int)m->x_axis)
-		{
-			if (m->matrix[i][j] == '1')
-				mlx_image_to_window(m->mlx, m->img[wall], j * W, i * H);
-			if (m->matrix[i][j] == '0')
-				mlx_image_to_window(m->mlx, m->img[tile], j * W, i * H);
-			if (m->matrix[i][j] == 'P')
-				mlx_image_to_window(m->mlx, m->img[player], j * W, i * H);
-			if (m->matrix[i][j] == 'E')
-				mlx_image_to_window(m->mlx, m->img[ext], j * W, i * H);
-			if (m->matrix[i][j] == 'C')
-				mlx_image_to_window(m->mlx, m->img[coin], j * W, i * H);
-		}
+			imageconditioner(m, i, j);
 	}
 	mlx_put_string(m->mlx, "Moves:", 0, 0);
 	mlx_put_string(m->mlx, itoad, 64, 0);
 	free (itoad);
 }	
 
+/**
+ * @brief This function will initiate every image related function.
+ * 
+ * @param map Main struct.
+ * @return 1 if success, 0 if failure.
+ */
 int	ft_init_graphics(t_map *map)
 {
-	ft_loadimg(map, map->xpm);
-	ft_texturetoimg(map, map->xpm, map->img);
+	if (!ft_loadimg(map, map->xpm))
+		return (0);
+	if (!ft_texturetoimg(map, map->xpm, map->img))
+		return (0);
 	ft_print_images(map);
 	return (1);
 }

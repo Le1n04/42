@@ -6,11 +6,11 @@
 /*   By: djanssen <djanssen@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 17:11:45 by djanssen          #+#    #+#             */
-/*   Updated: 2022/12/29 16:25:45 by djanssen         ###   ########.fr       */
+/*   Updated: 2022/12/29 17:15:34 by djanssen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "../so_long.h"
 
 static char	*ft_array(char *x, unsigned int number, long int len)
 {

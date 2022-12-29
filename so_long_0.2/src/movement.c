@@ -6,12 +6,17 @@
 /*   By: djanssen <djanssen@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 11:03:12 by djanssen          #+#    #+#             */
-/*   Updated: 2022/12/29 16:19:01 by djanssen         ###   ########.fr       */
+/*   Updated: 2022/12/29 17:43:26 by djanssen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "../so_long.h"
 
+/**
+ * @brief This function will make the player move NORTH.
+ * 
+ * @param map Main struct.
+ */
 void	moveup(t_map *map)
 {
 	map->moves++;
@@ -41,6 +46,11 @@ void	moveup(t_map *map)
 		puts("You need to take more coins in order to win.");
 }
 
+/**
+ * @brief This function will make the player move SOUTH.
+ * 
+ * @param map Main struct.
+ */
 void	movedown(t_map *map)
 {
 	map->moves++;
@@ -70,6 +80,11 @@ void	movedown(t_map *map)
 		puts("You need to take more coins in order to win.");
 }
 
+/**
+ * @brief This function will make the player move WEST.
+ * 
+ * @param map Main struct.
+ */
 void	moveleft(t_map *map)
 {
 	map->moves++;
@@ -99,6 +114,11 @@ void	moveleft(t_map *map)
 		puts("You need to take more coins in order to win.");
 }
 
+/**
+ * @brief This function will make the player move EAST.
+ * 
+ * @param map Main struct.
+ */
 void	moveright(t_map *map)
 {
 	map->moves++;
@@ -128,6 +148,13 @@ void	moveright(t_map *map)
 		puts("You need to take more coins in order to win.");
 }
 
+/**
+ * @brief This is the main movement function it will check if there's something
+ * different than 1 and will process the move and print the new map.
+ * 
+ * @param map Main struct.
+ * @param k Received parameter from keyhooks function. (WASD - 1234)
+ */
 void	ft_move(t_map *map, int k)
 {
 	if (k == 1 && map->matrix[map->player_y - 1][map->player_x] != '1' &&
