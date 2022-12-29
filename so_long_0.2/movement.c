@@ -6,7 +6,7 @@
 /*   By: djanssen <djanssen@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 11:03:12 by djanssen          #+#    #+#             */
-/*   Updated: 2022/12/28 12:13:21 by djanssen         ###   ########.fr       */
+/*   Updated: 2022/12/29 16:19:01 by djanssen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,24 +134,24 @@ void	ft_move(t_map *map, int k)
 		!map->game_finished)
 	{
 		moveup(map);
-		ft_print_map(map);
+		ft_print_images(map);
 	}
 	else if (k == 2 && map->matrix[map->player_y + 1][map->player_x] != '1' &&
 				!map->game_finished)
 	{
 		movedown(map);
-		ft_print_map(map);
+		ft_print_images(map);
 	}
 	else if (k == 3 && map->matrix[map->player_y][map->player_x + 1] != '1' &&
 				!map->game_finished)
 	{
 		moveleft(map);
-		ft_print_map(map);
+		ft_print_images(map);
 	}
 	else if (k == 4 && map->matrix[map->player_y][map->player_x - 1] != '1' &&
 				!map->game_finished)
 	{
 		moveright(map);
-		ft_print_map(map);
+		ft_print_images(map);
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: djanssen <djanssen@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 09:48:59 by djanssen          #+#    #+#             */
-/*   Updated: 2022/12/28 17:07:12 by djanssen         ###   ########.fr       */
+/*   Updated: 2022/12/29 16:24:08 by djanssen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@
 # include <stdlib.h>
 # include <string.h>
 # include <unistd.h>
-# define WIDTH 64
-# define HEIGHT 64
+# define W 64
+# define H 64
 
 /* All structs */
 typedef struct s_elements
@@ -34,15 +34,15 @@ typedef struct s_elements
 	size_t		y;
 }				t_elements;
 
-// typedef enum mlx_images
-// {
-// 	wall,
-// 	tile,
-// 	player,
-// 	ext,
-// 	coin,
-// 	IMG_COUNT,
-// }				t_images;
+typedef enum mlx_images
+{
+	wall,
+	tile,
+	player,
+	ext,
+	coin,
+	IMG_COUNT,
+}				t_images;
 
 typedef struct s_mapdata
 {
@@ -58,8 +58,8 @@ typedef struct s_mapdata
 	size_t		player_y;
 	int			game_finished;
 	int			moves;
-	// mlx_image_t	*img[IMG_COUNT];
-	// xpm_t		*xpm[IMG_COUNT];
+	mlx_image_t	*img[IMG_COUNT];
+	xpm_t		*xpm[IMG_COUNT];
 }				t_map;
 
 /* All function prototypes */
@@ -79,7 +79,10 @@ void			movedown(t_map *map);
 void			moveright(t_map *map);
 void			moveleft(t_map *map);
 void			ft_move(t_map *map, int k);
-// int				ft_loadimg(xpm_t **xpm);
-// int				ft_texturetoimg(t_map *m, xpm_t **xpm, mlx_image_t **img);
-// int				ft_init_graphics(t_map *map);
+int				ft_loadimg(t_map *map, xpm_t **xpm);
+int				ft_texturetoimg(t_map *m, xpm_t **xpm, mlx_image_t **img);
+int				ft_init_graphics(t_map *map);
+int				graphics(t_map *map);
+void			ft_print_images(t_map *m);
+char			*ft_itoa(int n);
 #endif

@@ -6,7 +6,7 @@
 /*   By: djanssen <djanssen@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 11:03:12 by djanssen          #+#    #+#             */
-/*   Updated: 2022/12/28 12:19:44 by djanssen         ###   ########.fr       */
+/*   Updated: 2022/12/29 15:57:44 by djanssen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,4 +42,6 @@ void	init_vars(t_map *fmap, char *input)
 	fmap->elm.e = 0;
 	fmap->elm.p = 0;
 	fmap->cc = 0;
+	fmap->game_finished = 0;
+	fmap->moves = 0;
 }

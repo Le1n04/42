@@ -6,7 +6,7 @@
 /*   By: djanssen <djanssen@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 11:03:12 by djanssen          #+#    #+#             */
-/*   Updated: 2022/12/28 16:59:57 by djanssen         ###   ########.fr       */
+/*   Updated: 2022/12/29 16:33:49 by djanssen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,12 +45,14 @@ int	main(int argc, char **argv)
 		ft_print_error(map.error);
 	if (!map.error)
 	{
-		ft_print_map(&map);
-		map.mlx = mlx_init(map.x_axis * WIDTH, map.y_axis * HEIGHT, "A", false);
-		if (!map.mlx)
-			return (EXIT_FAILURE);
+		ft_init_graphics(&map);
 		mlx_key_hook(map.mlx, &keyhook1, &map);
 		mlx_loop(map.mlx);
 	}
 	return (EXIT_SUCCESS);
 }
+
+// void	showleaks(void)
+// {
+// 	system("leaks -q so_long");
+// }

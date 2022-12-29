@@ -6,14 +6,17 @@
 /*   By: djanssen <djanssen@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 11:03:12 by djanssen          #+#    #+#             */
-/*   Updated: 2022/12/28 16:59:04 by djanssen         ###   ########.fr       */
+/*   Updated: 2022/12/29 16:27:44 by djanssen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	ft_loadimg(xpm_t **xpm)
+int	ft_loadimg(t_map *map, xpm_t **xpm)
 {
+	map->mlx = mlx_init(map->x_axis * W, map->y_axis * H, "A", false);
+	if (!map->mlx)
+		return (EXIT_FAILURE);
 	xpm[tile] = mlx_load_xpm42("p/water.xpm42");
 	if (!xpm[tile])
 		return (0);
@@ -52,11 +55,40 @@ int	ft_texturetoimg(t_map *m, xpm_t **xpm, mlx_image_t **img)
 	return (1);
 }
 
+void	ft_print_images(t_map *m)
+{
+	int		i;
+	int		j;
+	char	*itoad;
+
+	i = -1;
+	itoad = ft_itoa(m->moves);
+	while (m->matrix[++i] && i < (int)m->y_axis)
+	{
+		j = -1;
+		while (++j >= 0 && j < (int)m->x_axis)
+		{
+			if (m->matrix[i][j] == '1')
+				mlx_image_to_window(m->mlx, m->img[wall], j * W, i * H);
+			if (m->matrix[i][j] == '0')
+				mlx_image_to_window(m->mlx, m->img[tile], j * W, i * H);
+			if (m->matrix[i][j] == 'P')
+				mlx_image_to_window(m->mlx, m->img[player], j * W, i * H);
+			if (m->matrix[i][j] == 'E')
+				mlx_image_to_window(m->mlx, m->img[ext], j * W, i * H);
+			if (m->matrix[i][j] == 'C')
+				mlx_image_to_window(m->mlx, m->img[coin], j * W, i * H);
+		}
+	}
+	mlx_put_string(m->mlx, "Moves:", 0, 0);
+	mlx_put_string(m->mlx, itoad, 64, 0);
+	free (itoad);
+}	
+
 int	ft_init_graphics(t_map *map)
 {
-	if (!ft_loadimg(map->xpm))
-		return (0);
-	if (!ft_texturetoimg(map, map->xpm, map->img))
-		return (0);
+	ft_loadimg(map, map->xpm);
+	ft_texturetoimg(map, map->xpm, map->img);
+	ft_print_images(map);
 	return (1);
 }
