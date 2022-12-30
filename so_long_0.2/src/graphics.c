@@ -20,27 +20,22 @@
  * @param xpm Struct containing data regarding an XPM image.
  * @return 0 if failure, 1 if success.
  */
-int	ft_loadimg(t_map *map, xpm_t **xpm)
+void	ft_loadimg(t_map *map, xpm_t **xpm)
 {
 	map->mlx = mlx_init(map->x_axis * W, map->y_axis * H, "A", false);
-	if (!map->mlx)
-		return (EXIT_FAILURE);
-	xpm[tile] = mlx_load_xpm42("p/water.xpm42");
-	if (!xpm[tile])
-		return (0);
-	xpm[wall] = mlx_load_xpm42("p/grass.xpm42");
-	if (!xpm[wall])
-		return (0);
-	xpm[player] = mlx_load_xpm42("p/duck.xpm42");
-	if (!xpm[player])
-		return (0);
-	xpm[coin] = mlx_load_xpm42("p/flower_open.xpm42");
-	if (!xpm[coin])
-		return (0);
-	xpm[ext] = mlx_load_xpm42("p/exit_basket.xpm42");
-	if (!xpm[ext])
-		return (0);
-	return (1);
+	xpm[tile] = mlx_load_xpm42("p/solid/water.xpm42");
+	xpm[wall] = mlx_load_xpm42("p/solid/grass.xpm42");
+	xpm[topwall] = mlx_load_xpm42("p/solid/grass_top.xpm42");
+	xpm[botwall] = mlx_load_xpm42("p/solid/grass_bot.xpm42");
+	xpm[blwall] = mlx_load_xpm42("p/solid/corner_bot_left.xpm42");
+	xpm[brwall] = mlx_load_xpm42("p/solid/corner_bot_right.xpm42");
+	xpm[ulwall] = mlx_load_xpm42("p/solid/corner_top_left.xpm42");
+	xpm[urwall] = mlx_load_xpm42("p/solid/corner_top_right.xpm42");
+	xpm[leftwall] = mlx_load_xpm42("p/solid/grass_left.xpm42");
+	xpm[rightwall] = mlx_load_xpm42("p/solid/grass_right.xpm42");
+	xpm[player] = mlx_load_xpm42("p/inter/patito-agua.xpm42");
+	xpm[coin] = mlx_load_xpm42("p/inter/flor-agua.xpm42");
+	xpm[ext] = mlx_load_xpm42("p/inter/exit_basket.xpm42");
 }
 
 /**
@@ -52,24 +47,21 @@ int	ft_loadimg(t_map *map, xpm_t **xpm)
  * @param img An image that can be rendered.
  * @return 1 if success, 0 if failure.
  */
-int	ft_texturetoimg(t_map *m, xpm_t **xpm, mlx_image_t **img)
+void	ft_texturetoimg(t_map *m, xpm_t **xpm, mlx_image_t **img)
 {
 	img[tile] = mlx_texture_to_image(m->mlx, &xpm[tile]->texture);
-	if (!img[tile])
-		return (0);
 	img[wall] = mlx_texture_to_image(m->mlx, &xpm[wall]->texture);
-	if (!img[wall])
-		return (0);
+	img[topwall] = mlx_texture_to_image(m->mlx, &xpm[topwall]->texture);
+	img[botwall] = mlx_texture_to_image(m->mlx, &xpm[botwall]->texture);
+	img[blwall] = mlx_texture_to_image(m->mlx, &xpm[blwall]->texture);
+	img[brwall] = mlx_texture_to_image(m->mlx, &xpm[brwall]->texture);
+	img[ulwall] = mlx_texture_to_image(m->mlx, &xpm[ulwall]->texture);
+	img[urwall] = mlx_texture_to_image(m->mlx, &xpm[urwall]->texture);
+	img[leftwall] = mlx_texture_to_image(m->mlx, &xpm[leftwall]->texture);
+	img[rightwall] = mlx_texture_to_image(m->mlx, &xpm[rightwall]->texture);
 	img[player] = mlx_texture_to_image(m->mlx, &xpm[player]->texture);
-	if (!img[player])
-		return (0);
 	img[ext] = mlx_texture_to_image(m->mlx, &xpm[ext]->texture);
-	if (!img[ext])
-		return (0);
 	img[coin] = mlx_texture_to_image(m->mlx, &xpm[coin]->texture);
-	if (!img[coin])
-		return (0);
-	return (1);
 }
 
 /**
@@ -83,7 +75,7 @@ int	ft_texturetoimg(t_map *m, xpm_t **xpm, mlx_image_t **img)
 void	imageconditioner(t_map *m, int i, int j)
 {
 	if (m->matrix[i][j] == '1')
-		mlx_image_to_window(m->mlx, m->img[wall], j * W, i * H);
+		walls(m, i, j);
 	if (m->matrix[i][j] == '0')
 		mlx_image_to_window(m->mlx, m->img[tile], j * W, i * H);
 	if (m->matrix[i][j] == 'P')
@@ -125,12 +117,9 @@ void	ft_print_images(t_map *m)
  * @param map Main struct.
  * @return 1 if success, 0 if failure.
  */
-int	ft_init_graphics(t_map *map)
+void	ft_init_graphics(t_map *map)
 {
-	if (!ft_loadimg(map, map->xpm))
-		return (0);
-	if (!ft_texturetoimg(map, map->xpm, map->img))
-		return (0);
+	ft_loadimg(map, map->xpm);
+	ft_texturetoimg(map, map->xpm, map->img);
 	ft_print_images(map);
-	return (1);
 }

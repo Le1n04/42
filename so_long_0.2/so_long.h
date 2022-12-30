@@ -37,6 +37,15 @@ typedef struct s_elements
 typedef enum mlx_images
 {
 	wall,
+	topwall,
+	botwall,
+	blwall,
+	brwall,
+	ulwall,
+	urwall,
+	leftwall,
+	rightwall,
+	shark,
 	tile,
 	player,
 	ext,
@@ -79,10 +88,10 @@ void			movedown(t_map *map);
 void			moveright(t_map *map);
 void			moveleft(t_map *map);
 void			ft_move(t_map *map, int k);
-int				ft_loadimg(t_map *map, xpm_t **xpm);
-int				ft_texturetoimg(t_map *m, xpm_t **xpm, mlx_image_t **img);
-int				ft_init_graphics(t_map *map);
-int				graphics(t_map *map);
+void			ft_loadimg(t_map *map, xpm_t **xpm);
+void			ft_texturetoimg(t_map *m, xpm_t **xpm, mlx_image_t **img);
+void			ft_init_graphics(t_map *map);
+void			walls(t_map *m, int i, int j);
 void			ft_print_images(t_map *m);
 char			*ft_itoa(int n);
 #endif

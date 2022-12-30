@@ -69,6 +69,8 @@ int	main(int argc, char **argv)
 }
 
 /**
+ * SEG FAULT CON 0 EN ESQUINA
+ * 
  * Hacer los sprites como tienen que ser para que tengan fondo de agua
  * y para cada tipo de borde en cada direccion.
  * 
