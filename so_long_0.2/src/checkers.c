@@ -61,6 +61,12 @@ void	ft_where_is_player(t_map *fmap)
 
 /**
  * @brief This function will print the error depending of it's code.
+ * Error 1: Empty map.
+ * Error 2: Invalid map structure.
+ * Error 3: Map can't be symetrical.
+ * Error 4: Map has different X sizes.
+ * Error 5: Invalid map elements.
+ * Error 6: Not enough map elements.
  * 
  * @param error Inputted code.
  * @return 0
@@ -78,7 +84,7 @@ int	ft_print_error(int error)
 	if (error == 5)
 		return (printf("Error no.5: Invalid map element\n"), 1);
 	if (error == 6)
-		return (printf("Error no.6: Not enough map elements\n"), 1);
+		return (printf("Error no.6: Not enough or too many map elements\n"), 1);
 	return (0);
 }
 
@@ -127,6 +133,6 @@ void	ft_check_elements(t_map *map)
 			map->elm.x++;
 		}
 	}
-	if (map->elm.c == 0 || map->elm.p == 0 || map->elm.e == 0 || map->elm.p > 1)
+	if (map->elm.c == 0 || map->elm.p == 0 || map->elm.e == 0 || map->elm.e > 1|| map->elm.p > 1)
 		map->error = 6;
 }

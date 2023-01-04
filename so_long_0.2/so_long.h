@@ -15,7 +15,7 @@
 
 /* All includes */
 # include "gnl/get_next_line.h"
-# include "inc/MLX42_mac/include/MLX42/MLX42.h"
+# include "inc/MLX42_ubuntults/include/MLX42/MLX42.h"
 # include <stdint.h>
 # include <stdio.h>
 # include <stdlib.h>

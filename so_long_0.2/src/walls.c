@@ -15,15 +15,15 @@
 /**
  * 1. individuales.
 */
-void	innerwalls(t_map *m, int i, int j)
-{
+// void	innerwalls(t_map *m, int i, int j)
+// {
 	// if (m->matrix[i][j - 1] != '1' && m->matrix[i + 1][j] != '1' &&
 	// 		m->matrix[i][j + 1] != '1' && m->matrix[i - 1][j] != '1')
 	// 	mlx_image_to_window(m->mlx, m->img[botwall], j * W, i * H);
 	// if (m->matrix[i][j - 1] != '1' && m->matrix[i + 1][j] != '1' &&
 	// 		m->matrix[i][j + 1] != '1')
 	// 	mlx_image_to_window(m->mlx, m->img[topwall], j * W, i * H);
-}
+//}
 
 /**
  * @brief This function will print the map's walls.
@@ -32,7 +32,7 @@ void	innerwalls(t_map *m, int i, int j)
 */
 void	walls(t_map *m, int i, int j)
 {
-	if (i == 0 && j != 0 && j != m->x_axis - 1)
+	if (i == 0 && j != 0 && j != m->x_axis - 1 && m->matrix[i + 1][j] != '1')
 		mlx_image_to_window(m->mlx, m->img[topwall], j * W, i * H);
 	else if (i == m->y_axis - 1 && j != 0 && j != m->x_axis - 1)
 		mlx_image_to_window(m->mlx, m->img[botwall], j * W, i * H);
@@ -48,6 +48,8 @@ void	walls(t_map *m, int i, int j)
 		mlx_image_to_window(m->mlx, m->img[blwall], j * W, i * H);
 	else if (j == m->x_axis - 1 && i == m->y_axis - 1)
 		mlx_image_to_window(m->mlx, m->img[brwall], j * W, i * H);
+	else if (m->matrix [i + 1][j] != '1')
+		mlx_image_to_window(m->mlx, m->img[topwall], j * W, i * H);
 	else
-		innerwalls(m, i, j);
+		mlx_image_to_window(m->mlx, m->img[wall], j * W, i * H);
 }

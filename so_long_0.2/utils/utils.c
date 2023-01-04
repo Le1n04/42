@@ -47,7 +47,6 @@ void	init_vars(t_map *fmap, char *input)
 {
 	fmap->error = 0;
 	fmap->path = ft_strdup(input);
-	fmap->x_axis = 0;
 	fmap->y_axis = get_height(fmap->path);
 	if (!fmap->y_axis)
 		fmap->error = 1;
