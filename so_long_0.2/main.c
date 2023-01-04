@@ -41,6 +41,11 @@ void	keyhook1(mlx_key_data_t keydata, void *param)
 		mlx_close_window(map->mlx);
 }
 
+void	showleaks(void)
+{
+	system("leaks -q so_long");
+}
+
 /**
  * @brief This is the main function, it will receive the *.ber file
  * and start the program.
@@ -86,7 +91,4 @@ int	main(int argc, char **argv)
  * 
  */
 
-// void	showleaks(void)
-// {
-// 	system("leaks -q so_long");
-// }
+
