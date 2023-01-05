@@ -41,10 +41,10 @@ void	keyhook1(mlx_key_data_t keydata, void *param)
 		mlx_close_window(map->mlx);
 }
 
-void	showleaks(void)
-{
-	system("leaks -q so_long");
-}
+//void	showleaks(void)
+//{
+//	system("leaks -q so_long");
+//}
 
 /**
  * @brief This is the main function, it will receive the *.ber file
@@ -76,8 +76,6 @@ int	main(int argc, char **argv)
 /**
  * SEG FAULT CON 0 EN ESQUINA
  * 
- * Hacer los sprites como tienen que ser para que tengan fondo de agua
- * y para cada tipo de borde en cada direccion.
  * 
  * Hacer que el player se printee un tile de agua
  * , que sea una g_img como al principio y
@@ -90,5 +88,3 @@ int	main(int argc, char **argv)
  * Programar enemigo.
  * 
  */
-
-

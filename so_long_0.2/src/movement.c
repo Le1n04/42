@@ -25,6 +25,7 @@ void	moveup(t_map *map)
 	{
 		map->matrix[map->player_y - 1][map->player_x] = 'P';
 		map->matrix[map->player_y][map->player_x] = '0';
+		map->user->instances[0].y -= H;
 		map->player_y--;
 	}
 	else if (map->matrix[map->player_y - 1][map->player_x] == 'C')
@@ -37,6 +38,7 @@ void	moveup(t_map *map)
 	{
 		map->matrix[map->player_y - 1][map->player_x] = 'P';
 		map->matrix[map->player_y][map->player_x] = '0';
+		map->user->instances[0].y -= H;
 		map->player_y++;
 		map->game_finished++;
 		puts("\nYou've won.");
@@ -59,6 +61,7 @@ void	movedown(t_map *map)
 	{
 		map->matrix[map->player_y + 1][map->player_x] = 'P';
 		map->matrix[map->player_y][map->player_x] = '0';
+		map->user->instances[0].y += H;
 		map->player_y++;
 	}
 	else if (map->matrix[map->player_y + 1][map->player_x] == 'C')
@@ -71,6 +74,7 @@ void	movedown(t_map *map)
 	{
 		map->matrix[map->player_y + 1][map->player_x] = 'P';
 		map->matrix[map->player_y][map->player_x] = '0';
+		map->user->instances[0].y += H;
 		map->player_y++;
 		map->game_finished++;
 		puts("\nYou've won.");
@@ -93,6 +97,7 @@ void	moveleft(t_map *map)
 	{
 		map->matrix[map->player_y][map->player_x + 1] = 'P';
 		map->matrix[map->player_y][map->player_x] = '0';
+		map->user->instances[0].x += W;
 		map->player_x++;
 	}
 	else if (map->matrix[map->player_y][map->player_x + 1] == 'C')
@@ -105,6 +110,7 @@ void	moveleft(t_map *map)
 	{
 		map->matrix[map->player_y][map->player_x + 1] = 'P';
 		map->matrix[map->player_y][map->player_x] = '0';
+		map->user->instances[0].x += W;
 		map->player_x++;
 		map->game_finished++;
 		puts("\nYou've won.");
@@ -127,6 +133,7 @@ void	moveright(t_map *map)
 	{
 		map->matrix[map->player_y][map->player_x - 1] = 'P';
 		map->matrix[map->player_y][map->player_x] = '0';
+		map->user->instances[0].x -= W;
 		map->player_x--;
 	}
 	else if (map->matrix[map->player_y][map->player_x - 1] == 'C')
@@ -139,6 +146,7 @@ void	moveright(t_map *map)
 	{
 		map->matrix[map->player_y][map->player_x - 1] = 'P';
 		map->matrix[map->player_y][map->player_x] = '0';
+		map->user->instances[0].x -= W;
 		map->player_x--;
 		map->game_finished++;
 		puts("\nYou've won.");
@@ -161,24 +169,24 @@ void	ft_move(t_map *map, int k)
 		!map->game_finished)
 	{
 		moveup(map);
-		ft_print_images(map);
+		ft_print_map(map);
 	}
 	else if (k == 2 && map->matrix[map->player_y + 1][map->player_x] != '1' &&
 				!map->game_finished)
 	{
 		movedown(map);
-		ft_print_images(map);
+		ft_print_map(map);
 	}
 	else if (k == 3 && map->matrix[map->player_y][map->player_x + 1] != '1' &&
 				!map->game_finished)
 	{
 		moveleft(map);
-		ft_print_images(map);
+		ft_print_map(map);
 	}
 	else if (k == 4 && map->matrix[map->player_y][map->player_x - 1] != '1' &&
 				!map->game_finished)
 	{
 		moveright(map);
-		ft_print_images(map);
+		ft_print_map(map);
 	}
 }

@@ -92,24 +92,31 @@ void	imageconditioner(t_map *m, int i, int j)
  * 
  * @param m Main struct.
  */
-void	ft_print_images(t_map *m)
+void	ft_print_images(t_map *m, xpm_t **xpm)
 {
 	int		i;
 	int		j;
 	char	*itoad;
+	char	*itoad2;
 
 	i = -1;
-	itoad = ft_itoa(m->moves);
+	itoad = ft_strnjoin("Moves: ", ft_itoa(m->moves), 2);
+	itoad2 = ft_strnjoin("Coins: ", ft_itoa(m->cc), 2);
+	itoad2 = ft_strnjoin(itoad2, "/", 1);
+	itoad2 = ft_strjoin(itoad2, ft_itoa(m->elm.c));
 	while (m->matrix[++i] && i < (int)m->y_axis)
 	{
 		j = -1;
 		while (++j >= 0 && j < (int)m->x_axis)
 			imageconditioner(m, i, j);
 	}
-	mlx_put_string(m->mlx, "Moves:", 0, 0);
-	mlx_put_string(m->mlx, itoad, 64, 0);
+	m->user = mlx_texture_to_image(m->mlx, &xpm[player]->texture);
+	mlx_image_to_window(m->mlx, m->user, m->player_x * W, m->player_y * H);
+	mlx_put_string(m->mlx, itoad, 0, 0);
+	mlx_put_string(m->mlx, itoad2, 128, 0);
 	free (itoad);
-}	
+	free (itoad2);
+}
 
 /**
  * @brief This function will initiate every image related function.
@@ -121,5 +128,5 @@ void	ft_init_graphics(t_map *map)
 {
 	ft_loadimg(map, map->xpm);
 	ft_texturetoimg(map, map->xpm, map->img);
-	ft_print_images(map);
+	ft_print_images(map, map->xpm);
 }

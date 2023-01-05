@@ -35,4 +35,5 @@ size_t	ft_strlen(char *s);
 char	*ft_strjoin(char *left_str, char *buff);
 char	*ft_strchr(char *s, int c);
 char	*ft_strdup(const char *src);
+char	*ft_strnjoin(char *s1, char *s2, int n);
 #endif

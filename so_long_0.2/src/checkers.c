@@ -133,6 +133,7 @@ void	ft_check_elements(t_map *map)
 			map->elm.x++;
 		}
 	}
-	if (map->elm.c == 0 || map->elm.p == 0 || map->elm.e == 0 || map->elm.e > 1|| map->elm.p > 1)
+	if (map->elm.c == 0 || map->elm.p == 0 || map->elm.e == 0
+		|| map->elm.e > 1 || map->elm.p > 1)
 		map->error = 6;
 }

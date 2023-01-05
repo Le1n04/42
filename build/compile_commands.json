@@ -1,0 +1,327 @@
+[
+{
+  "directory": "/home/le1n/42/build/src",
+  "command": "/usr/bin/gcc -D_DEFAULT_SOURCE -D_GLFW_X11 -I/home/le1n/42/so_long_0.1/inc/glfw/include -I/home/le1n/42/so_long_0.1/inc/glfw/src -I/home/le1n/42/build/src -g -fPIC -Wall -std=c99 -Wdeclaration-after-statement -o CMakeFiles/glfw.dir/context.c.o -c /home/le1n/42/so_long_0.1/inc/glfw/src/context.c",
+  "file": "/home/le1n/42/so_long_0.1/inc/glfw/src/context.c"
+},
+{
+  "directory": "/home/le1n/42/build/src",
+  "command": "/usr/bin/gcc -D_DEFAULT_SOURCE -D_GLFW_X11 -I/home/le1n/42/so_long_0.1/inc/glfw/include -I/home/le1n/42/so_long_0.1/inc/glfw/src -I/home/le1n/42/build/src -g -fPIC -Wall -std=c99 -Wdeclaration-after-statement -o CMakeFiles/glfw.dir/init.c.o -c /home/le1n/42/so_long_0.1/inc/glfw/src/init.c",
+  "file": "/home/le1n/42/so_long_0.1/inc/glfw/src/init.c"
+},
+{
+  "directory": "/home/le1n/42/build/src",
+  "command": "/usr/bin/gcc -D_DEFAULT_SOURCE -D_GLFW_X11 -I/home/le1n/42/so_long_0.1/inc/glfw/include -I/home/le1n/42/so_long_0.1/inc/glfw/src -I/home/le1n/42/build/src -g -fPIC -Wall -std=c99 -Wdeclaration-after-statement -o CMakeFiles/glfw.dir/input.c.o -c /home/le1n/42/so_long_0.1/inc/glfw/src/input.c",
+  "file": "/home/le1n/42/so_long_0.1/inc/glfw/src/input.c"
+},
+{
+  "directory": "/home/le1n/42/build/src",
+  "command": "/usr/bin/gcc -D_DEFAULT_SOURCE -D_GLFW_X11 -I/home/le1n/42/so_long_0.1/inc/glfw/include -I/home/le1n/42/so_long_0.1/inc/glfw/src -I/home/le1n/42/build/src -g -fPIC -Wall -std=c99 -Wdeclaration-after-statement -o CMakeFiles/glfw.dir/monitor.c.o -c /home/le1n/42/so_long_0.1/inc/glfw/src/monitor.c",
+  "file": "/home/le1n/42/so_long_0.1/inc/glfw/src/monitor.c"
+},
+{
+  "directory": "/home/le1n/42/build/src",
+  "command": "/usr/bin/gcc -D_DEFAULT_SOURCE -D_GLFW_X11 -I/home/le1n/42/so_long_0.1/inc/glfw/include -I/home/le1n/42/so_long_0.1/inc/glfw/src -I/home/le1n/42/build/src -g -fPIC -Wall -std=c99 -Wdeclaration-after-statement -o CMakeFiles/glfw.dir/platform.c.o -c /home/le1n/42/so_long_0.1/inc/glfw/src/platform.c",
+  "file": "/home/le1n/42/so_long_0.1/inc/glfw/src/platform.c"
+},
+{
+  "directory": "/home/le1n/42/build/src",
+  "command": "/usr/bin/gcc -D_DEFAULT_SOURCE -D_GLFW_X11 -I/home/le1n/42/so_long_0.1/inc/glfw/include -I/home/le1n/42/so_long_0.1/inc/glfw/src -I/home/le1n/42/build/src -g -fPIC -Wall -std=c99 -Wdeclaration-after-statement -o CMakeFiles/glfw.dir/vulkan.c.o -c /home/le1n/42/so_long_0.1/inc/glfw/src/vulkan.c",
+  "file": "/home/le1n/42/so_long_0.1/inc/glfw/src/vulkan.c"
+},
+{
+  "directory": "/home/le1n/42/build/src",
+  "command": "/usr/bin/gcc -D_DEFAULT_SOURCE -D_GLFW_X11 -I/home/le1n/42/so_long_0.1/inc/glfw/include -I/home/le1n/42/so_long_0.1/inc/glfw/src -I/home/le1n/42/build/src -g -fPIC -Wall -std=c99 -Wdeclaration-after-statement -o CMakeFiles/glfw.dir/window.c.o -c /home/le1n/42/so_long_0.1/inc/glfw/src/window.c",
+  "file": "/home/le1n/42/so_long_0.1/inc/glfw/src/window.c"
+},
+{
+  "directory": "/home/le1n/42/build/src",
+  "command": "/usr/bin/gcc -D_DEFAULT_SOURCE -D_GLFW_X11 -I/home/le1n/42/so_long_0.1/inc/glfw/include -I/home/le1n/42/so_long_0.1/inc/glfw/src -I/home/le1n/42/build/src -g -fPIC -Wall -std=c99 -Wdeclaration-after-statement -o CMakeFiles/glfw.dir/egl_context.c.o -c /home/le1n/42/so_long_0.1/inc/glfw/src/egl_context.c",
+  "file": "/home/le1n/42/so_long_0.1/inc/glfw/src/egl_context.c"
+},
+{
+  "directory": "/home/le1n/42/build/src",
+  "command": "/usr/bin/gcc -D_DEFAULT_SOURCE -D_GLFW_X11 -I/home/le1n/42/so_long_0.1/inc/glfw/include -I/home/le1n/42/so_long_0.1/inc/glfw/src -I/home/le1n/42/build/src -g -fPIC -Wall -std=c99 -Wdeclaration-after-statement -o CMakeFiles/glfw.dir/osmesa_context.c.o -c /home/le1n/42/so_long_0.1/inc/glfw/src/osmesa_context.c",
+  "file": "/home/le1n/42/so_long_0.1/inc/glfw/src/osmesa_context.c"
+},
+{
+  "directory": "/home/le1n/42/build/src",
+  "command": "/usr/bin/gcc -D_DEFAULT_SOURCE -D_GLFW_X11 -I/home/le1n/42/so_long_0.1/inc/glfw/include -I/home/le1n/42/so_long_0.1/inc/glfw/src -I/home/le1n/42/build/src -g -fPIC -Wall -std=c99 -Wdeclaration-after-statement -o CMakeFiles/glfw.dir/null_init.c.o -c /home/le1n/42/so_long_0.1/inc/glfw/src/null_init.c",
+  "file": "/home/le1n/42/so_long_0.1/inc/glfw/src/null_init.c"
+},
+{
+  "directory": "/home/le1n/42/build/src",
+  "command": "/usr/bin/gcc -D_DEFAULT_SOURCE -D_GLFW_X11 -I/home/le1n/42/so_long_0.1/inc/glfw/include -I/home/le1n/42/so_long_0.1/inc/glfw/src -I/home/le1n/42/build/src -g -fPIC -Wall -std=c99 -Wdeclaration-after-statement -o CMakeFiles/glfw.dir/null_monitor.c.o -c /home/le1n/42/so_long_0.1/inc/glfw/src/null_monitor.c",
+  "file": "/home/le1n/42/so_long_0.1/inc/glfw/src/null_monitor.c"
+},
+{
+  "directory": "/home/le1n/42/build/src",
+  "command": "/usr/bin/gcc -D_DEFAULT_SOURCE -D_GLFW_X11 -I/home/le1n/42/so_long_0.1/inc/glfw/include -I/home/le1n/42/so_long_0.1/inc/glfw/src -I/home/le1n/42/build/src -g -fPIC -Wall -std=c99 -Wdeclaration-after-statement -o CMakeFiles/glfw.dir/null_window.c.o -c /home/le1n/42/so_long_0.1/inc/glfw/src/null_window.c",
+  "file": "/home/le1n/42/so_long_0.1/inc/glfw/src/null_window.c"
+},
+{
+  "directory": "/home/le1n/42/build/src",
+  "command": "/usr/bin/gcc -D_DEFAULT_SOURCE -D_GLFW_X11 -I/home/le1n/42/so_long_0.1/inc/glfw/include -I/home/le1n/42/so_long_0.1/inc/glfw/src -I/home/le1n/42/build/src -g -fPIC -Wall -std=c99 -Wdeclaration-after-statement -o CMakeFiles/glfw.dir/null_joystick.c.o -c /home/le1n/42/so_long_0.1/inc/glfw/src/null_joystick.c",
+  "file": "/home/le1n/42/so_long_0.1/inc/glfw/src/null_joystick.c"
+},
+{
+  "directory": "/home/le1n/42/build/src",
+  "command": "/usr/bin/gcc -D_DEFAULT_SOURCE -D_GLFW_X11 -I/home/le1n/42/so_long_0.1/inc/glfw/include -I/home/le1n/42/so_long_0.1/inc/glfw/src -I/home/le1n/42/build/src -g -fPIC -Wall -std=c99 -o CMakeFiles/glfw.dir/posix_module.c.o -c /home/le1n/42/so_long_0.1/inc/glfw/src/posix_module.c",
+  "file": "/home/le1n/42/so_long_0.1/inc/glfw/src/posix_module.c"
+},
+{
+  "directory": "/home/le1n/42/build/src",
+  "command": "/usr/bin/gcc -D_DEFAULT_SOURCE -D_GLFW_X11 -I/home/le1n/42/so_long_0.1/inc/glfw/include -I/home/le1n/42/so_long_0.1/inc/glfw/src -I/home/le1n/42/build/src -g -fPIC -Wall -std=c99 -o CMakeFiles/glfw.dir/posix_time.c.o -c /home/le1n/42/so_long_0.1/inc/glfw/src/posix_time.c",
+  "file": "/home/le1n/42/so_long_0.1/inc/glfw/src/posix_time.c"
+},
+{
+  "directory": "/home/le1n/42/build/src",
+  "command": "/usr/bin/gcc -D_DEFAULT_SOURCE -D_GLFW_X11 -I/home/le1n/42/so_long_0.1/inc/glfw/include -I/home/le1n/42/so_long_0.1/inc/glfw/src -I/home/le1n/42/build/src -g -fPIC -Wall -std=c99 -o CMakeFiles/glfw.dir/posix_thread.c.o -c /home/le1n/42/so_long_0.1/inc/glfw/src/posix_thread.c",
+  "file": "/home/le1n/42/so_long_0.1/inc/glfw/src/posix_thread.c"
+},
+{
+  "directory": "/home/le1n/42/build/src",
+  "command": "/usr/bin/gcc -D_DEFAULT_SOURCE -D_GLFW_X11 -I/home/le1n/42/so_long_0.1/inc/glfw/include -I/home/le1n/42/so_long_0.1/inc/glfw/src -I/home/le1n/42/build/src -g -fPIC -Wall -std=c99 -o CMakeFiles/glfw.dir/x11_init.c.o -c /home/le1n/42/so_long_0.1/inc/glfw/src/x11_init.c",
+  "file": "/home/le1n/42/so_long_0.1/inc/glfw/src/x11_init.c"
+},
+{
+  "directory": "/home/le1n/42/build/src",
+  "command": "/usr/bin/gcc -D_DEFAULT_SOURCE -D_GLFW_X11 -I/home/le1n/42/so_long_0.1/inc/glfw/include -I/home/le1n/42/so_long_0.1/inc/glfw/src -I/home/le1n/42/build/src -g -fPIC -Wall -std=c99 -o CMakeFiles/glfw.dir/x11_monitor.c.o -c /home/le1n/42/so_long_0.1/inc/glfw/src/x11_monitor.c",
+  "file": "/home/le1n/42/so_long_0.1/inc/glfw/src/x11_monitor.c"
+},
+{
+  "directory": "/home/le1n/42/build/src",
+  "command": "/usr/bin/gcc -D_DEFAULT_SOURCE -D_GLFW_X11 -I/home/le1n/42/so_long_0.1/inc/glfw/include -I/home/le1n/42/so_long_0.1/inc/glfw/src -I/home/le1n/42/build/src -g -fPIC -Wall -std=c99 -o CMakeFiles/glfw.dir/x11_window.c.o -c /home/le1n/42/so_long_0.1/inc/glfw/src/x11_window.c",
+  "file": "/home/le1n/42/so_long_0.1/inc/glfw/src/x11_window.c"
+},
+{
+  "directory": "/home/le1n/42/build/src",
+  "command": "/usr/bin/gcc -D_DEFAULT_SOURCE -D_GLFW_X11 -I/home/le1n/42/so_long_0.1/inc/glfw/include -I/home/le1n/42/so_long_0.1/inc/glfw/src -I/home/le1n/42/build/src -g -fPIC -Wall -std=c99 -o CMakeFiles/glfw.dir/xkb_unicode.c.o -c /home/le1n/42/so_long_0.1/inc/glfw/src/xkb_unicode.c",
+  "file": "/home/le1n/42/so_long_0.1/inc/glfw/src/xkb_unicode.c"
+},
+{
+  "directory": "/home/le1n/42/build/src",
+  "command": "/usr/bin/gcc -D_DEFAULT_SOURCE -D_GLFW_X11 -I/home/le1n/42/so_long_0.1/inc/glfw/include -I/home/le1n/42/so_long_0.1/inc/glfw/src -I/home/le1n/42/build/src -g -fPIC -Wall -std=c99 -o CMakeFiles/glfw.dir/glx_context.c.o -c /home/le1n/42/so_long_0.1/inc/glfw/src/glx_context.c",
+  "file": "/home/le1n/42/so_long_0.1/inc/glfw/src/glx_context.c"
+},
+{
+  "directory": "/home/le1n/42/build/src",
+  "command": "/usr/bin/gcc -D_DEFAULT_SOURCE -D_GLFW_X11 -I/home/le1n/42/so_long_0.1/inc/glfw/include -I/home/le1n/42/so_long_0.1/inc/glfw/src -I/home/le1n/42/build/src -g -fPIC -Wall -std=c99 -o CMakeFiles/glfw.dir/linux_joystick.c.o -c /home/le1n/42/so_long_0.1/inc/glfw/src/linux_joystick.c",
+  "file": "/home/le1n/42/so_long_0.1/inc/glfw/src/linux_joystick.c"
+},
+{
+  "directory": "/home/le1n/42/build/src",
+  "command": "/usr/bin/gcc -D_DEFAULT_SOURCE -D_GLFW_X11 -I/home/le1n/42/so_long_0.1/inc/glfw/include -I/home/le1n/42/so_long_0.1/inc/glfw/src -I/home/le1n/42/build/src -g -fPIC -Wall -std=c99 -o CMakeFiles/glfw.dir/posix_poll.c.o -c /home/le1n/42/so_long_0.1/inc/glfw/src/posix_poll.c",
+  "file": "/home/le1n/42/so_long_0.1/inc/glfw/src/posix_poll.c"
+},
+{
+  "directory": "/home/le1n/42/build/examples",
+  "command": "/usr/bin/gcc  -I/home/le1n/42/so_long_0.1/inc/glfw/deps -I/home/le1n/42/so_long_0.1/inc/glfw/include -g -std=gnu99 -o CMakeFiles/boing.dir/boing.c.o -c /home/le1n/42/so_long_0.1/inc/glfw/examples/boing.c",
+  "file": "/home/le1n/42/so_long_0.1/inc/glfw/examples/boing.c"
+},
+{
+  "directory": "/home/le1n/42/build/examples",
+  "command": "/usr/bin/gcc  -I/home/le1n/42/so_long_0.1/inc/glfw/deps -I/home/le1n/42/so_long_0.1/inc/glfw/include -g -std=gnu99 -o CMakeFiles/gears.dir/gears.c.o -c /home/le1n/42/so_long_0.1/inc/glfw/examples/gears.c",
+  "file": "/home/le1n/42/so_long_0.1/inc/glfw/examples/gears.c"
+},
+{
+  "directory": "/home/le1n/42/build/examples",
+  "command": "/usr/bin/gcc  -I/home/le1n/42/so_long_0.1/inc/glfw/deps -I/home/le1n/42/so_long_0.1/inc/glfw/include -g -std=gnu99 -o CMakeFiles/heightmap.dir/heightmap.c.o -c /home/le1n/42/so_long_0.1/inc/glfw/examples/heightmap.c",
+  "file": "/home/le1n/42/so_long_0.1/inc/glfw/examples/heightmap.c"
+},
+{
+  "directory": "/home/le1n/42/build/examples",
+  "command": "/usr/bin/gcc  -I/home/le1n/42/so_long_0.1/inc/glfw/deps -I/home/le1n/42/so_long_0.1/inc/glfw/include -g -std=gnu99 -o CMakeFiles/offscreen.dir/offscreen.c.o -c /home/le1n/42/so_long_0.1/inc/glfw/examples/offscreen.c",
+  "file": "/home/le1n/42/so_long_0.1/inc/glfw/examples/offscreen.c"
+},
+{
+  "directory": "/home/le1n/42/build/examples",
+  "command": "/usr/bin/gcc  -I/home/le1n/42/so_long_0.1/inc/glfw/deps -I/home/le1n/42/so_long_0.1/inc/glfw/include -g -std=gnu99 -o CMakeFiles/particles.dir/particles.c.o -c /home/le1n/42/so_long_0.1/inc/glfw/examples/particles.c",
+  "file": "/home/le1n/42/so_long_0.1/inc/glfw/examples/particles.c"
+},
+{
+  "directory": "/home/le1n/42/build/examples",
+  "command": "/usr/bin/gcc  -I/home/le1n/42/so_long_0.1/inc/glfw/deps -I/home/le1n/42/so_long_0.1/inc/glfw/include -g -std=gnu99 -o CMakeFiles/particles.dir/__/deps/tinycthread.c.o -c /home/le1n/42/so_long_0.1/inc/glfw/deps/tinycthread.c",
+  "file": "/home/le1n/42/so_long_0.1/inc/glfw/deps/tinycthread.c"
+},
+{
+  "directory": "/home/le1n/42/build/examples",
+  "command": "/usr/bin/gcc  -I/home/le1n/42/so_long_0.1/inc/glfw/deps -I/home/le1n/42/so_long_0.1/inc/glfw/include -g -std=gnu99 -o CMakeFiles/particles.dir/__/deps/getopt.c.o -c /home/le1n/42/so_long_0.1/inc/glfw/deps/getopt.c",
+  "file": "/home/le1n/42/so_long_0.1/inc/glfw/deps/getopt.c"
+},
+{
+  "directory": "/home/le1n/42/build/examples",
+  "command": "/usr/bin/gcc  -I/home/le1n/42/so_long_0.1/inc/glfw/deps -I/home/le1n/42/so_long_0.1/inc/glfw/include -g -std=gnu99 -o CMakeFiles/sharing.dir/sharing.c.o -c /home/le1n/42/so_long_0.1/inc/glfw/examples/sharing.c",
+  "file": "/home/le1n/42/so_long_0.1/inc/glfw/examples/sharing.c"
+},
+{
+  "directory": "/home/le1n/42/build/examples",
+  "command": "/usr/bin/gcc  -I/home/le1n/42/so_long_0.1/inc/glfw/deps -I/home/le1n/42/so_long_0.1/inc/glfw/include -g -std=gnu99 -o CMakeFiles/splitview.dir/splitview.c.o -c /home/le1n/42/so_long_0.1/inc/glfw/examples/splitview.c",
+  "file": "/home/le1n/42/so_long_0.1/inc/glfw/examples/splitview.c"
+},
+{
+  "directory": "/home/le1n/42/build/examples",
+  "command": "/usr/bin/gcc  -I/home/le1n/42/so_long_0.1/inc/glfw/deps -I/home/le1n/42/so_long_0.1/inc/glfw/include -g -std=gnu99 -o CMakeFiles/triangle-opengl.dir/triangle-opengl.c.o -c /home/le1n/42/so_long_0.1/inc/glfw/examples/triangle-opengl.c",
+  "file": "/home/le1n/42/so_long_0.1/inc/glfw/examples/triangle-opengl.c"
+},
+{
+  "directory": "/home/le1n/42/build/examples",
+  "command": "/usr/bin/gcc  -I/home/le1n/42/so_long_0.1/inc/glfw/deps -I/home/le1n/42/so_long_0.1/inc/glfw/include -g -std=gnu99 -o CMakeFiles/triangle-opengles.dir/triangle-opengles.c.o -c /home/le1n/42/so_long_0.1/inc/glfw/examples/triangle-opengles.c",
+  "file": "/home/le1n/42/so_long_0.1/inc/glfw/examples/triangle-opengles.c"
+},
+{
+  "directory": "/home/le1n/42/build/examples",
+  "command": "/usr/bin/gcc  -I/home/le1n/42/so_long_0.1/inc/glfw/deps -I/home/le1n/42/so_long_0.1/inc/glfw/include -g -std=gnu99 -o CMakeFiles/wave.dir/wave.c.o -c /home/le1n/42/so_long_0.1/inc/glfw/examples/wave.c",
+  "file": "/home/le1n/42/so_long_0.1/inc/glfw/examples/wave.c"
+},
+{
+  "directory": "/home/le1n/42/build/examples",
+  "command": "/usr/bin/gcc  -I/home/le1n/42/so_long_0.1/inc/glfw/deps -I/home/le1n/42/so_long_0.1/inc/glfw/include -g -std=gnu99 -o CMakeFiles/windows.dir/windows.c.o -c /home/le1n/42/so_long_0.1/inc/glfw/examples/windows.c",
+  "file": "/home/le1n/42/so_long_0.1/inc/glfw/examples/windows.c"
+},
+{
+  "directory": "/home/le1n/42/build/tests",
+  "command": "/usr/bin/gcc  -I/home/le1n/42/so_long_0.1/inc/glfw/deps -I/home/le1n/42/so_long_0.1/inc/glfw/include -g -std=gnu99 -o CMakeFiles/allocator.dir/allocator.c.o -c /home/le1n/42/so_long_0.1/inc/glfw/tests/allocator.c",
+  "file": "/home/le1n/42/so_long_0.1/inc/glfw/tests/allocator.c"
+},
+{
+  "directory": "/home/le1n/42/build/tests",
+  "command": "/usr/bin/gcc  -I/home/le1n/42/so_long_0.1/inc/glfw/deps -I/home/le1n/42/so_long_0.1/inc/glfw/include -g -std=gnu99 -o CMakeFiles/clipboard.dir/clipboard.c.o -c /home/le1n/42/so_long_0.1/inc/glfw/tests/clipboard.c",
+  "file": "/home/le1n/42/so_long_0.1/inc/glfw/tests/clipboard.c"
+},
+{
+  "directory": "/home/le1n/42/build/tests",
+  "command": "/usr/bin/gcc  -I/home/le1n/42/so_long_0.1/inc/glfw/deps -I/home/le1n/42/so_long_0.1/inc/glfw/include -g -std=gnu99 -o CMakeFiles/clipboard.dir/__/deps/getopt.c.o -c /home/le1n/42/so_long_0.1/inc/glfw/deps/getopt.c",
+  "file": "/home/le1n/42/so_long_0.1/inc/glfw/deps/getopt.c"
+},
+{
+  "directory": "/home/le1n/42/build/tests",
+  "command": "/usr/bin/gcc  -I/home/le1n/42/so_long_0.1/inc/glfw/deps -I/home/le1n/42/so_long_0.1/inc/glfw/include -g -std=gnu99 -o CMakeFiles/events.dir/events.c.o -c /home/le1n/42/so_long_0.1/inc/glfw/tests/events.c",
+  "file": "/home/le1n/42/so_long_0.1/inc/glfw/tests/events.c"
+},
+{
+  "directory": "/home/le1n/42/build/tests",
+  "command": "/usr/bin/gcc  -I/home/le1n/42/so_long_0.1/inc/glfw/deps -I/home/le1n/42/so_long_0.1/inc/glfw/include -g -std=gnu99 -o CMakeFiles/events.dir/__/deps/getopt.c.o -c /home/le1n/42/so_long_0.1/inc/glfw/deps/getopt.c",
+  "file": "/home/le1n/42/so_long_0.1/inc/glfw/deps/getopt.c"
+},
+{
+  "directory": "/home/le1n/42/build/tests",
+  "command": "/usr/bin/gcc  -I/home/le1n/42/so_long_0.1/inc/glfw/deps -I/home/le1n/42/so_long_0.1/inc/glfw/include -g -std=gnu99 -o CMakeFiles/msaa.dir/msaa.c.o -c /home/le1n/42/so_long_0.1/inc/glfw/tests/msaa.c",
+  "file": "/home/le1n/42/so_long_0.1/inc/glfw/tests/msaa.c"
+},
+{
+  "directory": "/home/le1n/42/build/tests",
+  "command": "/usr/bin/gcc  -I/home/le1n/42/so_long_0.1/inc/glfw/deps -I/home/le1n/42/so_long_0.1/inc/glfw/include -g -std=gnu99 -o CMakeFiles/msaa.dir/__/deps/getopt.c.o -c /home/le1n/42/so_long_0.1/inc/glfw/deps/getopt.c",
+  "file": "/home/le1n/42/so_long_0.1/inc/glfw/deps/getopt.c"
+},
+{
+  "directory": "/home/le1n/42/build/tests",
+  "command": "/usr/bin/gcc  -I/home/le1n/42/so_long_0.1/inc/glfw/deps -I/home/le1n/42/so_long_0.1/inc/glfw/include -g -std=gnu99 -o CMakeFiles/glfwinfo.dir/glfwinfo.c.o -c /home/le1n/42/so_long_0.1/inc/glfw/tests/glfwinfo.c",
+  "file": "/home/le1n/42/so_long_0.1/inc/glfw/tests/glfwinfo.c"
+},
+{
+  "directory": "/home/le1n/42/build/tests",
+  "command": "/usr/bin/gcc  -I/home/le1n/42/so_long_0.1/inc/glfw/deps -I/home/le1n/42/so_long_0.1/inc/glfw/include -g -std=gnu99 -o CMakeFiles/glfwinfo.dir/__/deps/getopt.c.o -c /home/le1n/42/so_long_0.1/inc/glfw/deps/getopt.c",
+  "file": "/home/le1n/42/so_long_0.1/inc/glfw/deps/getopt.c"
+},
+{
+  "directory": "/home/le1n/42/build/tests",
+  "command": "/usr/bin/gcc  -I/home/le1n/42/so_long_0.1/inc/glfw/deps -I/home/le1n/42/so_long_0.1/inc/glfw/include -g -std=gnu99 -o CMakeFiles/iconify.dir/iconify.c.o -c /home/le1n/42/so_long_0.1/inc/glfw/tests/iconify.c",
+  "file": "/home/le1n/42/so_long_0.1/inc/glfw/tests/iconify.c"
+},
+{
+  "directory": "/home/le1n/42/build/tests",
+  "command": "/usr/bin/gcc  -I/home/le1n/42/so_long_0.1/inc/glfw/deps -I/home/le1n/42/so_long_0.1/inc/glfw/include -g -std=gnu99 -o CMakeFiles/iconify.dir/__/deps/getopt.c.o -c /home/le1n/42/so_long_0.1/inc/glfw/deps/getopt.c",
+  "file": "/home/le1n/42/so_long_0.1/inc/glfw/deps/getopt.c"
+},
+{
+  "directory": "/home/le1n/42/build/tests",
+  "command": "/usr/bin/gcc  -I/home/le1n/42/so_long_0.1/inc/glfw/deps -I/home/le1n/42/so_long_0.1/inc/glfw/include -g -std=gnu99 -o CMakeFiles/monitors.dir/monitors.c.o -c /home/le1n/42/so_long_0.1/inc/glfw/tests/monitors.c",
+  "file": "/home/le1n/42/so_long_0.1/inc/glfw/tests/monitors.c"
+},
+{
+  "directory": "/home/le1n/42/build/tests",
+  "command": "/usr/bin/gcc  -I/home/le1n/42/so_long_0.1/inc/glfw/deps -I/home/le1n/42/so_long_0.1/inc/glfw/include -g -std=gnu99 -o CMakeFiles/monitors.dir/__/deps/getopt.c.o -c /home/le1n/42/so_long_0.1/inc/glfw/deps/getopt.c",
+  "file": "/home/le1n/42/so_long_0.1/inc/glfw/deps/getopt.c"
+},
+{
+  "directory": "/home/le1n/42/build/tests",
+  "command": "/usr/bin/gcc  -I/home/le1n/42/so_long_0.1/inc/glfw/deps -I/home/le1n/42/so_long_0.1/inc/glfw/include -g -std=gnu99 -o CMakeFiles/reopen.dir/reopen.c.o -c /home/le1n/42/so_long_0.1/inc/glfw/tests/reopen.c",
+  "file": "/home/le1n/42/so_long_0.1/inc/glfw/tests/reopen.c"
+},
+{
+  "directory": "/home/le1n/42/build/tests",
+  "command": "/usr/bin/gcc  -I/home/le1n/42/so_long_0.1/inc/glfw/deps -I/home/le1n/42/so_long_0.1/inc/glfw/include -g -std=gnu99 -o CMakeFiles/cursor.dir/cursor.c.o -c /home/le1n/42/so_long_0.1/inc/glfw/tests/cursor.c",
+  "file": "/home/le1n/42/so_long_0.1/inc/glfw/tests/cursor.c"
+},
+{
+  "directory": "/home/le1n/42/build/tests",
+  "command": "/usr/bin/gcc  -I/home/le1n/42/so_long_0.1/inc/glfw/deps -I/home/le1n/42/so_long_0.1/inc/glfw/include -g -std=gnu99 -o CMakeFiles/empty.dir/empty.c.o -c /home/le1n/42/so_long_0.1/inc/glfw/tests/empty.c",
+  "file": "/home/le1n/42/so_long_0.1/inc/glfw/tests/empty.c"
+},
+{
+  "directory": "/home/le1n/42/build/tests",
+  "command": "/usr/bin/gcc  -I/home/le1n/42/so_long_0.1/inc/glfw/deps -I/home/le1n/42/so_long_0.1/inc/glfw/include -g -std=gnu99 -o CMakeFiles/empty.dir/__/deps/tinycthread.c.o -c /home/le1n/42/so_long_0.1/inc/glfw/deps/tinycthread.c",
+  "file": "/home/le1n/42/so_long_0.1/inc/glfw/deps/tinycthread.c"
+},
+{
+  "directory": "/home/le1n/42/build/tests",
+  "command": "/usr/bin/gcc  -I/home/le1n/42/so_long_0.1/inc/glfw/deps -I/home/le1n/42/so_long_0.1/inc/glfw/include -g -std=gnu99 -o CMakeFiles/gamma.dir/gamma.c.o -c /home/le1n/42/so_long_0.1/inc/glfw/tests/gamma.c",
+  "file": "/home/le1n/42/so_long_0.1/inc/glfw/tests/gamma.c"
+},
+{
+  "directory": "/home/le1n/42/build/tests",
+  "command": "/usr/bin/gcc  -I/home/le1n/42/so_long_0.1/inc/glfw/deps -I/home/le1n/42/so_long_0.1/inc/glfw/include -g -std=gnu99 -o CMakeFiles/icon.dir/icon.c.o -c /home/le1n/42/so_long_0.1/inc/glfw/tests/icon.c",
+  "file": "/home/le1n/42/so_long_0.1/inc/glfw/tests/icon.c"
+},
+{
+  "directory": "/home/le1n/42/build/tests",
+  "command": "/usr/bin/gcc  -I/home/le1n/42/so_long_0.1/inc/glfw/deps -I/home/le1n/42/so_long_0.1/inc/glfw/include -g -std=gnu99 -o CMakeFiles/inputlag.dir/inputlag.c.o -c /home/le1n/42/so_long_0.1/inc/glfw/tests/inputlag.c",
+  "file": "/home/le1n/42/so_long_0.1/inc/glfw/tests/inputlag.c"
+},
+{
+  "directory": "/home/le1n/42/build/tests",
+  "command": "/usr/bin/gcc  -I/home/le1n/42/so_long_0.1/inc/glfw/deps -I/home/le1n/42/so_long_0.1/inc/glfw/include -g -std=gnu99 -o CMakeFiles/inputlag.dir/__/deps/getopt.c.o -c /home/le1n/42/so_long_0.1/inc/glfw/deps/getopt.c",
+  "file": "/home/le1n/42/so_long_0.1/inc/glfw/deps/getopt.c"
+},
+{
+  "directory": "/home/le1n/42/build/tests",
+  "command": "/usr/bin/gcc  -I/home/le1n/42/so_long_0.1/inc/glfw/deps -I/home/le1n/42/so_long_0.1/inc/glfw/include -g -std=gnu99 -o CMakeFiles/joysticks.dir/joysticks.c.o -c /home/le1n/42/so_long_0.1/inc/glfw/tests/joysticks.c",
+  "file": "/home/le1n/42/so_long_0.1/inc/glfw/tests/joysticks.c"
+},
+{
+  "directory": "/home/le1n/42/build/tests",
+  "command": "/usr/bin/gcc  -I/home/le1n/42/so_long_0.1/inc/glfw/deps -I/home/le1n/42/so_long_0.1/inc/glfw/include -g -std=gnu99 -o CMakeFiles/tearing.dir/tearing.c.o -c /home/le1n/42/so_long_0.1/inc/glfw/tests/tearing.c",
+  "file": "/home/le1n/42/so_long_0.1/inc/glfw/tests/tearing.c"
+},
+{
+  "directory": "/home/le1n/42/build/tests",
+  "command": "/usr/bin/gcc  -I/home/le1n/42/so_long_0.1/inc/glfw/deps -I/home/le1n/42/so_long_0.1/inc/glfw/include -g -std=gnu99 -o CMakeFiles/threads.dir/threads.c.o -c /home/le1n/42/so_long_0.1/inc/glfw/tests/threads.c",
+  "file": "/home/le1n/42/so_long_0.1/inc/glfw/tests/threads.c"
+},
+{
+  "directory": "/home/le1n/42/build/tests",
+  "command": "/usr/bin/gcc  -I/home/le1n/42/so_long_0.1/inc/glfw/deps -I/home/le1n/42/so_long_0.1/inc/glfw/include -g -std=gnu99 -o CMakeFiles/threads.dir/__/deps/tinycthread.c.o -c /home/le1n/42/so_long_0.1/inc/glfw/deps/tinycthread.c",
+  "file": "/home/le1n/42/so_long_0.1/inc/glfw/deps/tinycthread.c"
+},
+{
+  "directory": "/home/le1n/42/build/tests",
+  "command": "/usr/bin/gcc  -I/home/le1n/42/so_long_0.1/inc/glfw/deps -I/home/le1n/42/so_long_0.1/inc/glfw/include -g -std=gnu99 -o CMakeFiles/timeout.dir/timeout.c.o -c /home/le1n/42/so_long_0.1/inc/glfw/tests/timeout.c",
+  "file": "/home/le1n/42/so_long_0.1/inc/glfw/tests/timeout.c"
+},
+{
+  "directory": "/home/le1n/42/build/tests",
+  "command": "/usr/bin/gcc  -I/home/le1n/42/so_long_0.1/inc/glfw/deps -I/home/le1n/42/so_long_0.1/inc/glfw/include -g -std=gnu99 -o CMakeFiles/title.dir/title.c.o -c /home/le1n/42/so_long_0.1/inc/glfw/tests/title.c",
+  "file": "/home/le1n/42/so_long_0.1/inc/glfw/tests/title.c"
+},
+{
+  "directory": "/home/le1n/42/build/tests",
+  "command": "/usr/bin/gcc  -I/home/le1n/42/so_long_0.1/inc/glfw/deps -I/home/le1n/42/so_long_0.1/inc/glfw/include -g -std=gnu99 -o CMakeFiles/triangle-vulkan.dir/triangle-vulkan.c.o -c /home/le1n/42/so_long_0.1/inc/glfw/tests/triangle-vulkan.c",
+  "file": "/home/le1n/42/so_long_0.1/inc/glfw/tests/triangle-vulkan.c"
+},
+{
+  "directory": "/home/le1n/42/build/tests",
+  "command": "/usr/bin/gcc  -I/home/le1n/42/so_long_0.1/inc/glfw/deps -I/home/le1n/42/so_long_0.1/inc/glfw/include -g -std=gnu99 -o CMakeFiles/window.dir/window.c.o -c /home/le1n/42/so_long_0.1/inc/glfw/tests/window.c",
+  "file": "/home/le1n/42/so_long_0.1/inc/glfw/tests/window.c"
+}
+]

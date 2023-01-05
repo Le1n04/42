@@ -55,6 +55,7 @@ t_map	read_map(char *input)
 	if (fmap.error)
 		return (fmap);
 	fmap.matrix = (char **)malloc(fmap.y_axis * sizeof(char *));
+	fmap.objmatrix = (char **)malloc(fmap.y_axis * sizeof(char *));
 	fd = open(fmap.path, O_RDONLY);
 	tmp = get_next_line(fd);
 	fmap.x_axis = ft_strlen(tmp);

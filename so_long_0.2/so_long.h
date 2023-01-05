@@ -56,8 +56,10 @@ typedef enum mlx_images
 typedef struct s_mapdata
 {
 	mlx_t		*mlx;
+	mlx_image_t	*user;
 	char		*path;
 	char		**matrix;
+	char		**objmatrix;
 	size_t		x_axis;
 	size_t		y_axis;
 	int			error;
@@ -76,6 +78,8 @@ int32_t			main(int argc, char **argv);
 void			ft_check_elements(t_map *map);
 void			ft_check_lines(char *tmp, size_t current, t_map *fmap);
 int				ft_print_error(int error);
+//void			printobjects(t_map *m);
+//void			objectconditioner(t_map *m, int i, int j);
 void			ft_where_is_player(t_map *fmap);
 int				ft_check_ones(char *tmp);
 void			keyhook1(mlx_key_data_t keydata, void *param);
@@ -92,6 +96,6 @@ void			ft_loadimg(t_map *map, xpm_t **xpm);
 void			ft_texturetoimg(t_map *m, xpm_t **xpm, mlx_image_t **img);
 void			ft_init_graphics(t_map *map);
 void			walls(t_map *m, int i, int j);
-void			ft_print_images(t_map *m);
+void			ft_print_images(t_map *m, xpm_t **xpm);
 char			*ft_itoa(int n);
 #endif

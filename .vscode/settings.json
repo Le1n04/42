@@ -2,5 +2,6 @@
 	"files.associations": {
 		"libft.h": "c",
 		"so_long.h": "c"
-	}
+	},
+	"cmake.sourceDirectory": "${workspaceFolder}/so_long_0.1/inc/glfw"
 }
