@@ -49,17 +49,17 @@ typedef enum mlx_images
 	tile,
 	player,
 	ext,
-	coin,
+	coin0,
+	coin1,
 	IMG_COUNT,
 }				t_images;
 
 typedef struct s_mapdata
 {
 	mlx_t		*mlx;
-	mlx_image_t	*user;
+	int			f_counter;
 	char		*path;
 	char		**matrix;
-	char		**objmatrix;
 	size_t		x_axis;
 	size_t		y_axis;
 	int			error;
@@ -78,8 +78,8 @@ int32_t			main(int argc, char **argv);
 void			ft_check_elements(t_map *map);
 void			ft_check_lines(char *tmp, size_t current, t_map *fmap);
 int				ft_print_error(int error);
-//void			printobjects(t_map *m);
-//void			objectconditioner(t_map *m, int i, int j);
+void			ft_print_strings(t_map *m);
+void			ft_print_objects(t_map *m, xpm_t **xpm);
 void			ft_where_is_player(t_map *fmap);
 int				ft_check_ones(char *tmp);
 void			keyhook1(mlx_key_data_t keydata, void *param);
@@ -87,6 +87,7 @@ void			init_vars(t_map *fmap, char *input);
 size_t			get_height(char *input);
 void			ft_print_map(t_map *fmap);
 t_map			read_map(char *input);
+void			ft_move(t_map *map, int k);
 void			moveup(t_map *map);
 void			movedown(t_map *map);
 void			moveright(t_map *map);

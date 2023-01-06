@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../so_long.h"
+#include "../../so_long.h"
 
 /**
  * @brief This function will load every '*.xpm42' into their correspondent 
@@ -33,8 +33,9 @@ void	ft_loadimg(t_map *map, xpm_t **xpm)
 	xpm[urwall] = mlx_load_xpm42("p/solid/corner_top_right.xpm42");
 	xpm[leftwall] = mlx_load_xpm42("p/solid/grass_left.xpm42");
 	xpm[rightwall] = mlx_load_xpm42("p/solid/grass_right.xpm42");
-	xpm[player] = mlx_load_xpm42("p/inter/patito-agua.xpm42");
-	xpm[coin] = mlx_load_xpm42("p/inter/flor-agua.xpm42");
+	xpm[player] = mlx_load_xpm42("p/inter/duck.xpm42");
+	xpm[coin0] = mlx_load_xpm42("p/inter/flower_mid.xpm42");
+	xpm[coin1] = mlx_load_xpm42("p/inter/flower_open.xpm42");
 	xpm[ext] = mlx_load_xpm42("p/inter/exit_basket.xpm42");
 }
 
@@ -61,72 +62,15 @@ void	ft_texturetoimg(t_map *m, xpm_t **xpm, mlx_image_t **img)
 	img[rightwall] = mlx_texture_to_image(m->mlx, &xpm[rightwall]->texture);
 	img[player] = mlx_texture_to_image(m->mlx, &xpm[player]->texture);
 	img[ext] = mlx_texture_to_image(m->mlx, &xpm[ext]->texture);
-	img[coin] = mlx_texture_to_image(m->mlx, &xpm[coin]->texture);
+	img[coin0] = mlx_texture_to_image(m->mlx, &xpm[coin0]->texture);
+	img[coin1] = mlx_texture_to_image(m->mlx, &xpm[coin1]->texture);
 }
 
-/**
- * @brief This function is a complement of 'ft_print_images'.
- * It will draw an instance of the images.
- * 
- * @param m Main struct.
- * @param i counter from 'ft_print_images'.
- * @param j counter from 'ft_print_images'.
- */
-void	imageconditioner(t_map *m, int i, int j)
-{
-	if (m->matrix[i][j] == '1')
-		walls(m, i, j);
-	if (m->matrix[i][j] == '0')
-		mlx_image_to_window(m->mlx, m->img[tile], j * W, i * H);
-	if (m->matrix[i][j] == 'P')
-		mlx_image_to_window(m->mlx, m->img[player], j * W, i * H);
-	if (m->matrix[i][j] == 'E')
-		mlx_image_to_window(m->mlx, m->img[ext], j * W, i * H);
-	if (m->matrix[i][j] == 'C')
-		mlx_image_to_window(m->mlx, m->img[coin], j * W, i * H);
-}
-
-/**
- * @brief This function will print every image and the move counter
- *  into the MLX instance.
- * 
- * @param m Main struct.
- */
-void	ft_print_images(t_map *m, xpm_t **xpm)
-{
-	int		i;
-	int		j;
-	char	*itoad;
-	char	*itoad2;
-
-	i = -1;
-	itoad = ft_strnjoin("Moves: ", ft_itoa(m->moves), 2);
-	itoad2 = ft_strnjoin("Coins: ", ft_itoa(m->cc), 2);
-	itoad2 = ft_strnjoin(itoad2, "/", 1);
-	itoad2 = ft_strjoin(itoad2, ft_itoa(m->elm.c));
-	while (m->matrix[++i] && i < (int)m->y_axis)
-	{
-		j = -1;
-		while (++j >= 0 && j < (int)m->x_axis)
-			imageconditioner(m, i, j);
-	}
-	m->user = mlx_texture_to_image(m->mlx, &xpm[player]->texture);
-	mlx_image_to_window(m->mlx, m->user, m->player_x * W, m->player_y * H);
-	mlx_put_string(m->mlx, itoad, 0, 0);
-	mlx_put_string(m->mlx, itoad2, 128, 0);
-	free (itoad);
-	free (itoad2);
-}
-
-/**
- * @brief This function will initiate every image related function.
- * 
- * @param map Main struct.
- * @return 1 if success, 0 if failure.
- */
 void	ft_init_graphics(t_map *map)
 {
 	ft_loadimg(map, map->xpm);
 	ft_texturetoimg(map, map->xpm, map->img);
 	ft_print_images(map, map->xpm);
+	ft_print_objects(map, map->xpm);
+	ft_print_strings(map);
 }
