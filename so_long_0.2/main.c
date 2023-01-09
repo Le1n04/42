@@ -6,7 +6,7 @@
 /*   By: djanssen <djanssen@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 11:03:12 by djanssen          #+#    #+#             */
-/*   Updated: 2022/12/29 18:05:48 by djanssen         ###   ########.fr       */
+/*   Updated: 2023/01/09 16:49:54 by djanssen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,10 @@ void	keyhook1(mlx_key_data_t keydata, void *param)
 		mlx_close_window(map->mlx);
 }
 
-//void	showleaks(void)
-//{
-//	system("leaks -q so_long");
-//}
+// void	showleaks(void)
+// {
+// 	system("leaks -q so_long");
+// }
 
 /**
  * @brief This is the main function, it will receive the *.ber file

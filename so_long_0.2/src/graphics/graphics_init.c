@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   images.c                                           :+:      :+:    :+:   */
+/*   graphics_init.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: djanssen <djanssen@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 11:03:12 by djanssen          #+#    #+#             */
-/*   Updated: 2022/12/29 18:00:15 by djanssen         ###   ########.fr       */
+/*   Updated: 2023/01/09 16:46:43 by djanssen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ void	ft_init_graphics(t_map *map)
 {
 	ft_loadimg(map, map->xpm);
 	ft_texturetoimg(map, map->xpm, map->img);
-	ft_print_images(map, map->xpm);
-	ft_print_objects(map, map->xpm);
+	ft_print_images(map);
+	ft_print_objects(map);
 	ft_print_strings(map);
 }

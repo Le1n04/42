@@ -6,7 +6,7 @@
 /*   By: djanssen <djanssen@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 11:12:30 by djanssen          #+#    #+#             */
-/*   Updated: 2022/11/23 11:27:11 by djanssen         ###   ########.fr       */
+/*   Updated: 2023/01/09 15:11:11 by djanssen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,7 +125,7 @@ char	*ft_strnjoin(char *s1, char *s2, int n)
 	if (!str)
 		return (NULL);
 	i = -1;
-	while (++i < ft_strlen(s1))
+	while (++i < (int)ft_strlen(s1))
 		str[i] = s1[i];
 	while (i <= j && s2[k])
 	{

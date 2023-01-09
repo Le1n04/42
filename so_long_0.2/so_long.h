@@ -6,7 +6,7 @@
 /*   By: djanssen <djanssen@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 09:48:59 by djanssen          #+#    #+#             */
-/*   Updated: 2022/12/29 16:24:08 by djanssen         ###   ########.fr       */
+/*   Updated: 2023/01/09 17:08:35 by djanssen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 /* All includes */
 # include "gnl/get_next_line.h"
-# include "inc/MLX42_ubuntults/include/MLX42/MLX42.h"
+# include "inc/MLX42_macOS/include/MLX42/MLX42.h"
 # include <stdint.h>
 # include <stdio.h>
 # include <stdlib.h>
@@ -71,6 +71,8 @@ typedef struct s_mapdata
 	int			moves;
 	mlx_image_t	*img[IMG_COUNT];
 	xpm_t		*xpm[IMG_COUNT];
+	mlx_image_t	*mvcounter;
+	mlx_image_t	*ccounter;
 }				t_map;
 
 /* All function prototypes */
@@ -79,7 +81,7 @@ void			ft_check_elements(t_map *map);
 void			ft_check_lines(char *tmp, size_t current, t_map *fmap);
 int				ft_print_error(int error);
 void			ft_print_strings(t_map *m);
-void			ft_print_objects(t_map *m, xpm_t **xpm);
+void			ft_print_objects(t_map *m);
 void			ft_where_is_player(t_map *fmap);
 int				ft_check_ones(char *tmp);
 void			keyhook1(mlx_key_data_t keydata, void *param);
@@ -92,11 +94,10 @@ void			moveup(t_map *map);
 void			movedown(t_map *map);
 void			moveright(t_map *map);
 void			moveleft(t_map *map);
-void			ft_move(t_map *map, int k);
 void			ft_loadimg(t_map *map, xpm_t **xpm);
 void			ft_texturetoimg(t_map *m, xpm_t **xpm, mlx_image_t **img);
 void			ft_init_graphics(t_map *map);
 void			walls(t_map *m, int i, int j);
-void			ft_print_images(t_map *m, xpm_t **xpm);
+void			ft_print_images(t_map *m);
 char			*ft_itoa(int n);
 #endif
