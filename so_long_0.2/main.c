@@ -6,7 +6,7 @@
 /*   By: djanssen <djanssen@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 11:03:12 by djanssen          #+#    #+#             */
-/*   Updated: 2023/01/10 12:59:56 by djanssen         ###   ########.fr       */
+/*   Updated: 2023/01/10 13:54:11 by djanssen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,9 +61,9 @@ int	main(int argc, char **argv)
 	if (argc != 2)
 		return (write(1, ("Error - you must introduce 2 arguments.\n"), 40), 1);
 	map = read_map(argv[1]);
+	ft_check_elements(&map);
 	if (ft_print_error(map.error))
 		return (EXIT_FAILURE);
-	ft_check_elements(&map);
 	ft_where_is_player(&map);
 	if (!map.error)
 	{
