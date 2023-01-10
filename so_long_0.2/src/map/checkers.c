@@ -6,7 +6,7 @@
 /*   By: djanssen <djanssen@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 11:03:12 by djanssen          #+#    #+#             */
-/*   Updated: 2023/01/09 16:41:32 by djanssen         ###   ########.fr       */
+/*   Updated: 2023/01/10 12:48:41 by djanssen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,6 +127,8 @@ void	ft_check_elements(t_map *map)
 				map->elm.p++;
 			else if (map->matrix[map->elm.y][map->elm.x] == 'C')
 				map->elm.c++;
+			else if (map->matrix[map->elm.y][map->elm.x] == 'V')
+				map->elm.v++;
 			else if (map->matrix[map->elm.y][map->elm.x] != '1' &&
 						map->matrix[map->elm.y][map->elm.x] != '0')
 				map->error = 5;

@@ -6,7 +6,7 @@
 /*   By: djanssen <djanssen@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 11:03:12 by djanssen          #+#    #+#             */
-/*   Updated: 2023/01/09 16:51:58 by djanssen         ###   ########.fr       */
+/*   Updated: 2023/01/10 13:06:03 by djanssen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@
 */
 void	walls(t_map *m, int i, int j)
 {
-	if (i == 0 && j != 0 && j != (int)m->x_axis - 1 && m->matrix[i + 1][j] != '1')
+	if (i == 0 && j != 0 && j != (int)m->x_axis - 1
+		&& m->matrix[i + 1][j] != '1')
 		mlx_image_to_window(m->mlx, m->img[topwall], j * W, i * H);
 	else if (i == (int)m->y_axis - 1 && j != 0 && j != (int)m->x_axis - 1)
 		mlx_image_to_window(m->mlx, m->img[botwall], j * W, i * H);
@@ -41,6 +42,27 @@ void	walls(t_map *m, int i, int j)
 		mlx_image_to_window(m->mlx, m->img[wall], j * W, i * H);
 }
 
+void	ft_print_conditioners(t_map *m, int i, int j)
+{
+	if (m->matrix[i][j] == '1')
+		walls(m, i, j);
+	if (m->matrix[i][j] == 'C')
+	{
+		mlx_image_to_window(m->mlx, m->img[tile], j * W, i * H);
+		mlx_image_to_window(m->mlx, m->img[coin1], j * W, i * H);
+		mlx_image_to_window(m->mlx, m->img[coin0], j * W, i * H);
+	}
+	if (m->matrix[i][j] == '0' || m->matrix[i][j] == 'P')
+		mlx_image_to_window(m->mlx, m->img[tile], j * W, i * H);
+	if (m->matrix[i][j] == 'E')
+		mlx_image_to_window(m->mlx, m->img[ext], j * W, i * H);
+	if (m->matrix[i][j] == 'V')
+	{
+		mlx_image_to_window(m->mlx, m->img[tile], j * W, i * H);
+		mlx_image_to_window(m->mlx, m->img[enemy], j * W, i * H);
+	}
+}
+
 /**
  * @brief This function will print every image and the move counter
  *  into the MLX instance.
@@ -57,19 +79,7 @@ void	ft_print_images(t_map *m)
 	{
 		j = -1;
 		while (++j >= 0 && j < (int)m->x_axis)
-		{
-			if (m->matrix[i][j] == '1')
-				walls(m, i, j);
-			if (m->matrix[i][j] == 'C')
-			{
-				mlx_image_to_window(m->mlx, m->img[tile], j * W, i * H);
-				mlx_image_to_window(m->mlx, m->img[coin1], j * W, i * H);
-			}
-			if (m->matrix[i][j] == '0' || m->matrix[i][j] == 'P')
-				mlx_image_to_window(m->mlx, m->img[tile], j * W, i * H);
-			if (m->matrix[i][j] == 'E')
-				mlx_image_to_window(m->mlx, m->img[ext], j * W, i * H);
-		}
+			ft_print_conditioners(m, i, j);
 	}
 }
 

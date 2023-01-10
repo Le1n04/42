@@ -6,7 +6,7 @@
 /*   By: djanssen <djanssen@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 11:03:12 by djanssen          #+#    #+#             */
-/*   Updated: 2023/01/09 17:15:45 by djanssen         ###   ########.fr       */
+/*   Updated: 2023/01/10 12:59:56 by djanssen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,17 +25,17 @@ void	keyhook1(mlx_key_data_t keydata, void *param)
 	t_map	*map;
 
 	map = param;
-	if (keydata.key == MLX_KEY_UP && keydata.action == MLX_PRESS
-		&& !map->game_finished)
+	if ((keydata.key == MLX_KEY_UP || keydata.key == MLX_KEY_W)
+		&& keydata.action == MLX_PRESS && !map->game_finished)
 		ft_move(map, 1);
-	else if (keydata.key == MLX_KEY_DOWN && keydata.action == MLX_PRESS
-		&& !map->game_finished)
+	else if ((keydata.key == MLX_KEY_DOWN || keydata.key == MLX_KEY_S)
+		&& keydata.action == MLX_PRESS && !map->game_finished)
 		ft_move(map, 2);
-	else if (keydata.key == MLX_KEY_RIGHT && keydata.action == MLX_PRESS
-		&& !map->game_finished)
+	else if ((keydata.key == MLX_KEY_RIGHT || keydata.key == MLX_KEY_D)
+		&& keydata.action == MLX_PRESS && !map->game_finished)
 		ft_move(map, 3);
-	else if (keydata.key == MLX_KEY_LEFT && keydata.action == MLX_PRESS
-		&& !map->game_finished)
+	else if ((keydata.key == MLX_KEY_LEFT || keydata.key == MLX_KEY_A)
+		&& keydata.action == MLX_PRESS && !map->game_finished)
 		ft_move(map, 4);
 	else if (keydata.key == MLX_KEY_ESCAPE && keydata.action == MLX_PRESS)
 		mlx_close_window(map->mlx);

@@ -6,7 +6,7 @@
 /*   By: djanssen <djanssen@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 09:48:59 by djanssen          #+#    #+#             */
-/*   Updated: 2023/01/09 17:08:35 by djanssen         ###   ########.fr       */
+/*   Updated: 2023/01/10 12:38:50 by djanssen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ typedef struct s_elements
 	int			c;
 	int			p;
 	int			e;
+	int			v;
 	size_t		x;
 	size_t		y;
 }				t_elements;
@@ -51,6 +52,7 @@ typedef enum mlx_images
 	ext,
 	coin0,
 	coin1,
+	enemy,
 	IMG_COUNT,
 }				t_images;
 
