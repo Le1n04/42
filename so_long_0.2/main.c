@@ -61,6 +61,8 @@ int	main(int argc, char **argv)
 	if (argc != 2)
 		return (write(1, ("Error - you must introduce 2 arguments.\n"), 40), 1);
 	map = read_map(argv[1]);
+	if (ft_print_error(map.error))
+		return (EXIT_FAILURE);
 	ft_check_elements(&map);
 	if (ft_print_error(map.error))
 		return (EXIT_FAILURE);

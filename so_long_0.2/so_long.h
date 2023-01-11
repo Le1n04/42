@@ -73,6 +73,8 @@ typedef struct s_mapdata
 	size_t		player_x;
 	size_t		player_y;
 	int			game_finished;
+	int			sharked;
+	int			won;
 	int			moves;
 	mlx_image_t	*img[IMG_COUNT];
 	xpm_t		*xpm[IMG_COUNT];
@@ -106,4 +108,5 @@ void			walls(t_map *m, int i, int j);
 void			ft_print_images(t_map *m);
 void			ft_directions_enable(t_map *m, int k);
 char			*ft_itoa(int n);
+void			print_gg(t_map *m);
 #endif

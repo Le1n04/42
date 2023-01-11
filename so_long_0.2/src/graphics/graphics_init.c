@@ -20,9 +20,9 @@
  * @param xpm Struct containing data regarding an XPM image.
  * @return 0 if failure, 1 if success.
  */
-void	ft_loadimg(t_map *map, xpm_t **xpm)
+void	ft_loadimg(t_map *m, xpm_t **xpm)
 {
-	map->mlx = mlx_init(map->x_axis * W, map->y_axis * H, "A", true);
+	m->mlx = mlx_init(m->x_axis * W, m->y_axis * H, "so_long", true);
 	xpm[tile] = mlx_load_xpm42("p/solid/water.xpm42");
 	xpm[wall] = mlx_load_xpm42("p/solid/grass.xpm42");
 	xpm[topwall] = mlx_load_xpm42("p/solid/grass_top.xpm42");

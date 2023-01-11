@@ -56,8 +56,9 @@ void	moverighte(t_map *map)
 	map->img[playerdown]->instances[0].x -= W;
 	map->player_x--;
 	map->game_finished++;
+	map->won++;
 	ft_print_strings(map);
-	puts("\nYou've won.");
+	print_gg(map);
 }
 
 void	moverightenemy(t_map *map)
@@ -68,7 +69,8 @@ void	moverightenemy(t_map *map)
 	map->img[playerdown]->instances[0].enabled = 0;
 	map->img[playerright]->instances[0].enabled = 0;
 	map->game_finished++;
-	puts("\nYou died.");
+	map->sharked++;
+	print_gg(map);
 }
 
 /**
@@ -79,7 +81,6 @@ void	moverightenemy(t_map *map)
 void	moveright(t_map *map)
 {
 	map->moves++;
-	printf("Move count: %d\n", map->moves);
 	if (map->matrix[map->player_y][map->player_x - 1] == '0')
 		moverightp(map);
 	else if (map->matrix[map->player_y][map->player_x - 1] == 'C')
@@ -92,7 +93,7 @@ void	moveright(t_map *map)
 	else if (map->matrix[map->player_y][map->player_x - 1] == 'E' &&
 				map->cc != map->elm.c)
 	{
-		puts("You need to take more coins in order to win.");
+		write(1, "You need to take more coins in order to win.", 44);
 		map->moves--;
 	}
 }

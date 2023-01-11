@@ -74,17 +74,17 @@ void	ft_where_is_player(t_map *fmap)
 int	ft_print_error(int error)
 {
 	if (error == 1)
-		return (printf("Error no.1: Empty map\n"), 1);
+		return (write(1, "Error no.1: Empty map\n", 22), 1);
 	if (error == 2)
-		return (printf("Error no.2: Invalid map structure\n"), 1);
+		return (write(1, "Error no.2: Invalid map structure\n", 34), 1);
 	if (error == 3)
-		return (printf("Error no.3: Map can't be symetrical\n"), 1);
+		return (write(1, "Error no.3: Map can't be symetrical\n", 36), 1);
 	if (error == 4)
-		return (printf("Error no.4: Map has different X sizes\n"));
+		return (write(1, "Error no.4: Map has different X sizes\n", 38));
 	if (error == 5)
-		return (printf("Error no.5: Invalid map element\n"), 1);
+		return (write(1, "Error no.5: Invalid map element\n", 32), 1);
 	if (error == 6)
-		return (printf("Error no.6: Not enough or too many map elements\n"), 1);
+		return (write(1, "Error 6: Not enough/too many map elements\n", 42), 1);
 	return (0);
 }
 
