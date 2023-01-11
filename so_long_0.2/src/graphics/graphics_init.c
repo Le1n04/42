@@ -33,7 +33,10 @@ void	ft_loadimg(t_map *map, xpm_t **xpm)
 	xpm[urwall] = mlx_load_xpm42("p/solid/corner_top_right.xpm42");
 	xpm[leftwall] = mlx_load_xpm42("p/solid/grass_left.xpm42");
 	xpm[rightwall] = mlx_load_xpm42("p/solid/grass_right.xpm42");
-	xpm[player] = mlx_load_xpm42("p/inter/duck.xpm42");
+	xpm[playerright] = mlx_load_xpm42("p/inter/duck.xpm42");
+	xpm[playerleft] = mlx_load_xpm42("p/inter/dleft.xpm42");
+	xpm[playerup] = mlx_load_xpm42("p/inter/dup.xpm42");
+	xpm[playerdown] = mlx_load_xpm42("p/inter/ddown.xpm42");
 	xpm[coin0] = mlx_load_xpm42("p/inter/flower_mid.xpm42");
 	xpm[coin1] = mlx_load_xpm42("p/inter/flower_open.xpm42");
 	xpm[ext] = mlx_load_xpm42("p/inter/exit_basket.xpm42");
@@ -61,7 +64,10 @@ void	ft_texturetoimg(t_map *m, xpm_t **xpm, mlx_image_t **img)
 	img[urwall] = mlx_texture_to_image(m->mlx, &xpm[urwall]->texture);
 	img[leftwall] = mlx_texture_to_image(m->mlx, &xpm[leftwall]->texture);
 	img[rightwall] = mlx_texture_to_image(m->mlx, &xpm[rightwall]->texture);
-	img[player] = mlx_texture_to_image(m->mlx, &xpm[player]->texture);
+	img[playerright] = mlx_texture_to_image(m->mlx, &xpm[playerright]->texture);
+	img[playerleft] = mlx_texture_to_image(m->mlx, &xpm[playerleft]->texture);
+	img[playerup] = mlx_texture_to_image(m->mlx, &xpm[playerup]->texture);
+	img[playerdown] = mlx_texture_to_image(m->mlx, &xpm[playerdown]->texture);
 	img[ext] = mlx_texture_to_image(m->mlx, &xpm[ext]->texture);
 	img[coin0] = mlx_texture_to_image(m->mlx, &xpm[coin0]->texture);
 	img[coin1] = mlx_texture_to_image(m->mlx, &xpm[coin1]->texture);

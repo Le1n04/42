@@ -16,7 +16,10 @@ void	moveupp(t_map *map)
 {
 	map->matrix[map->player_y - 1][map->player_x] = 'P';
 	map->matrix[map->player_y][map->player_x] = '0';
-	map->img[player]->instances[0].y -= H;
+	map->img[playerright]->instances[0].y -= W;
+	map->img[playerleft]->instances[0].y -= W;
+	map->img[playerup]->instances[0].y -= W;
+	map->img[playerdown]->instances[0].y -= W;
 	map->player_y--;
 	ft_print_strings(map);
 }
@@ -29,7 +32,10 @@ void	moveupc(t_map *map)
 	map->matrix[map->player_y - 1][map->player_x] = 'P';
 	map->matrix[map->player_y][map->player_x] = '0';
 	map->player_y--;
-	map->img[player]->instances[0].y -= H;
+	map->img[playerright]->instances[0].y -= W;
+	map->img[playerleft]->instances[0].y -= W;
+	map->img[playerup]->instances[0].y -= W;
+	map->img[playerdown]->instances[0].y -= W;
 	map->cc++;
 	while (++i < map->elm.c)
 	{
@@ -44,7 +50,10 @@ void	moveupe(t_map *map)
 {
 	map->matrix[map->player_y - 1][map->player_x] = 'P';
 	map->matrix[map->player_y][map->player_x] = '0';
-	map->img[player]->instances[0].y -= H;
+	map->img[playerright]->instances[0].y -= W;
+	map->img[playerleft]->instances[0].y -= W;
+	map->img[playerup]->instances[0].y -= W;
+	map->img[playerdown]->instances[0].y -= W;
 	map->player_y++;
 	map->game_finished++;
 	ft_print_strings(map);
@@ -54,7 +63,10 @@ void	moveupe(t_map *map)
 void	moveupenemy(t_map *map)
 {
 	map->matrix[map->player_y][map->player_x] = '0';
-	map->img[player]->instances[0].enabled = 0;
+	map->img[playerleft]->instances[0].enabled = 0;
+	map->img[playerup]->instances[0].enabled = 0;
+	map->img[playerdown]->instances[0].enabled = 0;
+	map->img[playerright]->instances[0].enabled = 0;
 	map->game_finished++;
 	puts("\nYou died.");
 }

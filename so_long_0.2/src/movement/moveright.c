@@ -16,7 +16,10 @@ void	moverightp(t_map *map)
 {
 	map->matrix[map->player_y][map->player_x - 1] = 'P';
 	map->matrix[map->player_y][map->player_x] = '0';
-	map->img[player]->instances[0].x -= W;
+	map->img[playerright]->instances[0].x -= W;
+	map->img[playerleft]->instances[0].x -= W;
+	map->img[playerup]->instances[0].x -= W;
+	map->img[playerdown]->instances[0].x -= W;
 	map->player_x--;
 	ft_print_strings(map);
 }
@@ -28,7 +31,10 @@ void	moverightc(t_map *map)
 	i = -1;
 	map->matrix[map->player_y][map->player_x - 1] = 'P';
 	map->matrix[map->player_y][map->player_x] = '0';
-	map->img[player]->instances[0].x -= W;
+	map->img[playerright]->instances[0].x -= W;
+	map->img[playerleft]->instances[0].x -= W;
+	map->img[playerup]->instances[0].x -= W;
+	map->img[playerdown]->instances[0].x -= W;
 	map->player_x--;
 	map->cc++;
 	while (++i < map->elm.c)
@@ -44,7 +50,10 @@ void	moverighte(t_map *map)
 {
 	map->matrix[map->player_y][map->player_x - 1] = 'P';
 	map->matrix[map->player_y][map->player_x] = '0';
-	map->img[player]->instances[0].x -= W;
+	map->img[playerright]->instances[0].x -= W;
+	map->img[playerleft]->instances[0].x -= W;
+	map->img[playerup]->instances[0].x -= W;
+	map->img[playerdown]->instances[0].x -= W;
 	map->player_x--;
 	map->game_finished++;
 	ft_print_strings(map);
@@ -54,7 +63,10 @@ void	moverighte(t_map *map)
 void	moverightenemy(t_map *map)
 {
 	map->matrix[map->player_y][map->player_x] = '0';
-	map->img[player]->instances[0].enabled = 0;
+	map->img[playerleft]->instances[0].enabled = 0;
+	map->img[playerup]->instances[0].enabled = 0;
+	map->img[playerdown]->instances[0].enabled = 0;
+	map->img[playerright]->instances[0].enabled = 0;
 	map->game_finished++;
 	puts("\nYou died.");
 }

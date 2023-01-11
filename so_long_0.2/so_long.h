@@ -48,7 +48,10 @@ typedef enum mlx_images
 	rightwall,
 	shark,
 	tile,
-	player,
+	playerright,
+	playerleft,
+	playerup,
+	playerdown,
 	ext,
 	coin0,
 	coin1,
@@ -101,5 +104,6 @@ void			ft_texturetoimg(t_map *m, xpm_t **xpm, mlx_image_t **img);
 void			ft_init_graphics(t_map *map);
 void			walls(t_map *m, int i, int j);
 void			ft_print_images(t_map *m);
+void			ft_directions_enable(t_map *m, int k);
 char			*ft_itoa(int n);
 #endif

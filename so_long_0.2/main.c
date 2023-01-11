@@ -73,19 +73,3 @@ int	main(int argc, char **argv)
 	}
 	return (EXIT_SUCCESS);
 }
-
-/**
- * SEG FAULT CON 0 EN ESQUINA
- * 
- * 
- * Hacer que el player se printee un tile de agua
- * , que sea una g_img como al principio y
- * que la imagen printeada solo se vuelva a printear
- * cuando pillas un objeto. (replantear movimiento supongo).
- * 
- * ?? Hacer que se saquen mas errores si falla algo de texturas ??
- * ?? Error management para CADA tipo ??
- * 
- * Programar enemigo.
- * 
- */

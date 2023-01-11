@@ -85,8 +85,17 @@ void	ft_print_images(t_map *m)
 
 void	ft_print_objects(t_map *m)
 {
-	mlx_image_to_window(m->mlx, m->img[player],
+	mlx_image_to_window(m->mlx, m->img[playerright],
 		m->player_x * W, m->player_y * H);
+	mlx_image_to_window(m->mlx, m->img[playerleft],
+		m->player_x * W, m->player_y * H);
+	mlx_image_to_window(m->mlx, m->img[playerup],
+		m->player_x * W, m->player_y * H);
+	mlx_image_to_window(m->mlx, m->img[playerdown],
+		m->player_x * W, m->player_y * H);
+	m->img[playerleft]->instances[0].enabled = 0;
+	m->img[playerdown]->instances[0].enabled = 0;
+	m->img[playerup]->instances[0].enabled = 0;
 }
 
 void	ft_print_strings(t_map *m)
