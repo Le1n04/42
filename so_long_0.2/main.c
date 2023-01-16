@@ -6,7 +6,7 @@
 /*   By: djanssen <djanssen@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 11:03:12 by djanssen          #+#    #+#             */
-/*   Updated: 2023/01/10 13:54:11 by djanssen         ###   ########.fr       */
+/*   Updated: 2023/01/12 12:49:08 by djanssen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,5 +73,7 @@ int	main(int argc, char **argv)
 		mlx_key_hook(map.mlx, &keyhook1, &map);
 		mlx_loop(map.mlx);
 	}
+	showleaks();
+	
 	return (EXIT_SUCCESS);
 }
