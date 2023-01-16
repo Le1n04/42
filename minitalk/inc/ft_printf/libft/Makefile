@@ -6,7 +6,7 @@
 #    By: djanssen <djanssen@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/26 09:48:59 by djanssen          #+#    #+#              #
-#    Updated: 2023/01/16 15:59:03 by djanssen         ###   ########.fr        #
+#    Updated: 2022/10/20 17:18:14 by djanssen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,18 +28,14 @@ CC = gcc
 RM = rm -f
 CFLAGS = -Wall -Wextra -Werror -I.
 $(NAME):
-	@echo Compiling libft...
-	@gcc -c $(CFLAGS) $(SRCS)
-	@echo Libft compiled!
-	@ar rcs $(NAME) $(OBJS)
+	gcc -c $(CFLAGS) $(SRCS)
+	ar rcs $(NAME) $(OBJS)
 bonus: ${OBJS} ${BONUS_OBJS}
 	ar rs ${NAME} ${OBJS} ${BONUS_OBJS}
 all: $(NAME)
 clean:
-	@$(RM) $(OBJS) $(BONUS_OBJS)
+	$(RM) $(OBJS) $(BONUS_OBJS)
 fclean: clean
-	@echo Cleaning...
-	@$(RM) $(NAME)
-	@echo Clean!
+	$(RM) $(NAME)
 re: fclean all
 .PHONY: all clean fclean re bonus
