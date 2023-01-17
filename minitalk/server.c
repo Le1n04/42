@@ -6,7 +6,7 @@
 /*   By: djanssen <djanssen@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 11:03:12 by djanssen          #+#    #+#             */
-/*   Updated: 2023/01/16 18:22:55 by djanssen         ###   ########.fr       */
+/*   Updated: 2023/01/17 13:27:09 by djanssen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,24 +29,38 @@ void	ft_close_connection(void)
 	g_loop = 0;
 }
 
+/**
+ * @param bit current bit.
+ * @param binary character in binary.
+ * 
+ */
 void	ft_handle_sigs(int signum)
 {
 	static int		bit;
-	static size_t	i;
+	static size_t	binary;
 
 	if (signum == SIGUSR1)
-		i |= (0x01 << bit);
+		binary |= (1 << bit);
 	bit++;
 	if (bit == 8)
 	{
-		ft_printf("%c", i);
+		ft_printf("%c", binary);
 		bit = 0;
-		i = 0;
+		binary = 0;
 	}
 	if (signum == SIGINT)
 		ft_close_connection();
 }
 
+void	showleaks(void)
+{
+	system("leaks -q server");
+}
+
+/**
+ * @param SIGUSR1 Signal containing 1
+ * @param SIGUSR2 Signal containing 0
+ */
 int	main(int argc, char **argv)
 {
 	argv = NULL;
@@ -59,11 +73,11 @@ int	main(int argc, char **argv)
 	else
 	{
 		ft_print_pid();
+		signal(SIGUSR1, ft_handle_sigs);
+		signal(SIGUSR2, ft_handle_sigs);
+		signal(SIGINT, ft_handle_sigs);
 		while (g_loop)
 		{
-			signal(SIGUSR1, ft_handle_sigs);
-			signal(SIGUSR2, ft_handle_sigs);
-			signal(SIGINT, ft_handle_sigs);
 		}
 	}
 	return (1);

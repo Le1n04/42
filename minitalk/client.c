@@ -6,7 +6,7 @@
 /*   By: djanssen <djanssen@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 11:03:12 by djanssen          #+#    #+#             */
-/*   Updated: 2023/01/16 18:22:28 by djanssen         ###   ########.fr       */
+/*   Updated: 2023/01/17 11:56:21 by djanssen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	ft_msg_sender(int pid, char msg)
 	bit = 0;
 	while (bit < 8)
 	{
-		if ((msg & (0x01 << bit)))
+		if ((msg & (1 << bit)))
 			kill (pid, SIGUSR1);
 		else
 			kill(pid, SIGUSR2);
@@ -45,7 +45,7 @@ int	main(int argc, char **argv)
 
 	if (argc < 3)
 	{
-		ft_printf("\033[0;31mPlease use: ./client <PID> <MESSAGE>");
+		ft_printf("\033[0;31mPlease use: ./client <PID> <MESSAGE>\n");
 		return (0);
 	}
 	i = -1;
