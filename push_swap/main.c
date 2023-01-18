@@ -6,7 +6,7 @@
 /*   By: djanssen <djanssen@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 11:03:12 by djanssen          #+#    #+#             */
-/*   Updated: 2023/01/18 18:36:11 by djanssen         ###   ########.fr       */
+/*   Updated: 2023/01/18 18:37:12 by djanssen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,3 +144,5 @@ int	main(int argc, char **argv)
 	}
 	return (0);
 }
+
+// POR QUE SE IMPRIME ASI DE RARO
