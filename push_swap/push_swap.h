@@ -6,7 +6,7 @@
 /*   By: djanssen <djanssen@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 09:48:59 by djanssen          #+#    #+#             */
-/*   Updated: 2023/01/18 15:24:07 by djanssen         ###   ########.fr       */
+/*   Updated: 2023/01/18 17:54:36 by djanssen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,8 @@ typedef struct s_stack
 	int		*a_stack;
 	int		*b_stack;
 	char	**args;
-	int		size;
+	int		size_a;
+	int		size_b;
 }	t_stack;
 
 #endif
