@@ -6,7 +6,7 @@
 /*   By: djanssen <djanssen@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 11:03:12 by djanssen          #+#    #+#             */
-/*   Updated: 2023/01/18 18:37:12 by djanssen         ###   ########.fr       */
+/*   Updated: 2023/01/23 18:15:24 by djanssen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,34 +42,114 @@ t_stack	*ft_ss(t_stack *m)
 	return (m);
 }
 
-t_stack	*ft_pb(t_stack *m)
+t_stack	*remove_from_stack_a(t_stack *m, int num)
 {
 	int	i;
-	int	tmp;
+	int	*saved;
+	int	j;
 
-	if (m->a_stack[0])
+	i = -1;
+	j = 0;
+	saved = (int *)malloc(m->size_a * sizeof(int));
+	while (++i < m->size_a)
+		saved[i] = m->a_stack[i];
+	m->tmp = m->a_stack[0];
+	if (num == 1)
+		m->tmp = m->a_stack[m->size_a - 1];
+	free(m->a_stack);
+	m->size_a--;
+	m->a_stack = (int *)malloc(m->size_a * sizeof(int));
+	while (--i >= 0)
 	{
-		i = -1;
-		tmp = m->a_stack[0];
-		while (++i < m->size_a)
-			ft_swap(&m->a_stack[i], &m->a_stack[i + 1]);
-		m->size_a--;
-		if (!m->b_stack[0])
-		{
-			m->b_stack[0] = tmp;
-			m->size_b++;
-		}
-		else if (m->b_stack[0])
-		{
-			i = -1;
-			while (++i <= m->size_b)
-			{
-				m->b_stack[i + 1] = m->b_stack[i];
-				m->b_stack[0] = tmp;
-			}
-		}
+		m->a_stack[j] = saved[j];
+		j++;
 	}
-	return (m);
+	i = -1;
+	if (num == 0)
+		while (++i < m->size_a)
+			m->a_stack[i] = saved[i + 1];
+	return (free(saved), m);
+}
+
+t_stack	*remove_from_stack_b(t_stack *m, int num)
+{
+	int	i;
+	int	*saved;
+	int	j;
+
+	i = -1;
+	j = 0;
+	saved = (int *)malloc(m->size_b * sizeof(int));
+	while (++i < m->size_b)
+		saved[i] = m->b_stack[i];
+	m->tmp = m->b_stack[0];
+	if (num == 1)
+		m->tmp = m->b_stack[m->size_b - 1];
+	free(m->b_stack);
+	m->size_b--;
+	m->b_stack = (int *)malloc(m->size_b * sizeof(int));
+	while (--i >= 0)
+	{
+		m->b_stack[j] = saved[j];
+		j++;
+	}
+	i = -1;
+	if (num == 0)
+		while (++i < m->size_b)
+			m->b_stack[i] = saved[i + 1];
+	return (free(saved), m);
+}
+
+t_stack *add_to_stack_a(t_stack *m)
+{
+	int	i;
+	int	*saved;
+
+	i = 0;
+	saved = (int *)malloc((m->size_a + 1) * sizeof(int));
+	saved[0] = m->tmp;
+	while (++i < m->size_a)
+		saved[i] = m->a_stack[i - 1];
+	free(m->a_stack);
+	m->size_a++;
+	m->a_stack = (int *)malloc(m->size_a * sizeof(int));
+	i = -1;
+	while (++i < m->size_a)
+		m->a_stack[i] = saved[i];
+	return (free(saved), m);
+}
+
+t_stack *add_to_stack_b(t_stack *m)
+{
+	int	i;
+	int	*saved;
+
+	i = 0;
+	saved = (int *)malloc((m->size_b + 1) * sizeof(int));
+	saved[0] = m->tmp;
+	while (++i < m->size_b)
+		saved[i] = m->b_stack[i - 1];
+	free(m->b_stack);
+	m->size_b++;
+	m->b_stack = (int *)malloc(m->size_b * sizeof(int));
+	i = -1;
+	while (++i < m->size_b)
+		m->b_stack[i] = saved[i];
+	return (free(saved), m);
+}
+
+t_stack *ft_pb(t_stack *m)
+{
+	remove_from_stack_a(m, 0);
+	add_to_stack_b(m);
+	return (ft_printf("pb\n"), m);
+}
+
+t_stack *ft_pa(t_stack *m)
+{
+	remove_from_stack_b(m, 0);
+	add_to_stack_a(m);
+	return (ft_printf("pa\n"), m);
 }
 
 int	*ft_get_a_stack(t_stack *m)
@@ -90,17 +170,17 @@ int	*ft_get_b_stack(t_stack *m)
 {
 	int	*tmp;
 
-	tmp = (int *)malloc(m->size_b * sizeof(int));
+	tmp = (int *)malloc(m->size_a * sizeof(int));
 	return (tmp);
 }
 
 void	ft_init_vars(t_stack *m, int argc, char **argv)
 {
 	m->args = &argv[1];
-	m->b_stack = ft_get_b_stack(m);
-	m->a_stack = ft_get_a_stack(m);
 	m->size_a = argc - 1;
 	m->size_b = 0;
+	m->b_stack = ft_get_b_stack(m);
+	m->a_stack = ft_get_a_stack(m);
 }
 
 // void	showleaks(void)
@@ -108,19 +188,24 @@ void	ft_init_vars(t_stack *m, int argc, char **argv)
 // 	system("leaks -q push_swap");
 // }
 
-void printcheck(t_stack *m)
+void	printcheck(t_stack *m)
 {
 	int	i;
 
+	printf("\nA:\n");
 	i = 0;
-	printf("\nMove:\n");
-	while (m->a_stack[i] != '\0')
-	{	
-		printf("%d %d\n", m->a_stack[i], m->b_stack[i]);
+	while (i < m->size_a)
+	{
+		printf("%d\n", m->a_stack[i]);
 		i++;
 	}
-	printf("- -\n");
-	printf("a b\n");
+	printf("\nB:\n");
+	i = 0;
+	while (i < m->size_b)
+	{
+		printf("%d\n", m->b_stack[i]);
+		i++;
+	}
 }
 
 int	main(int argc, char **argv)
@@ -139,10 +224,6 @@ int	main(int argc, char **argv)
 		printcheck(&m);
 		ft_pb(&m);
 		printcheck(&m);
-		ft_pb(&m);
-		printcheck(&m);
 	}
 	return (0);
 }
-
-// POR QUE SE IMPRIME ASI DE RARO
