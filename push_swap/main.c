@@ -6,7 +6,7 @@
 /*   By: djanssen <djanssen@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 11:03:12 by djanssen          #+#    #+#             */
-/*   Updated: 2023/01/23 18:15:24 by djanssen         ###   ########.fr       */
+/*   Updated: 2023/01/27 11:59:13 by djanssen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,17 +106,14 @@ t_stack *add_to_stack_a(t_stack *m)
 	int	*saved;
 
 	i = 0;
-	saved = (int *)malloc((m->size_a + 1) * sizeof(int));
+	m->size_a++;
+	saved = (int *)malloc((m->size_a) * sizeof(int));
 	saved[0] = m->tmp;
 	while (++i < m->size_a)
 		saved[i] = m->a_stack[i - 1];
 	free(m->a_stack);
-	m->size_a++;
-	m->a_stack = (int *)malloc(m->size_a * sizeof(int));
-	i = -1;
-	while (++i < m->size_a)
-		m->a_stack[i] = saved[i];
-	return (free(saved), m);
+	m->a_stack = saved;
+	return (m);
 }
 
 t_stack *add_to_stack_b(t_stack *m)
@@ -125,24 +122,21 @@ t_stack *add_to_stack_b(t_stack *m)
 	int	*saved;
 
 	i = 0;
-	saved = (int *)malloc((m->size_b + 1) * sizeof(int));
+	m->size_b++;
+	saved = (int *)malloc((m->size_b) * sizeof(int));
 	saved[0] = m->tmp;
 	while (++i < m->size_b)
 		saved[i] = m->b_stack[i - 1];
 	free(m->b_stack);
-	m->size_b++;
-	m->b_stack = (int *)malloc(m->size_b * sizeof(int));
-	i = -1;
-	while (++i < m->size_b)
-		m->b_stack[i] = saved[i];
-	return (free(saved), m);
+	m->b_stack = saved;
+	return (m);
 }
 
 t_stack *ft_pb(t_stack *m)
 {
 	remove_from_stack_a(m, 0);
 	add_to_stack_b(m);
-	return (ft_printf("pb\n"), m);
+	return (ft_printf("PB\n\n\n"), m);
 }
 
 t_stack *ft_pa(t_stack *m)
@@ -150,6 +144,84 @@ t_stack *ft_pa(t_stack *m)
 	remove_from_stack_b(m, 0);
 	add_to_stack_a(m);
 	return (ft_printf("pa\n"), m);
+}
+
+t_stack	*ft_ra(t_stack *m)
+{
+	int	i;
+	int	*saved;
+
+	i = -1;
+	saved = (int *)malloc((m->size_a) * sizeof(int));
+	m->tmp = m->a_stack[0];
+	while (++i < m->size_a)
+		saved[i] = m->a_stack[i + 1];
+	free (m->a_stack);
+	saved[m->size_a - 1] = m->tmp;
+	m->a_stack = saved;
+	return (m);
+}
+
+t_stack	*ft_rb(t_stack *m)
+{
+	int	i;
+	int	*saved;
+
+	i = -1;
+	saved = (int *)malloc((m->size_b) * sizeof(int));
+	m->tmp = m->b_stack[0];
+	while (++i < m->size_b)
+		saved[i] = m->b_stack[i + 1];
+	free (m->b_stack);
+	saved[m->size_b - 1] = m->tmp;
+	m->b_stack = saved;
+	return (m);
+}
+
+t_stack	*ft_rr(t_stack *m)
+{
+	ft_ra(m);
+	ft_rb(m);
+	return (m);
+}
+
+t_stack	*ft_rra(t_stack *m)
+{
+	int	i;
+	int	*saved;
+
+	i = -1;
+	saved = (int *)malloc((m->size_a) * sizeof(int));
+	m->tmp = m->a_stack[m->size_a - 1];
+	saved[0] = m->tmp;
+	while (++i < m->size_a - 1)
+		saved [i + 1] = m->a_stack[i];
+	free (m->a_stack);
+	m->a_stack = saved;
+	return (m);
+}
+
+t_stack	*ft_rrb(t_stack *m)
+{
+	int	i;
+	int	*saved;
+
+	i = -1;
+	saved = (int *)malloc((m->size_b) * sizeof(int));
+	m->tmp = m->b_stack[m->size_b - 1];
+	saved[0] = m->tmp;
+	while (++i < m->size_b - 1)
+		saved [i + 1] = m->b_stack[i];
+	free (m->b_stack);
+	m->b_stack = saved;
+	return (m);
+}
+
+t_stack	*ft_rrr(t_stack *m)
+{
+	ft_rra(m);
+	ft_rrb(m);
+	return (m);
 }
 
 int	*ft_get_a_stack(t_stack *m)
@@ -220,9 +292,13 @@ int	main(int argc, char **argv)
 	{
 		ft_init_vars(&m, argc, argv);
 		printcheck(&m);
-		ft_pb(&m);
+		ft_rra(&m);
 		printcheck(&m);
-		ft_pb(&m);
+		ft_rra(&m);
+		printcheck(&m);
+		ft_rra(&m);
+		printcheck(&m);
+		ft_rra(&m);
 		printcheck(&m);
 	}
 	return (0);
