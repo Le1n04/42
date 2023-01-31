@@ -6,7 +6,7 @@
 /*   By: djanssen <djanssen@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 11:03:12 by djanssen          #+#    #+#             */
-/*   Updated: 2023/01/27 11:59:13 by djanssen         ###   ########.fr       */
+/*   Updated: 2023/01/31 14:21:19 by djanssen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,14 +136,14 @@ t_stack *ft_pb(t_stack *m)
 {
 	remove_from_stack_a(m, 0);
 	add_to_stack_b(m);
-	return (ft_printf("PB\n\n\n"), m);
+	return (printf("pb\n"), m);
 }
 
 t_stack *ft_pa(t_stack *m)
 {
 	remove_from_stack_b(m, 0);
 	add_to_stack_a(m);
-	return (ft_printf("pa\n"), m);
+	return (printf("pa\n"), m);
 }
 
 t_stack	*ft_ra(t_stack *m)
@@ -159,7 +159,7 @@ t_stack	*ft_ra(t_stack *m)
 	free (m->a_stack);
 	saved[m->size_a - 1] = m->tmp;
 	m->a_stack = saved;
-	return (m);
+	return (printf("ra\n"), m);
 }
 
 t_stack	*ft_rb(t_stack *m)
@@ -175,14 +175,14 @@ t_stack	*ft_rb(t_stack *m)
 	free (m->b_stack);
 	saved[m->size_b - 1] = m->tmp;
 	m->b_stack = saved;
-	return (m);
+	return (printf("rb\n"), m);
 }
 
 t_stack	*ft_rr(t_stack *m)
 {
 	ft_ra(m);
 	ft_rb(m);
-	return (m);
+	return (printf("rr\n"), m);
 }
 
 t_stack	*ft_rra(t_stack *m)
@@ -198,7 +198,7 @@ t_stack	*ft_rra(t_stack *m)
 		saved [i + 1] = m->a_stack[i];
 	free (m->a_stack);
 	m->a_stack = saved;
-	return (m);
+	return (printf("rra\n"), m);
 }
 
 t_stack	*ft_rrb(t_stack *m)
@@ -214,14 +214,14 @@ t_stack	*ft_rrb(t_stack *m)
 		saved [i + 1] = m->b_stack[i];
 	free (m->b_stack);
 	m->b_stack = saved;
-	return (m);
+	return (printf("rrb\n"), m);
 }
 
 t_stack	*ft_rrr(t_stack *m)
 {
 	ft_rra(m);
 	ft_rrb(m);
-	return (m);
+	return (printf("rrr\n"), m);
 }
 
 int	*ft_get_a_stack(t_stack *m)
@@ -233,7 +233,7 @@ int	*ft_get_a_stack(t_stack *m)
 	tmp = (int *)malloc(m->size_a * sizeof(int));
 	while (m->args[++i])
 	{
-		tmp[i] = ft_atoi(m->args[i]);
+		tmp[i] = atoi(m->args[i]);
 	}
 	return (tmp);
 }
@@ -253,12 +253,9 @@ void	ft_init_vars(t_stack *m, int argc, char **argv)
 	m->size_b = 0;
 	m->b_stack = ft_get_b_stack(m);
 	m->a_stack = ft_get_a_stack(m);
+	m->smalla = 0;
+	m->biga = 0;
 }
-
-// void	showleaks(void)
-// {
-// 	system("leaks -q push_swap");
-// }
 
 void	printcheck(t_stack *m)
 {
@@ -280,25 +277,62 @@ void	printcheck(t_stack *m)
 	}
 }
 
+void	get_smallest_a(t_stack *m)
+{
+	int	i;
+
+	i = -1;
+	m->smalla = 2147483648;
+	while (++i > m->size_a)
+		if (m->a_stack[i] < m->smalla)
+			m->smalla = m->a_stack[i];
+}
+
+void	get_biggest_a(t_stack *m)
+{
+	int	i;
+
+	i = -1;
+	m->biga = -2147483648;
+	while (++i < m->size_a)
+		if (m->a_stack[i] > m->biga)
+			m->biga = m->a_stack[i];
+}
+
+void	rotate_to_small_a(t_stack *m)
+{
+	while (m->smalla != m->a_stack[0])
+		ft_ra(m);
+}
+
+void	rotate_to_big_a(t_stack *m)
+{
+	while (m->biga != m->a_stack[0])
+		ft_ra(m);
+}
+
+void	init_alg(t_stack *m)
+{
+	while (m->size_a > 0)
+	{
+		get_smallest_a(m);
+		printf("%d\n", m->smalla);
+		rotate_to_small_a(m);
+		ft_pb(m);
+	}
+}
+
 int	main(int argc, char **argv)
 {
 	t_stack	m;
-	int		i;
 
-	i = -1;
 	if (argc < 2)
-		return (ft_printf("%sYou need at least 2 arguments\n", COLOUR_RED), 1);
+		return (printf("%sYou need at least 2 arguments\n", COLOUR_RED), 1);
 	else
 	{
 		ft_init_vars(&m, argc, argv);
 		printcheck(&m);
-		ft_rra(&m);
-		printcheck(&m);
-		ft_rra(&m);
-		printcheck(&m);
-		ft_rra(&m);
-		printcheck(&m);
-		ft_rra(&m);
+		init_alg(&m);
 		printcheck(&m);
 	}
 	return (0);
