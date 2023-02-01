@@ -6,7 +6,7 @@
 /*   By: djanssen <djanssen@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 11:03:12 by djanssen          #+#    #+#             */
-/*   Updated: 2023/01/31 14:21:19 by djanssen         ###   ########.fr       */
+/*   Updated: 2023/02/01 16:50:55 by djanssen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,14 @@ t_stack	*ft_sa(t_stack *m)
 {
 	if (m->a_stack[1])
 		ft_swap(&m->a_stack[0], &m->a_stack[1]);
-	return (m);
+	return (printf("sa\n"), m);
 }
 
 t_stack	*ft_sb(t_stack *m)
 {
 	if (m->b_stack[1])
 		ft_swap(&m->b_stack[0], &m->b_stack[1]);
-	return (m);
+	return (printf("sa\n"), m);
 }
 
 t_stack	*ft_ss(t_stack *m)
@@ -42,61 +42,41 @@ t_stack	*ft_ss(t_stack *m)
 	return (m);
 }
 
-t_stack	*remove_from_stack_a(t_stack *m, int num)
+t_stack	*remove_from_stack_a(t_stack *m)
 {
 	int	i;
 	int	*saved;
-	int	j;
 
 	i = -1;
-	j = 0;
 	saved = (int *)malloc(m->size_a * sizeof(int));
 	while (++i < m->size_a)
 		saved[i] = m->a_stack[i];
 	m->tmp = m->a_stack[0];
-	if (num == 1)
-		m->tmp = m->a_stack[m->size_a - 1];
 	free(m->a_stack);
 	m->size_a--;
 	m->a_stack = (int *)malloc(m->size_a * sizeof(int));
-	while (--i >= 0)
-	{
-		m->a_stack[j] = saved[j];
-		j++;
-	}
 	i = -1;
-	if (num == 0)
-		while (++i < m->size_a)
-			m->a_stack[i] = saved[i + 1];
+	while (++i < m->size_a)
+		m->a_stack[i] = saved[i + 1];
 	return (free(saved), m);
 }
 
-t_stack	*remove_from_stack_b(t_stack *m, int num)
+t_stack	*remove_from_stack_b(t_stack *m)
 {
 	int	i;
 	int	*saved;
-	int	j;
 
 	i = -1;
-	j = 0;
 	saved = (int *)malloc(m->size_b * sizeof(int));
 	while (++i < m->size_b)
 		saved[i] = m->b_stack[i];
 	m->tmp = m->b_stack[0];
-	if (num == 1)
-		m->tmp = m->b_stack[m->size_b - 1];
 	free(m->b_stack);
 	m->size_b--;
 	m->b_stack = (int *)malloc(m->size_b * sizeof(int));
-	while (--i >= 0)
-	{
-		m->b_stack[j] = saved[j];
-		j++;
-	}
 	i = -1;
-	if (num == 0)
-		while (++i < m->size_b)
-			m->b_stack[i] = saved[i + 1];
+	while (++i < m->size_b)
+		m->b_stack[i] = saved[i + 1];
 	return (free(saved), m);
 }
 
@@ -134,14 +114,14 @@ t_stack *add_to_stack_b(t_stack *m)
 
 t_stack *ft_pb(t_stack *m)
 {
-	remove_from_stack_a(m, 0);
+	remove_from_stack_a(m);
 	add_to_stack_b(m);
 	return (printf("pb\n"), m);
 }
 
 t_stack *ft_pa(t_stack *m)
 {
-	remove_from_stack_b(m, 0);
+	remove_from_stack_b(m);
 	add_to_stack_a(m);
 	return (printf("pa\n"), m);
 }
@@ -282,45 +262,104 @@ void	get_smallest_a(t_stack *m)
 	int	i;
 
 	i = -1;
-	m->smalla = 2147483648;
-	while (++i > m->size_a)
+	m->smalla = 2147483647;
+	while (++i < m->size_a)
 		if (m->a_stack[i] < m->smalla)
 			m->smalla = m->a_stack[i];
 }
 
-void	get_biggest_a(t_stack *m)
+void	three_order(t_stack *m)
 {
-	int	i;
-
-	i = -1;
-	m->biga = -2147483648;
-	while (++i < m->size_a)
-		if (m->a_stack[i] > m->biga)
-			m->biga = m->a_stack[i];
+	if (m->a_stack[0] < m->a_stack[1] && m->a_stack[1] > m->a_stack[2]
+		&& m->a_stack[0] < m->a_stack[2])
+	{
+		ft_rra(m);
+		ft_sa(m);
+	}
+	else if (m->a_stack[0] > m->a_stack[1] && m->a_stack[1] < m->a_stack[2]
+		&& m->a_stack[0] < m->a_stack[2])
+		ft_sa(m);
+	else if (m->a_stack[0] < m->a_stack[1] && m->a_stack[1] > m->a_stack[2]
+		&& m->a_stack[0] > m->a_stack[2])
+		ft_rra(m);
+	else if (m->a_stack[0] > m->a_stack[1] && m->a_stack[1] < m->a_stack[2]
+		&& m->a_stack[0] > m->a_stack[2])
+		ft_ra(m);
+	else if (m->a_stack[0] > m->a_stack[1] && m->a_stack[1] > m->a_stack[2]
+		&& m->a_stack[0] > m->a_stack[2])
+	{
+		ft_sa(m);
+		ft_rra(m);
+	}
 }
 
 void	rotate_to_small_a(t_stack *m)
 {
-	while (m->smalla != m->a_stack[0])
-		ft_ra(m);
+	int	i;
+
+	i = -1;
+	while (++i < m->size_a)
+		if (m->a_stack[i] == m->smalla)
+			break ;
+	if (i <= (m->size_a / 2))
+		while (m->smalla != m->a_stack[0])
+			ft_ra(m);
+	else
+		while (m->smalla != m->a_stack[0])
+			ft_rra(m);
 }
 
-void	rotate_to_big_a(t_stack *m)
+void	finish_to_a(t_stack *m)
 {
-	while (m->biga != m->a_stack[0])
-		ft_ra(m);
+	while (m->size_b)
+		ft_pa(m);
 }
 
-void	init_alg(t_stack *m)
+int check_if_ordered(t_stack *m)
+{
+	int	i;
+
+	i = 0;
+	while (i < m->size_a - 1 && m->a_stack[i] < m->a_stack[i + 1])
+		i++;
+	if (i == m->size_a - 1)
+		return (0);
+	return (1);
+}
+
+void	srp(t_stack *m)
 {
 	while (m->size_a > 0)
 	{
 		get_smallest_a(m);
-		printf("%d\n", m->smalla);
 		rotate_to_small_a(m);
 		ft_pb(m);
 	}
 }
+
+void	init_alg(t_stack *m)
+{
+	if (check_if_ordered(m))
+	{
+		if (m->size_a == 3)
+			three_order(m);
+		else if (m->size_a == 5)
+		{
+			three_order(m);
+			srp(m);
+		}
+		else
+		{
+			srp(m);
+			finish_to_a(m);
+		}
+	}
+}
+
+// void	showleaks(void)
+// {
+// 	system("leaks -q push_swap");
+// }
 
 int	main(int argc, char **argv)
 {
@@ -328,12 +367,12 @@ int	main(int argc, char **argv)
 
 	if (argc < 2)
 		return (printf("%sYou need at least 2 arguments\n", COLOUR_RED), 1);
+	else if (argc == 2)
+		return (0);
 	else
 	{
 		ft_init_vars(&m, argc, argv);
-		printcheck(&m);
 		init_alg(&m);
-		printcheck(&m);
 	}
 	return (0);
 }

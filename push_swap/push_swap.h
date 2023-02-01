@@ -6,7 +6,7 @@
 /*   By: djanssen <djanssen@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 09:48:59 by djanssen          #+#    #+#             */
-/*   Updated: 2023/01/31 14:12:22 by djanssen         ###   ########.fr       */
+/*   Updated: 2023/02/01 12:43:23 by djanssen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ typedef struct s_stack
 	int		tmp;
 	int		biga;
 	int		smalla;
+	int		pos;
+	int		value;
 }	t_stack;
 
 #endif
