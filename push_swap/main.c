@@ -6,7 +6,7 @@
 /*   By: djanssen <djanssen@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 11:03:12 by djanssen          #+#    #+#             */
-/*   Updated: 2023/02/01 16:50:55 by djanssen         ###   ########.fr       */
+/*   Updated: 2023/02/01 18:15:59 by djanssen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -293,19 +293,19 @@ void	three_order(t_stack *m)
 	}
 }
 
-void	rotate_to_small_a(t_stack *m)
+void	rotate_to_small_num(t_stack *m, int num)
 {
 	int	i;
 
 	i = -1;
 	while (++i < m->size_a)
-		if (m->a_stack[i] == m->smalla)
+		if (m->a_stack[i] == num)
 			break ;
 	if (i <= (m->size_a / 2))
-		while (m->smalla != m->a_stack[0])
+		while (num != m->a_stack[0])
 			ft_ra(m);
 	else
-		while (m->smalla != m->a_stack[0])
+		while (num != m->a_stack[0])
 			ft_rra(m);
 }
 
@@ -332,8 +332,28 @@ void	srp(t_stack *m)
 	while (m->size_a > 0)
 	{
 		get_smallest_a(m);
-		rotate_to_small_a(m);
+		rotate_to_small_num(m, m->smalla);
 		ft_pb(m);
+	}
+}
+
+void	srp_mod(t_stack *m)
+{
+	int	max_perc;
+	int	i;
+	int	tmp;
+
+	get_smallest_a(m);
+	max_perc = m->smalla * 0.75;
+	i = -1;
+	while (++i < m->size_a)
+	{
+		if (m->a_stack[i] < max_perc)
+		{
+			tmp = m->a_stack[i];
+			rotate_to_small_num(m, tmp);
+			ft_pb(m);
+		}
 	}
 }
 
@@ -376,3 +396,11 @@ int	main(int argc, char **argv)
 	}
 	return (0);
 }
+
+/**
+ * Terminar de hacer las funciones modeadas de srp
+ * para mandar el 25% de los numeros pequeños a la derecha y ordenarlos ahi y
+ * el objetivo es acortar las rotaciones en A para que no tenga que pasar
+ * de un extremo al otro todo el rato.
+ * 
+ */
