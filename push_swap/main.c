@@ -6,7 +6,7 @@
 /*   By: djanssen <djanssen@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 11:03:12 by djanssen          #+#    #+#             */
-/*   Updated: 2023/02/15 13:17:23 by djanssen         ###   ########.fr       */
+/*   Updated: 2023/02/15 18:57:45 by djanssen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -186,7 +186,10 @@ t_stack	*ft_rra(t_stack *m)
 		saved[i + 1] = m->a_stack[i];
 	free(m->a_stack);
 	m->a_stack = saved;
-	return (printf("rra\n"), m);
+	if (m->printable == 1)
+		printf("rra\n");
+	m->printable = 1;
+	return (m);
 }
 
 t_stack	*ft_rrb(t_stack *m)
@@ -202,12 +205,17 @@ t_stack	*ft_rrb(t_stack *m)
 		saved[i + 1] = m->b_stack[i];
 	free(m->b_stack);
 	m->b_stack = saved;
-	return (printf("rrb\n"), m);
+	if (m->printable == 1)
+		printf("rrb\n");
+	m->printable = 1;
+	return (m);
 }
 
 t_stack	*ft_rrr(t_stack *m)
 {
+	m->printable = 0;
 	ft_rra(m);
+	m->printable = 0;
 	ft_rrb(m);
 	return (printf("rrr\n"), m);
 }
@@ -245,27 +253,28 @@ void	ft_init_vars(t_stack *m, int argc, char **argv)
 	m->biga = -2147483648;
 	m->printable = 1;
 	m->rot = 1;
+	m->ordered = 0;
 }
 
-void	printcheck(t_stack *m)
-{
-	int	i;
+// void	printcheck(t_stack *m)
+// {
+// 	int	i;
 
-	printf("\nA:\n");
-	i = 0;
-	while (i < m->size_a)
-	{
-		printf("%d\n", m->a_stack[i]);
-		i++;
-	}
-	printf("\nB:\n");
-	i = 0;
-	while (i < m->size_b)
-	{
-		printf("%d\n", m->b_stack[i]);
-		i++;
-	}
-}
+// 	printf("\nA:\n");
+// 	i = 0;
+// 	while (i < m->size_a)
+// 	{
+// 		printf("%d\n", m->a_stack[i]);
+// 		i++;
+// 	}
+// 	printf("\nB:\n");
+// 	i = 0;
+// 	while (i < m->size_b)
+// 	{
+// 		printf("%d\n", m->b_stack[i]);
+// 		i++;
+// 	}
+// }
 
 void	get_smallest_a(t_stack *m)
 {
@@ -355,8 +364,27 @@ void	rotate_to_small_num(t_stack *m, int num)
 		}
 	}
 	else
+	{
 		while (num != m->a_stack[0])
-			ft_rra(m);
+		{
+			m->rot = 1;
+			get_biggest_a(m);
+			if (m->biga == m->a_stack[0])
+			{
+				ft_pb(m);
+				if (num != m->a_stack[0])
+				{
+					ft_rra(m);
+					ft_rb(m);
+					m->rot = 0;
+				}
+				else
+					ft_rrb(m);
+			}
+			if (m->rot == 1)
+				ft_rra(m);
+		}
+	}
 }
 
 void	finish_to_a(t_stack *m)
@@ -423,6 +451,127 @@ void	init_alg(t_stack *m)
 	}
 }
 
+void	get_smallest_from_a(t_stack *m, int min)
+{
+	int	i;
+
+	i = -1;
+	m->smalla = 2147483647;
+	while (++i < m->size_a)
+		if (m->a_stack[i] < m->smalla && m->a_stack[i] > min)
+			m->smalla = m->a_stack[i];
+}
+
+void	get_max_pro(t_stack *m, int num, int min)
+{
+	int	i;
+	int	j;
+	int	count;
+
+	i = -1;
+	get_smallest_from_a(m, min);
+	j = 1;
+	count = 0;
+	while (++i < m->size_a && count < num)
+	{
+		if (m->a_stack[i] == m->smalla + j)
+		{
+			count++;
+			m->max_pro = m->a_stack[i];
+			j++;
+			i = -1;
+		}
+	}
+}
+
+void	push_to_max(t_stack *m)
+{
+	int	i;
+	int	tmp;
+
+	tmp = m->size_a;
+	i = -1;
+	while (++i < tmp)
+	{
+		m->rot = 1;
+		if (m->a_stack[0] < m->max_pro && m->a_stack[0] > m->ordered)
+		{
+			ft_pb(m);
+			m->rot = 0;
+		}
+		if (m->rot == 1)
+			ft_ra(m);
+	}
+}
+
+void	get_biggest_b(t_stack *m)
+{
+	int	i;
+
+	i = -1;
+	m->bigb = -2147483648;
+	while (++i < m->size_b)
+		if (m->b_stack[i] > m->bigb)
+			m->bigb = m->b_stack[i];
+}
+
+void	rotate_push(t_stack *m)
+{
+	int	i;
+
+	m->fake_ordered = 0;
+	while (m->size_b)
+	{
+		i = -1;
+		get_biggest_b(m);
+		while (++i < m->size_b)
+			if (m->b_stack[i] == m->bigb)
+				break ;
+		if (i <= (m->size_b / 2))
+			while (m->bigb != m->b_stack[0])
+				ft_rb(m);
+		else
+			while (m->bigb != m->b_stack[0])
+				ft_rrb(m);
+		ft_pa(m);
+		m->fake_ordered++;
+		m->ordered++;
+	}
+}
+
+void	send_bot(t_stack *m)
+{
+	int	i;
+
+	i = -1;
+	while (++i < m->fake_ordered)
+		ft_ra(m);
+}
+
+/**
+ * //SI ES MAYOR DE 20 O POR AHI//
+ * 
+ * Pillar los numeros 20 veces más pequeños barriendo todo el stack
+*/
+void	new_srp(t_stack *m)
+{
+	int	i;
+
+	i = -1;
+	get_smallest_a(m);
+	get_max_pro(m, 20, m->smalla);
+	push_to_max(m);
+	rotate_push(m);
+	send_bot(m);
+	while (++i < 5)
+	{
+		get_max_pro(m, 20, m->ordered);
+		push_to_max(m);
+		rotate_push(m);
+		send_bot(m);
+	}
+}
+
 // void	showleaks(void)
 // {
 // 	system("leaks -q push_swap");
@@ -439,7 +588,7 @@ int	main(int argc, char **argv)
 	else
 	{
 		ft_init_vars(&m, argc, argv);
-		init_alg(&m);
+		new_srp(&m);
 	}
 	return (0);
 }
