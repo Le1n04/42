@@ -6,7 +6,7 @@
 /*   By: djanssen <djanssen@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 11:03:12 by djanssen          #+#    #+#             */
-/*   Updated: 2023/02/01 18:15:59 by djanssen         ###   ########.fr       */
+/*   Updated: 2023/02/15 13:17:23 by djanssen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ t_stack	*remove_from_stack_b(t_stack *m)
 	return (free(saved), m);
 }
 
-t_stack *add_to_stack_a(t_stack *m)
+t_stack	*add_to_stack_a(t_stack *m)
 {
 	int	i;
 	int	*saved;
@@ -96,7 +96,7 @@ t_stack *add_to_stack_a(t_stack *m)
 	return (m);
 }
 
-t_stack *add_to_stack_b(t_stack *m)
+t_stack	*add_to_stack_b(t_stack *m)
 {
 	int	i;
 	int	*saved;
@@ -112,14 +112,14 @@ t_stack *add_to_stack_b(t_stack *m)
 	return (m);
 }
 
-t_stack *ft_pb(t_stack *m)
+t_stack	*ft_pb(t_stack *m)
 {
 	remove_from_stack_a(m);
 	add_to_stack_b(m);
 	return (printf("pb\n"), m);
 }
 
-t_stack *ft_pa(t_stack *m)
+t_stack	*ft_pa(t_stack *m)
 {
 	remove_from_stack_b(m);
 	add_to_stack_a(m);
@@ -136,10 +136,13 @@ t_stack	*ft_ra(t_stack *m)
 	m->tmp = m->a_stack[0];
 	while (++i < m->size_a)
 		saved[i] = m->a_stack[i + 1];
-	free (m->a_stack);
+	free(m->a_stack);
 	saved[m->size_a - 1] = m->tmp;
 	m->a_stack = saved;
-	return (printf("ra\n"), m);
+	if (m->printable == 1)
+		printf("ra\n");
+	m->printable = 1;
+	return (m);
 }
 
 t_stack	*ft_rb(t_stack *m)
@@ -152,15 +155,20 @@ t_stack	*ft_rb(t_stack *m)
 	m->tmp = m->b_stack[0];
 	while (++i < m->size_b)
 		saved[i] = m->b_stack[i + 1];
-	free (m->b_stack);
+	free(m->b_stack);
 	saved[m->size_b - 1] = m->tmp;
 	m->b_stack = saved;
-	return (printf("rb\n"), m);
+	if (m->printable == 1)
+		printf("rb\n");
+	m->printable = 1;
+	return (m);
 }
 
 t_stack	*ft_rr(t_stack *m)
 {
+	m->printable = 0;
 	ft_ra(m);
+	m->printable = 0;
 	ft_rb(m);
 	return (printf("rr\n"), m);
 }
@@ -175,8 +183,8 @@ t_stack	*ft_rra(t_stack *m)
 	m->tmp = m->a_stack[m->size_a - 1];
 	saved[0] = m->tmp;
 	while (++i < m->size_a - 1)
-		saved [i + 1] = m->a_stack[i];
-	free (m->a_stack);
+		saved[i + 1] = m->a_stack[i];
+	free(m->a_stack);
 	m->a_stack = saved;
 	return (printf("rra\n"), m);
 }
@@ -191,8 +199,8 @@ t_stack	*ft_rrb(t_stack *m)
 	m->tmp = m->b_stack[m->size_b - 1];
 	saved[0] = m->tmp;
 	while (++i < m->size_b - 1)
-		saved [i + 1] = m->b_stack[i];
-	free (m->b_stack);
+		saved[i + 1] = m->b_stack[i];
+	free(m->b_stack);
 	m->b_stack = saved;
 	return (printf("rrb\n"), m);
 }
@@ -234,7 +242,9 @@ void	ft_init_vars(t_stack *m, int argc, char **argv)
 	m->b_stack = ft_get_b_stack(m);
 	m->a_stack = ft_get_a_stack(m);
 	m->smalla = 0;
-	m->biga = 0;
+	m->biga = -2147483648;
+	m->printable = 1;
+	m->rot = 1;
 }
 
 void	printcheck(t_stack *m)
@@ -268,6 +278,17 @@ void	get_smallest_a(t_stack *m)
 			m->smalla = m->a_stack[i];
 }
 
+void	get_smallest_b(t_stack *m)
+{
+	int	i;
+
+	i = -1;
+	m->smallb = 2147483647;
+	while (++i < m->size_b)
+		if (m->b_stack[i] < m->smallb)
+			m->smallb = m->b_stack[i];
+}
+
 void	three_order(t_stack *m)
 {
 	if (m->a_stack[0] < m->a_stack[1] && m->a_stack[1] > m->a_stack[2]
@@ -277,20 +298,31 @@ void	three_order(t_stack *m)
 		ft_sa(m);
 	}
 	else if (m->a_stack[0] > m->a_stack[1] && m->a_stack[1] < m->a_stack[2]
-		&& m->a_stack[0] < m->a_stack[2])
+			&& m->a_stack[0] < m->a_stack[2])
 		ft_sa(m);
 	else if (m->a_stack[0] < m->a_stack[1] && m->a_stack[1] > m->a_stack[2]
-		&& m->a_stack[0] > m->a_stack[2])
+			&& m->a_stack[0] > m->a_stack[2])
 		ft_rra(m);
 	else if (m->a_stack[0] > m->a_stack[1] && m->a_stack[1] < m->a_stack[2]
-		&& m->a_stack[0] > m->a_stack[2])
+			&& m->a_stack[0] > m->a_stack[2])
 		ft_ra(m);
 	else if (m->a_stack[0] > m->a_stack[1] && m->a_stack[1] > m->a_stack[2]
-		&& m->a_stack[0] > m->a_stack[2])
+			&& m->a_stack[0] > m->a_stack[2])
 	{
 		ft_sa(m);
 		ft_rra(m);
 	}
+}
+
+void	get_biggest_a(t_stack *m)
+{
+	int	i;
+
+	i = -1;
+	m->biga = -2147483648;
+	while (++i < m->size_a)
+		if (m->a_stack[i] > m->biga)
+			m->biga = m->a_stack[i];
 }
 
 void	rotate_to_small_num(t_stack *m, int num)
@@ -302,8 +334,26 @@ void	rotate_to_small_num(t_stack *m, int num)
 		if (m->a_stack[i] == num)
 			break ;
 	if (i <= (m->size_a / 2))
+	{
 		while (num != m->a_stack[0])
-			ft_ra(m);
+		{
+			m->rot = 1;
+			get_biggest_a(m);
+			if (m->biga == m->a_stack[0])
+			{
+				ft_pb(m);
+				if (num != m->a_stack[0])
+				{
+					ft_rr(m);
+					m->rot = 0;
+				}
+				else
+					ft_rb(m);
+			}
+			if (m->rot == 1)
+				ft_ra(m);
+		}
+	}
 	else
 		while (num != m->a_stack[0])
 			ft_rra(m);
@@ -311,11 +361,24 @@ void	rotate_to_small_num(t_stack *m, int num)
 
 void	finish_to_a(t_stack *m)
 {
+	int	i;
+
+	i = -1;
 	while (m->size_b)
 		ft_pa(m);
+	get_smallest_a(m);
+	while (++i < m->size_a)
+		if (m->a_stack[i] == m->smalla)
+			break ;
+	if (i <= (m->size_a / 2))
+		while (m->smalla != m->a_stack[0])
+			ft_ra(m);
+	else
+		while (m->smalla != m->a_stack[0])
+			ft_rra(m);
 }
 
-int check_if_ordered(t_stack *m)
+int	check_if_ordered(t_stack *m)
 {
 	int	i;
 
@@ -331,29 +394,13 @@ void	srp(t_stack *m)
 {
 	while (m->size_a > 0)
 	{
+		if (!check_if_ordered(m))
+			break ;
 		get_smallest_a(m);
 		rotate_to_small_num(m, m->smalla);
+		if (!check_if_ordered(m))
+			break ;
 		ft_pb(m);
-	}
-}
-
-void	srp_mod(t_stack *m)
-{
-	int	max_perc;
-	int	i;
-	int	tmp;
-
-	get_smallest_a(m);
-	max_perc = m->smalla * 0.75;
-	i = -1;
-	while (++i < m->size_a)
-	{
-		if (m->a_stack[i] < max_perc)
-		{
-			tmp = m->a_stack[i];
-			rotate_to_small_num(m, tmp);
-			ft_pb(m);
-		}
 	}
 }
 
@@ -363,7 +410,7 @@ void	init_alg(t_stack *m)
 	{
 		if (m->size_a == 3)
 			three_order(m);
-		else if (m->size_a == 5)
+		else if (m->size_a < 10)
 		{
 			three_order(m);
 			srp(m);
@@ -396,11 +443,3 @@ int	main(int argc, char **argv)
 	}
 	return (0);
 }
-
-/**
- * Terminar de hacer las funciones modeadas de srp
- * para mandar el 25% de los numeros pequeños a la derecha y ordenarlos ahi y
- * el objetivo es acortar las rotaciones en A para que no tenga que pasar
- * de un extremo al otro todo el rato.
- * 
- */
