@@ -6,7 +6,7 @@
 /*   By: djanssen <djanssen@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 11:03:12 by djanssen          #+#    #+#             */
-/*   Updated: 2023/02/15 18:57:45 by djanssen         ###   ########.fr       */
+/*   Updated: 2023/02/20 13:20:29 by djanssen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -254,27 +254,8 @@ void	ft_init_vars(t_stack *m, int argc, char **argv)
 	m->printable = 1;
 	m->rot = 1;
 	m->ordered = 0;
+	m->done = 0;
 }
-
-// void	printcheck(t_stack *m)
-// {
-// 	int	i;
-
-// 	printf("\nA:\n");
-// 	i = 0;
-// 	while (i < m->size_a)
-// 	{
-// 		printf("%d\n", m->a_stack[i]);
-// 		i++;
-// 	}
-// 	printf("\nB:\n");
-// 	i = 0;
-// 	while (i < m->size_b)
-// 	{
-// 		printf("%d\n", m->b_stack[i]);
-// 		i++;
-// 	}
-// }
 
 void	get_smallest_a(t_stack *m)
 {
@@ -334,78 +315,6 @@ void	get_biggest_a(t_stack *m)
 			m->biga = m->a_stack[i];
 }
 
-void	rotate_to_small_num(t_stack *m, int num)
-{
-	int	i;
-
-	i = -1;
-	while (++i < m->size_a)
-		if (m->a_stack[i] == num)
-			break ;
-	if (i <= (m->size_a / 2))
-	{
-		while (num != m->a_stack[0])
-		{
-			m->rot = 1;
-			get_biggest_a(m);
-			if (m->biga == m->a_stack[0])
-			{
-				ft_pb(m);
-				if (num != m->a_stack[0])
-				{
-					ft_rr(m);
-					m->rot = 0;
-				}
-				else
-					ft_rb(m);
-			}
-			if (m->rot == 1)
-				ft_ra(m);
-		}
-	}
-	else
-	{
-		while (num != m->a_stack[0])
-		{
-			m->rot = 1;
-			get_biggest_a(m);
-			if (m->biga == m->a_stack[0])
-			{
-				ft_pb(m);
-				if (num != m->a_stack[0])
-				{
-					ft_rra(m);
-					ft_rb(m);
-					m->rot = 0;
-				}
-				else
-					ft_rrb(m);
-			}
-			if (m->rot == 1)
-				ft_rra(m);
-		}
-	}
-}
-
-void	finish_to_a(t_stack *m)
-{
-	int	i;
-
-	i = -1;
-	while (m->size_b)
-		ft_pa(m);
-	get_smallest_a(m);
-	while (++i < m->size_a)
-		if (m->a_stack[i] == m->smalla)
-			break ;
-	if (i <= (m->size_a / 2))
-		while (m->smalla != m->a_stack[0])
-			ft_ra(m);
-	else
-		while (m->smalla != m->a_stack[0])
-			ft_rra(m);
-}
-
 int	check_if_ordered(t_stack *m)
 {
 	int	i;
@@ -416,39 +325,6 @@ int	check_if_ordered(t_stack *m)
 	if (i == m->size_a - 1)
 		return (0);
 	return (1);
-}
-
-void	srp(t_stack *m)
-{
-	while (m->size_a > 0)
-	{
-		if (!check_if_ordered(m))
-			break ;
-		get_smallest_a(m);
-		rotate_to_small_num(m, m->smalla);
-		if (!check_if_ordered(m))
-			break ;
-		ft_pb(m);
-	}
-}
-
-void	init_alg(t_stack *m)
-{
-	if (check_if_ordered(m))
-	{
-		if (m->size_a == 3)
-			three_order(m);
-		else if (m->size_a < 10)
-		{
-			three_order(m);
-			srp(m);
-		}
-		else
-		{
-			srp(m);
-			finish_to_a(m);
-		}
-	}
 }
 
 void	get_smallest_from_a(t_stack *m, int min)
@@ -491,6 +367,7 @@ void	push_to_max(t_stack *m)
 
 	tmp = m->size_a;
 	i = -1;
+	get_biggest_a(m);
 	while (++i < tmp)
 	{
 		m->rot = 1;
@@ -548,28 +425,27 @@ void	send_bot(t_stack *m)
 		ft_ra(m);
 }
 
-/**
- * //SI ES MAYOR DE 20 O POR AHI//
- * 
- * Pillar los numeros 20 veces más pequeños barriendo todo el stack
-*/
 void	new_srp(t_stack *m)
 {
 	int	i;
 
 	i = -1;
+	m->count = 0;
 	get_smallest_a(m);
-	get_max_pro(m, 20, m->smalla);
-	push_to_max(m);
-	rotate_push(m);
-	send_bot(m);
-	while (++i < 5)
+	get_biggest_a(m);
+	m->max_macro = m->size_a / 20;
+	m->ordered = m->smalla - 1;
+	while (m->ordered != m->biga - 1)
 	{
 		get_max_pro(m, 20, m->ordered);
 		push_to_max(m);
 		rotate_push(m);
-		send_bot(m);
+		if (m->count < m->max_macro)
+			send_bot(m);
+		m->count++;
 	}
+	if (m->a_stack[0] == m->biga)
+		ft_ra(m);
 }
 
 // void	showleaks(void)
