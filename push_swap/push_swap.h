@@ -6,7 +6,7 @@
 /*   By: djanssen <djanssen@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 09:48:59 by djanssen          #+#    #+#             */
-/*   Updated: 2023/02/20 12:32:57 by djanssen         ###   ########.fr       */
+/*   Updated: 2023/02/20 14:02:59 by djanssen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ typedef struct s_stack
 	int		smalla;
 	int		smallb;
 	int		biga;
+	int		universal_big;
 	int		printable;
 	int		rot;
 	int		max_pro;
@@ -45,6 +46,7 @@ typedef struct s_stack
 	int		done;
 	int		max_macro;
 	int		count;
+	int		half;
 }	t_stack;
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: djanssen <djanssen@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 11:03:12 by djanssen          #+#    #+#             */
-/*   Updated: 2023/02/20 13:35:59 by djanssen         ###   ########.fr       */
+/*   Updated: 2023/02/20 14:08:29 by djanssen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -357,6 +357,8 @@ void	get_max_pro(t_stack *m, int num, int min)
 			j++;
 			i = -1;
 		}
+		if (m->max_pro == m->universal_big)
+			m->max_pro++;
 	}
 }
 
@@ -376,7 +378,7 @@ void	push_to_max(t_stack *m)
 			ft_pb(m);
 			m->rot = 0;
 		}
-		if (m->rot == 1)
+		if (m->rot == 1 && m->count != m->max_macro - 1)
 			ft_ra(m);
 	}
 }
@@ -433,9 +435,10 @@ void	new_srp(t_stack *m)
 	m->count = 0;
 	get_smallest_a(m);
 	get_biggest_a(m);
+	m->universal_big = m->biga;
 	m->max_macro = m->size_a / 20;
 	m->ordered = m->smalla - 1;
-	while (m->ordered != m->biga - 1)
+	while (m->ordered != m->biga)
 	{
 		get_max_pro(m, 20, m->ordered);
 		push_to_max(m);
@@ -444,8 +447,6 @@ void	new_srp(t_stack *m)
 			send_bot(m);
 		m->count++;
 	}
-	if (m->a_stack[0] == m->biga)
-		ft_ra(m);
 }
 
 // void	showleaks(void)
@@ -468,3 +469,7 @@ int	main(int argc, char **argv)
 	}
 	return (0);
 }
+
+/**
+ * Funciona bien con 100, con el resto de numeros no funciona. 
+ */
