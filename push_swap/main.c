@@ -6,7 +6,7 @@
 /*   By: djanssen <djanssen@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 11:03:12 by djanssen          #+#    #+#             */
-/*   Updated: 2023/02/20 14:08:29 by djanssen         ###   ########.fr       */
+/*   Updated: 2023/02/21 12:05:04 by djanssen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -255,6 +255,8 @@ void	ft_init_vars(t_stack *m, int argc, char **argv)
 	m->rot = 1;
 	m->ordered = 0;
 	m->done = 0;
+	m->arcs = argc - 1;
+	m->count = 0;
 }
 
 void	get_smallest_a(t_stack *m)
@@ -279,6 +281,18 @@ void	get_smallest_b(t_stack *m)
 			m->smallb = m->b_stack[i];
 }
 
+int	check_if_ordered(t_stack *m)
+{
+	int	i;
+
+	i = 0;
+	while (i < m->size_a - 1 && m->a_stack[i] < m->a_stack[i + 1])
+		i++;
+	if (i == m->size_a - 1)
+		return (0);
+	return (1);
+}
+
 void	three_order(t_stack *m)
 {
 	if (m->a_stack[0] < m->a_stack[1] && m->a_stack[1] > m->a_stack[2]
@@ -288,16 +302,16 @@ void	three_order(t_stack *m)
 		ft_sa(m);
 	}
 	else if (m->a_stack[0] > m->a_stack[1] && m->a_stack[1] < m->a_stack[2]
-			&& m->a_stack[0] < m->a_stack[2])
+		&& m->a_stack[0] < m->a_stack[2])
 		ft_sa(m);
 	else if (m->a_stack[0] < m->a_stack[1] && m->a_stack[1] > m->a_stack[2]
-			&& m->a_stack[0] > m->a_stack[2])
+		&& m->a_stack[0] > m->a_stack[2])
 		ft_rra(m);
 	else if (m->a_stack[0] > m->a_stack[1] && m->a_stack[1] < m->a_stack[2]
-			&& m->a_stack[0] > m->a_stack[2])
+		&& m->a_stack[0] > m->a_stack[2])
 		ft_ra(m);
 	else if (m->a_stack[0] > m->a_stack[1] && m->a_stack[1] > m->a_stack[2]
-			&& m->a_stack[0] > m->a_stack[2])
+		&& m->a_stack[0] > m->a_stack[2])
 	{
 		ft_sa(m);
 		ft_rra(m);
@@ -313,18 +327,6 @@ void	get_biggest_a(t_stack *m)
 	while (++i < m->size_a)
 		if (m->a_stack[i] > m->biga)
 			m->biga = m->a_stack[i];
-}
-
-int	check_if_ordered(t_stack *m)
-{
-	int	i;
-
-	i = 0;
-	while (i < m->size_a - 1 && m->a_stack[i] < m->a_stack[i + 1])
-		i++;
-	if (i == m->size_a - 1)
-		return (0);
-	return (1);
 }
 
 void	get_smallest_from_a(t_stack *m, int min)
@@ -378,7 +380,7 @@ void	push_to_max(t_stack *m)
 			ft_pb(m);
 			m->rot = 0;
 		}
-		if (m->rot == 1 && m->count != m->max_macro - 1)
+		if (m->rot == 1 && check_if_ordered(m))
 			ft_ra(m);
 	}
 }
@@ -427,25 +429,40 @@ void	send_bot(t_stack *m)
 		ft_ra(m);
 }
 
+// int	get_the_amount(t_stack *m)
+// {
+// 	int	i;
+
+// 	i = -1;
+// 	m->arcs;
+// }
+
 void	new_srp(t_stack *m)
 {
 	int	i;
 
 	i = -1;
-	m->count = 0;
 	get_smallest_a(m);
 	get_biggest_a(m);
 	m->universal_big = m->biga;
 	m->max_macro = m->size_a / 20;
 	m->ordered = m->smalla - 1;
-	while (m->ordered != m->biga)
+	if (m->size_a == 2)
+		if (check_if_ordered(m))
+			ft_ra(m);
+	if (m->size_a == 3)
+		three_order(m);
+	if (m->size_a > 3)
 	{
-		get_max_pro(m, 20, m->ordered);
-		push_to_max(m);
-		rotate_push(m);
-		if (m->count < m->max_macro)
-			send_bot(m);
-		m->count++;
+		while (m->ordered != m->biga)
+		{
+			get_max_pro(m, 25, m->ordered);
+			push_to_max(m);
+			rotate_push(m);
+			if (check_if_ordered(m))
+				send_bot(m);
+			m->count++;
+		}
 	}
 }
 
