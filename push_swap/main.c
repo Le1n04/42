@@ -6,7 +6,7 @@
 /*   By: djanssen <djanssen@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 11:03:12 by djanssen          #+#    #+#             */
-/*   Updated: 2023/02/21 12:05:04 by djanssen         ###   ########.fr       */
+/*   Updated: 2023/02/21 13:41:40 by djanssen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -255,7 +255,6 @@ void	ft_init_vars(t_stack *m, int argc, char **argv)
 	m->rot = 1;
 	m->ordered = 0;
 	m->done = 0;
-	m->arcs = argc - 1;
 	m->count = 0;
 }
 
@@ -429,24 +428,23 @@ void	send_bot(t_stack *m)
 		ft_ra(m);
 }
 
-// int	get_the_amount(t_stack *m)
-// {
-// 	int	i;
-
-// 	i = -1;
-// 	m->arcs;
-// }
-
-void	new_srp(t_stack *m)
+void	init_srp(t_stack *m)
 {
-	int	i;
-
-	i = -1;
 	get_smallest_a(m);
 	get_biggest_a(m);
 	m->universal_big = m->biga;
 	m->max_macro = m->size_a / 20;
 	m->ordered = m->smalla - 1;
+}
+
+void	new_srp(t_stack *m)
+{
+	int	n;
+
+	n = 25;
+	if (m->size_a > 200)
+		n = 50;
+	init_srp(m);
 	if (m->size_a == 2)
 		if (check_if_ordered(m))
 			ft_ra(m);
@@ -456,7 +454,7 @@ void	new_srp(t_stack *m)
 	{
 		while (m->ordered != m->biga)
 		{
-			get_max_pro(m, 25, m->ordered);
+			get_max_pro(m, n, m->ordered);
 			push_to_max(m);
 			rotate_push(m);
 			if (check_if_ordered(m))
