@@ -6,7 +6,7 @@
 /*   By: djanssen <djanssen@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 11:03:12 by djanssen          #+#    #+#             */
-/*   Updated: 2023/02/21 13:41:40 by djanssen         ###   ########.fr       */
+/*   Updated: 2023/02/23 13:55:08 by djanssen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -254,8 +254,7 @@ void	ft_init_vars(t_stack *m, int argc, char **argv)
 	m->printable = 1;
 	m->rot = 1;
 	m->ordered = 0;
-	m->done = 0;
-	m->count = 0;
+	m->count = -1;
 }
 
 void	get_smallest_a(t_stack *m)
@@ -395,6 +394,41 @@ void	get_biggest_b(t_stack *m)
 			m->bigb = m->b_stack[i];
 }
 
+void	rotate_rr(t_stack *m)
+{
+	while (m->bigb != m->b_stack[0])
+	{
+		if (m->smallb == m->b_stack[0])
+		{
+			ft_pa(m);
+			if (m->b_stack[1] != m->bigb)
+				ft_rr(m);
+			else
+				ft_ra(m);
+			m->rot_count = 1;
+			m->ordered++;
+			break ;
+		}
+		ft_rb(m);
+	}
+}
+
+void	rotate_rrb(t_stack *m)
+{
+	while (m->bigb != m->b_stack[0])
+	{
+		if (m->smallb == m->b_stack[0])
+		{
+			ft_pa(m);
+			ft_ra(m);
+			m->rot_count = 1;
+			m->ordered++;
+			break ;
+		}
+		ft_rrb(m);
+	}
+}
+
 void	rotate_push(t_stack *m)
 {
 	int	i;
@@ -402,20 +436,23 @@ void	rotate_push(t_stack *m)
 	m->fake_ordered = 0;
 	while (m->size_b)
 	{
+		m->rot_count = 0;
 		i = -1;
 		get_biggest_b(m);
+		get_smallest_b(m);
 		while (++i < m->size_b)
 			if (m->b_stack[i] == m->bigb)
 				break ;
 		if (i <= (m->size_b / 2))
-			while (m->bigb != m->b_stack[0])
-				ft_rb(m);
+			rotate_rr(m);
 		else
-			while (m->bigb != m->b_stack[0])
-				ft_rrb(m);
-		ft_pa(m);
-		m->fake_ordered++;
-		m->ordered++;
+			rotate_rrb(m);
+		if (m->rot_count == 0)
+		{
+			ft_pa(m);
+			m->fake_ordered++;
+			m->ordered++;
+		}
 	}
 }
 
@@ -441,25 +478,27 @@ void	new_srp(t_stack *m)
 {
 	int	n;
 
-	n = 25;
-	if (m->size_a > 200)
-		n = 50;
-	init_srp(m);
-	if (m->size_a == 2)
-		if (check_if_ordered(m))
-			ft_ra(m);
-	if (m->size_a == 3)
-		three_order(m);
-	if (m->size_a > 3)
+	if (check_if_ordered(m))
 	{
-		while (m->ordered != m->biga)
-		{
-			get_max_pro(m, n, m->ordered);
-			push_to_max(m);
-			rotate_push(m);
+		n = 34;
+		if (m->size_a > 200)
+			n = 63;
+		init_srp(m);
+		if (m->size_a == 2)
 			if (check_if_ordered(m))
-				send_bot(m);
-			m->count++;
+				ft_ra(m);
+		if (m->size_a == 3)
+			three_order(m);
+		if (m->size_a > 3)
+		{
+			while (m->ordered != m->biga && ++m->count > -1)
+			{
+				get_max_pro(m, n, m->ordered);
+				push_to_max(m);
+				rotate_push(m);
+				if (check_if_ordered(m))
+					send_bot(m);
+			}
 		}
 	}
 }

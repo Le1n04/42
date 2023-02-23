@@ -6,7 +6,7 @@
 /*   By: djanssen <djanssen@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 09:48:59 by djanssen          #+#    #+#             */
-/*   Updated: 2023/02/21 13:24:45 by djanssen         ###   ########.fr       */
+/*   Updated: 2023/02/23 12:12:56 by djanssen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,9 @@ typedef struct s_stack
 	int		bigb;
 	int		ordered;
 	int		fake_ordered;
-	int		done;
 	int		max_macro;
 	int		count;
-	int		half;
+	int		rot_count;
 }	t_stack;
 
 #endif
