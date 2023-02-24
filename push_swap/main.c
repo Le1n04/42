@@ -6,11 +6,13 @@
 /*   By: djanssen <djanssen@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 11:03:12 by djanssen          #+#    #+#             */
-/*   Updated: 2023/02/23 13:55:08 by djanssen         ###   ########.fr       */
+/*   Updated: 2023/02/24 13:29:31 by djanssen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+void	ft_init_vars(t_stack *m, int argc, char **argv);
 
 void	ft_swap(int *ar1, int *ar2)
 {
@@ -123,6 +125,7 @@ t_stack	*ft_pa(t_stack *m)
 {
 	remove_from_stack_b(m);
 	add_to_stack_a(m);
+	m->num_count++;
 	return (printf("pa\n"), m);
 }
 
@@ -255,6 +258,7 @@ void	ft_init_vars(t_stack *m, int argc, char **argv)
 	m->rot = 1;
 	m->ordered = 0;
 	m->count = -1;
+	m->num_count = 0;
 }
 
 void	get_smallest_a(t_stack *m)
@@ -370,7 +374,8 @@ void	push_to_max(t_stack *m)
 	tmp = m->size_a;
 	i = -1;
 	get_biggest_a(m);
-	while (++i < tmp)
+	get_smallest_a(m);
+	while ((++i < tmp && m->num_count <= tmp / 2 ) || (m->num_count > tmp / 2 && m->a_stack[0] != m->smalla))
 	{
 		m->rot = 1;
 		if (m->a_stack[0] < m->max_pro && m->a_stack[0] > m->ordered)
@@ -380,6 +385,14 @@ void	push_to_max(t_stack *m)
 		}
 		if (m->rot == 1 && check_if_ordered(m))
 			ft_ra(m);
+	}
+	if (m->num_count > tmp / 2)
+	{
+		int x;
+
+		x = tmp - m->num_count - m->size_b;
+		while (x--)
+			ft_rra(m);
 	}
 }
 
@@ -480,7 +493,7 @@ void	new_srp(t_stack *m)
 
 	if (check_if_ordered(m))
 	{
-		n = 34;
+		n = 27;
 		if (m->size_a > 200)
 			n = 63;
 		init_srp(m);

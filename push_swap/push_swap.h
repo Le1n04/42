@@ -6,7 +6,7 @@
 /*   By: djanssen <djanssen@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 09:48:59 by djanssen          #+#    #+#             */
-/*   Updated: 2023/02/23 12:12:56 by djanssen         ###   ########.fr       */
+/*   Updated: 2023/02/24 11:52:11 by djanssen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,13 @@ typedef struct s_stack
 	int		fake_ordered;
 	int		max_macro;
 	int		count;
+	int		universal_size_a;
 	int		rot_count;
+	int		num_count;
+	int		bigger;
+	int		numero;
 }	t_stack;
+
+void	ft_init_vars(t_stack *m, int argc, char **argv);
 
 #endif
