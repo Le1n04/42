@@ -1,34 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   five.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: djanssen <djanssen@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 11:03:12 by djanssen          #+#    #+#             */
-/*   Updated: 2023/02/27 16:27:00 by djanssen         ###   ########.fr       */
+/*   Updated: 2023/02/27 17:21:12 by djanssen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../push_swap.h"
 
-// void	showleaks(void)
-// {
-// 	system("leaks -q push_swap");
-// }
-
-int	main(int argc, char **argv)
+void	main_cooker(t_stack *m)
 {
-	t_stack	m;
+	int	min;
 
-	if (argc < 2)
-		return (printf("%sYou need at least 2 arguments\n", COLOUR_RED), 1);
-	else if (argc == 2)
-		return (0);
-	else
+	get_smallest_a(m);
+	min = m->smalla;
+	while (m->size_a > 3)
 	{
-		ft_init_vars(&m, argc, argv);
-		new_srp(&m);
+		get_smallest_from_a(m, min);
+		while (m->a_stack[0] != m->smalla && m->a_stack[0] != min)
+			ft_rra(m);
+		ft_pb(m);
 	}
-	return (0);
+	three_order(m);
+	while (m->size_b)
+	{
+		get_biggest_b(m);
+		while (m->b_stack[0] != m->bigb)
+			ft_rb(m);
+		ft_pa(m);
+	}
 }

@@ -1,34 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_s.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: djanssen <djanssen@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 11:03:12 by djanssen          #+#    #+#             */
-/*   Updated: 2023/02/27 16:27:00 by djanssen         ###   ########.fr       */
+/*   Updated: 2023/02/27 16:21:41 by djanssen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../push_swap.h"
 
-// void	showleaks(void)
-// {
-// 	system("leaks -q push_swap");
-// }
-
-int	main(int argc, char **argv)
+t_stack	*ft_sa(t_stack *m)
 {
-	t_stack	m;
+	if (m->a_stack[1])
+		ft_swap(&m->a_stack[0], &m->a_stack[1]);
+	return (printf("sa\n"), m);
+}
 
-	if (argc < 2)
-		return (printf("%sYou need at least 2 arguments\n", COLOUR_RED), 1);
-	else if (argc == 2)
-		return (0);
-	else
-	{
-		ft_init_vars(&m, argc, argv);
-		new_srp(&m);
-	}
-	return (0);
+t_stack	*ft_sb(t_stack *m)
+{
+	if (m->b_stack[1])
+		ft_swap(&m->b_stack[0], &m->b_stack[1]);
+	return (printf("sa\n"), m);
+}
+
+t_stack	*ft_ss(t_stack *m)
+{
+	ft_sa(m);
+	ft_sb(m);
+	return (m);
 }
