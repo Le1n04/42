@@ -6,7 +6,7 @@
 /*   By: djanssen <djanssen@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 11:03:12 by djanssen          #+#    #+#             */
-/*   Updated: 2023/02/27 17:01:40 by djanssen         ###   ########.fr       */
+/*   Updated: 2023/02/27 17:23:32 by djanssen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,14 +117,6 @@ void	new_srp(t_stack *m)
 		if (m->size_a > 3 && m->size_a < 10)
 			main_cooker(m);
 		if (m->size_a >= 10)
-		{
-			while (m->ordered < m->universal_size_a)
-			{
-				get_max_pro(m, n, m->max_ordered);
-				push_to_max(m);
-				rotate_push(m);
-				send_bot(m);
-			}
-		}
+			process(m, n);
 	}
 }

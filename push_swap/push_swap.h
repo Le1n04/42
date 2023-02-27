@@ -6,7 +6,7 @@
 /*   By: djanssen <djanssen@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 09:48:59 by djanssen          #+#    #+#             */
-/*   Updated: 2023/02/27 17:01:52 by djanssen         ###   ########.fr       */
+/*   Updated: 2023/02/27 17:23:42 by djanssen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,5 +100,6 @@ void	rotate_rr(t_stack *m);
 // Old SRP //
 
 void	main_cooker(t_stack *m);
+void	process(t_stack *m, int n);
 
 #endif
