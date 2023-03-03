@@ -6,7 +6,7 @@
 /*   By: djanssen <djanssen@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 11:03:12 by djanssen          #+#    #+#             */
-/*   Updated: 2023/02/27 16:28:50 by djanssen         ###   ########.fr       */
+/*   Updated: 2023/02/28 12:29:06 by djanssen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ t_stack	*ft_rra(t_stack *m)
 	free(m->a_stack);
 	m->a_stack = saved;
 	if (m->printable == 1)
-		printf("rra\n");
+		write(1, "rra\n", 4);
 	m->printable = 1;
 	return (m);
 }
@@ -45,7 +45,7 @@ t_stack	*ft_rrb(t_stack *m)
 	free(m->b_stack);
 	m->b_stack = saved;
 	if (m->printable == 1)
-		printf("rrb\n");
+		write(1, "rrb\n", 4);
 	m->printable = 1;
 	return (m);
 }
@@ -56,5 +56,5 @@ t_stack	*ft_rrr(t_stack *m)
 	ft_rra(m);
 	m->printable = 0;
 	ft_rrb(m);
-	return (printf("rrr\n"), m);
+	return (write(1, "rrr\n", 4), m);
 }

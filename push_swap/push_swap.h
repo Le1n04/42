@@ -6,7 +6,7 @@
 /*   By: djanssen <djanssen@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 09:48:59 by djanssen          #+#    #+#             */
-/*   Updated: 2023/02/27 17:25:30 by djanssen         ###   ########.fr       */
+/*   Updated: 2023/02/28 14:52:23 by djanssen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@
 # include <stdlib.h>
 # include <string.h>
 # include <unistd.h>
-# include "ft_printf/src/ft_printf.h"
 
 typedef struct s_stack
 {
@@ -85,6 +84,8 @@ int		*ft_get_b_stack(t_stack *m);
 void	ft_init_vars(t_stack *m, int argc, char **argv);
 int		check_if_ordered(t_stack *m);
 void	init_srp(t_stack *m);
+int		alpha_checker(int argc, char **argv);
+int		dup_checker(int argc, char **argv, int error);
 
 // Main Functions //
 
@@ -101,6 +102,8 @@ void	process(t_stack *m, int n);
 // <10 process //
 
 void	main_cooker(t_stack *m);
+void	cooking_loop(t_stack *m);
+int		ft_strcmp(char *s1, char *s2);
 
 //  //
 
