@@ -1,5 +1,6 @@
 #include <unistd.h>
 #include <stdio.h>
+#include <stdlib.h>
 
 int	ft_atoi(const char *str)
 {
@@ -22,10 +23,11 @@ int	ft_atoi(const char *str)
 
 int main(void)
 {
-	char *str = "+123";
+	char *str = "   + 12 3";
 	int	n;
 
 	n = ft_atoi(str);
-	printf("%d\n", n);
+	int m = atoi(str);
+	printf("%d\n%d\n", n, m);
 	return (0);
 }
