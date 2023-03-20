@@ -18,7 +18,7 @@ unsigned int	lcm(unsigned int a, unsigned int b)
 				return (n);
 			n++;
 		}
-	}
+}
 }
 
 int main(void)
