@@ -1,0 +1,5 @@
+kata = (19,42,21)
+txt = str(kata)
+txt = txt.replace("(","")
+txt = txt.replace(")","")
+print("The 3 numbers are: {}".format(txt))
