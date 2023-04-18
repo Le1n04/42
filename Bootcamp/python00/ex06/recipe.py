@@ -69,3 +69,22 @@ while not choice == 5:
     except ValueError:
         choice = 0
     print ("")
+    if choice == 1:
+        name = input("Enter the name of the recipe you want to add: ")
+        ingr = input("Enter the ingredients like this 'rice,corn,bread,...': ").split(',')
+        meal = input("Enter the type of meal: ")
+        time = input("Enter the cooking duration in minutes: ")
+        add_recipe(name, ingr, meal, time)
+    elif choice == 2:
+        name = input("Enter the recipe to delete from the cookbook: ")
+        delete_recipe(name)
+    elif choice == 3:
+        name = input("Enter the name of the recipe you want to print: ")
+        recipe_printer(name)
+    elif choice == 4:
+        print_all_names_details()
+    elif choice == 5:
+        print("Closed.")
+    else:
+        print("Error, wrong input given...")
+    print()
