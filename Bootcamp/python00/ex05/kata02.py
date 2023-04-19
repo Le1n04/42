@@ -23,4 +23,4 @@ if (len(kata) >= 5):
     print("{}{}/{}{}/{}{} {}{}:{}{}"
           .format(m, kata[3], d, kata[4], y, kata[2], h, kata[0], min, kata[1]))
 else:
-    print("Tuple needs at least five parameters.")
+    print("ERROR.")

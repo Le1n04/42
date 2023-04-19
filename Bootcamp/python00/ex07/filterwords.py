@@ -10,7 +10,7 @@ else:
     try:
         length = int(sys.argv[2])
     except ValueError:
-        print("Error with length...")
+        print("ERROR.")
         sys.exit()
 s = sys.argv[1].translate(str.maketrans('', '', string.punctuation))
 txt = s.split(' ')
