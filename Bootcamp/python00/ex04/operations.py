@@ -4,6 +4,8 @@ import sys
 error = 0
 if int(len(sys.argv)) != 3:
 	error = 1
+if error == 0 and (len(sys.argv[1]) == 0 or len(sys.argv[2]) == 0):
+	error = 1
 if error == 0:
 	stra = str(sys.argv[1])
 	strb = str(sys.argv[2])
@@ -12,13 +14,13 @@ if error == 0:
 i = 0
 if error == 0:
 	while i < lena:
-		if stra[i].isalpha():
+		if not stra[i].isnumeric():
 			error = 1
 		i += 1
 i = 0
 if error == 0:
 	while i < lenb:
-		if strb[i].isalpha():
+		if not strb[i].isnumeric():
 			error = 1
 		i += 1
 if error == 1:

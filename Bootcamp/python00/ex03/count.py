@@ -38,5 +38,13 @@ def	text_analyzer(*args):
 	return
 
 if __name__ == "__main__":
-    str = sys.argv[1]
-    text_analyzer(str)
+	str = ""
+	if len(sys.argv) == 1 or len(sys.argv[1]) == 0:
+		while len(str) == 0:
+			if len(sys.argv) == 1 or len(sys.argv[1]) == 0:
+				print("Give me a string:")
+				print(">> ", end="")
+				str = input()
+	else:
+		str = sys.argv[1]
+	text_analyzer(str)

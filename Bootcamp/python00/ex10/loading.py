@@ -9,19 +9,20 @@ def ft_progress(lst):
     eta = 0
     barsize = 40
     for i in lst:
-        perc = i/big*100
-        bar = int(i/big*barsize)
-        t = time.time() - bgn
-        if perc != 0:
-            eta = t/perc*100
-        sys.stdout.write('\r')
-        sys.stdout.write("ETA: %.2fs [%3d%%] [%-*.*s] %*d/%d | elapsed time %.2fs" % (eta, perc, barsize, barsize, '='*bar+'>', length, i, big, t))
-        sys.stdout.flush()
-        yield i
+        if big is not 0:
+            perc = i/big*100
+            bar = int(i/big*barsize)
+            t = time.time() - bgn
+            if perc != 0:
+                eta = t/perc*100
+            sys.stdout.write('\r')
+            sys.stdout.write("ETA: %.2fs [%3d%%] [%-*.*s] %*d/%d | elapsed time %.2fs" % (eta, perc, barsize, barsize, '='*bar+'>', length, i, big, t))
+            sys.stdout.flush()
+            yield i
         
 
 if __name__ == "__main__":
-    listy = range(0,-1000, -1000)
+    listy = range(1001)
     ret = 0
     for elem in ft_progress(listy):
         ret += elem

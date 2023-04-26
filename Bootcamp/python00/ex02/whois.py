@@ -1,5 +1,4 @@
 import sys
-import string
 n = int(len(sys.argv))
 if n > 2:
 	print('Error')

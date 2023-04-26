@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 import sys
-import string
 
 
 morse_dict = {'A': '.-', 'B': '-...',
@@ -31,6 +30,6 @@ if length > 1:
     str = sys.argv[1]
     for i in range(length - 2):
         str = str + " " + sys.argv[i + 2]
-        print_morse(str)
+    print_morse(str)
 else:
     print("Not enough arguments.")
